@@ -302,7 +302,10 @@ api_router.include_router(profile_router)
 app.add_middleware(
     CORSMiddleware,
     allow_credentials=True,
-    allow_origins=["*"],
+    allow_origins=[
+        "http://localhost:3000",
+        "https://exec-presence.preview.emergentagent.com"
+    ],
     allow_methods=["*"],
     allow_headers=["*"],
     expose_headers=["*"],
