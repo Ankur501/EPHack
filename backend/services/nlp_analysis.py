@@ -11,9 +11,9 @@ load_dotenv(ROOT_DIR / '.env')
 
 class NLPAnalysisService:
     def __init__(self):
-        api_key = os.getenv("EMERGENT_LLM_KEY")
+        api_key = os.getenv("OPENAI_API_KEY")
         if not api_key:
-            raise ValueError("EMERGENT_LLM_KEY not found in environment variables")
+            raise ValueError("OPENAI_API_KEY not found in environment variables")
         self.client = openai.OpenAI(api_key=api_key)
     
     async def analyze_gravitas(self, transcript: str, user_profile: Dict[str, Any] = None) -> Dict[str, Any]:
