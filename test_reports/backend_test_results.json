@@ -1,175 +1,196 @@
 {
-  "total_tests": 24,
-  "passed_tests": 24,
+  "total_tests": 27,
+  "passed_tests": 27,
   "success_rate": 100.0,
   "test_results": [
     {
       "test_name": "Auth - Login",
       "success": true,
-      "details": "Status: 200, Response: {'user': {'user_id': 'user_3f651a74df79', 'email': 'uitest_golden@test.com', 'name': 'Golden UI Tester', 'picture': None, 'created_at': '2025-12-14T08:50:10.078145+00:00'}, 'session_token': 'session_5",
+      "details": "Status: 200, Response: {'user': {'user_id': 'user_3f651a74df79', 'email': 'uitest_golden@test.com', 'name': 'Golden UI Tester', 'picture': None, 'created_at': '2025-12-14T08:50:10.078145+00:00'}, 'session_token': 'session_8",
       "error": "",
-      "timestamp": "2025-12-14T09:27:46.595435"
+      "timestamp": "2025-12-14T09:49:08.159911"
     },
     {
       "test_name": "Auth - Get Me",
       "success": true,
       "details": "Status: 200, Response: {'user_id': 'user_3f651a74df79', 'email': 'uitest_golden@test.com', 'name': 'Golden UI Tester', 'picture': None, 'created_at': '2025-12-14T08:50:10.078145+00:00'}",
       "error": "",
-      "timestamp": "2025-12-14T09:27:46.633592"
+      "timestamp": "2025-12-14T09:49:08.240650"
     },
     {
       "test_name": "Video - Upload",
       "success": true,
-      "details": "Status: 200, Response: {'video_id': 'video_502234bc7ea2434c8a8285b093f30152', 'message': 'Video uploaded successfully'}",
+      "details": "Status: 200, Response: {'video_id': 'video_8b6f7a129ea44b9b93ce217df70b1f83', 'message': 'Video uploaded successfully'}",
       "error": "",
-      "timestamp": "2025-12-14T09:27:46.673887"
+      "timestamp": "2025-12-14T09:49:08.285297"
     },
     {
       "test_name": "Video - Process",
       "success": true,
-      "details": "Status: 200, Response: {'job_id': 'job_ca392d57833b4c17b55f8e95b85cc920', 'message': 'Processing started'}",
+      "details": "Status: 200, Response: {'job_id': 'job_230ce74b1dfc4740a7aa1a3ed11abdac', 'message': 'Processing started'}",
       "error": "",
-      "timestamp": "2025-12-14T09:27:46.712591"
+      "timestamp": "2025-12-14T09:49:08.364659"
     },
     {
       "test_name": "Jobs - Get Status",
       "success": true,
-      "details": "Status: 200, Response: {'job_id': 'job_ca392d57833b4c17b55f8e95b85cc920', 'user_id': 'user_3f651a74df79', 'video_id': 'video_502234bc7ea2434c8a8285b093f30152', 'status': 'transcribing', 'progress': 10, 'current_step': 'Extr",
+      "details": "Status: 200, Response: {'job_id': 'job_230ce74b1dfc4740a7aa1a3ed11abdac', 'user_id': 'user_3f651a74df79', 'video_id': 'video_8b6f7a129ea44b9b93ce217df70b1f83', 'status': 'transcribing', 'progress': 10, 'current_step': 'Extr",
       "error": "",
-      "timestamp": "2025-12-14T09:27:46.754737"
+      "timestamp": "2025-12-14T09:49:08.406188"
     },
     {
       "test_name": "Jobs - Get Status",
       "success": true,
-      "details": "Status: 200, Response: {'job_id': 'job_ca392d57833b4c17b55f8e95b85cc920', 'user_id': 'user_3f651a74df79', 'video_id': 'video_502234bc7ea2434c8a8285b093f30152', 'status': 'failed', 'progress': 10, 'current_step': 'Extracting",
+      "details": "Status: 200, Response: {'job_id': 'job_230ce74b1dfc4740a7aa1a3ed11abdac', 'user_id': 'user_3f651a74df79', 'video_id': 'video_8b6f7a129ea44b9b93ce217df70b1f83', 'status': 'failed', 'progress': 10, 'current_step': 'Extracting",
       "error": "",
-      "timestamp": "2025-12-14T09:27:49.811769"
+      "timestamp": "2025-12-14T09:49:11.446882"
     },
     {
       "test_name": "Jobs - Get Status",
       "success": true,
-      "details": "Status: 200, Response: {'job_id': 'job_ca392d57833b4c17b55f8e95b85cc920', 'user_id': 'user_3f651a74df79', 'video_id': 'video_502234bc7ea2434c8a8285b093f30152', 'status': 'failed', 'progress': 10, 'current_step': 'Extracting",
+      "details": "Status: 200, Response: {'job_id': 'job_230ce74b1dfc4740a7aa1a3ed11abdac', 'user_id': 'user_3f651a74df79', 'video_id': 'video_8b6f7a129ea44b9b93ce217df70b1f83', 'status': 'failed', 'progress': 10, 'current_step': 'Extracting",
       "error": "",
-      "timestamp": "2025-12-14T09:27:52.853298"
+      "timestamp": "2025-12-14T09:49:14.504453"
     },
     {
       "test_name": "Jobs - Get Status",
       "success": true,
-      "details": "Status: 200, Response: {'job_id': 'job_ca392d57833b4c17b55f8e95b85cc920', 'user_id': 'user_3f651a74df79', 'video_id': 'video_502234bc7ea2434c8a8285b093f30152', 'status': 'failed', 'progress': 10, 'current_step': 'Extracting",
+      "details": "Status: 200, Response: {'job_id': 'job_230ce74b1dfc4740a7aa1a3ed11abdac', 'user_id': 'user_3f651a74df79', 'video_id': 'video_8b6f7a129ea44b9b93ce217df70b1f83', 'status': 'failed', 'progress': 10, 'current_step': 'Extracting",
       "error": "",
-      "timestamp": "2025-12-14T09:27:55.928458"
+      "timestamp": "2025-12-14T09:49:17.545968"
     },
     {
       "test_name": "Jobs - Get Status",
       "success": true,
-      "details": "Status: 200, Response: {'job_id': 'job_ca392d57833b4c17b55f8e95b85cc920', 'user_id': 'user_3f651a74df79', 'video_id': 'video_502234bc7ea2434c8a8285b093f30152', 'status': 'failed', 'progress': 10, 'current_step': 'Extracting",
+      "details": "Status: 200, Response: {'job_id': 'job_230ce74b1dfc4740a7aa1a3ed11abdac', 'user_id': 'user_3f651a74df79', 'video_id': 'video_8b6f7a129ea44b9b93ce217df70b1f83', 'status': 'failed', 'progress': 10, 'current_step': 'Extracting",
       "error": "",
-      "timestamp": "2025-12-14T09:27:58.968059"
+      "timestamp": "2025-12-14T09:49:20.607135"
     },
     {
       "test_name": "Jobs - Get Status",
       "success": true,
-      "details": "Status: 200, Response: {'job_id': 'job_ca392d57833b4c17b55f8e95b85cc920', 'user_id': 'user_3f651a74df79', 'video_id': 'video_502234bc7ea2434c8a8285b093f30152', 'status': 'failed', 'progress': 10, 'current_step': 'Extracting",
+      "details": "Status: 200, Response: {'job_id': 'job_230ce74b1dfc4740a7aa1a3ed11abdac', 'user_id': 'user_3f651a74df79', 'video_id': 'video_8b6f7a129ea44b9b93ce217df70b1f83', 'status': 'failed', 'progress': 10, 'current_step': 'Extracting",
       "error": "",
-      "timestamp": "2025-12-14T09:28:02.024026"
+      "timestamp": "2025-12-14T09:49:23.642556"
     },
     {
       "test_name": "Jobs - Get Status",
       "success": true,
-      "details": "Status: 200, Response: {'job_id': 'job_ca392d57833b4c17b55f8e95b85cc920', 'user_id': 'user_3f651a74df79', 'video_id': 'video_502234bc7ea2434c8a8285b093f30152', 'status': 'failed', 'progress': 10, 'current_step': 'Extracting",
+      "details": "Status: 200, Response: {'job_id': 'job_230ce74b1dfc4740a7aa1a3ed11abdac', 'user_id': 'user_3f651a74df79', 'video_id': 'video_8b6f7a129ea44b9b93ce217df70b1f83', 'status': 'failed', 'progress': 10, 'current_step': 'Extracting",
       "error": "",
-      "timestamp": "2025-12-14T09:28:05.060773"
+      "timestamp": "2025-12-14T09:49:26.702239"
     },
     {
       "test_name": "Jobs - Get Status",
       "success": true,
-      "details": "Status: 200, Response: {'job_id': 'job_ca392d57833b4c17b55f8e95b85cc920', 'user_id': 'user_3f651a74df79', 'video_id': 'video_502234bc7ea2434c8a8285b093f30152', 'status': 'failed', 'progress': 10, 'current_step': 'Extracting",
+      "details": "Status: 200, Response: {'job_id': 'job_230ce74b1dfc4740a7aa1a3ed11abdac', 'user_id': 'user_3f651a74df79', 'video_id': 'video_8b6f7a129ea44b9b93ce217df70b1f83', 'status': 'failed', 'progress': 10, 'current_step': 'Extracting",
       "error": "",
-      "timestamp": "2025-12-14T09:28:08.120262"
+      "timestamp": "2025-12-14T09:49:29.739726"
     },
     {
       "test_name": "Jobs - Get Status",
       "success": true,
-      "details": "Status: 200, Response: {'job_id': 'job_ca392d57833b4c17b55f8e95b85cc920', 'user_id': 'user_3f651a74df79', 'video_id': 'video_502234bc7ea2434c8a8285b093f30152', 'status': 'failed', 'progress': 10, 'current_step': 'Extracting",
+      "details": "Status: 200, Response: {'job_id': 'job_230ce74b1dfc4740a7aa1a3ed11abdac', 'user_id': 'user_3f651a74df79', 'video_id': 'video_8b6f7a129ea44b9b93ce217df70b1f83', 'status': 'failed', 'progress': 10, 'current_step': 'Extracting",
       "error": "",
-      "timestamp": "2025-12-14T09:28:11.160393"
+      "timestamp": "2025-12-14T09:49:32.796176"
     },
     {
       "test_name": "Jobs - Get Status",
       "success": true,
-      "details": "Status: 200, Response: {'job_id': 'job_ca392d57833b4c17b55f8e95b85cc920', 'user_id': 'user_3f651a74df79', 'video_id': 'video_502234bc7ea2434c8a8285b093f30152', 'status': 'failed', 'progress': 10, 'current_step': 'Extracting",
+      "details": "Status: 200, Response: {'job_id': 'job_230ce74b1dfc4740a7aa1a3ed11abdac', 'user_id': 'user_3f651a74df79', 'video_id': 'video_8b6f7a129ea44b9b93ce217df70b1f83', 'status': 'failed', 'progress': 10, 'current_step': 'Extracting",
       "error": "",
-      "timestamp": "2025-12-14T09:28:14.215478"
+      "timestamp": "2025-12-14T09:49:35.834513"
     },
     {
       "test_name": "Reports - List",
       "success": true,
       "details": "Status: 200, Response: {'reports': [{'report_id': 'report_cc6a11dc98be4cb99d8a80465e323395', 'user_id': 'user_3f651a74df79', 'video_id': 'video_5f357799b4ab4384b35f0e43bfc4dfd2', 'job_id': 'job_68bf2f206d4f4ad3a210e66d9b08f",
       "error": "",
-      "timestamp": "2025-12-14T09:28:17.265117"
+      "timestamp": "2025-12-14T09:49:38.933811"
     },
     {
       "test_name": "Reports - Check for Sharing Test",
       "success": true,
       "details": "Status: 200, Response: {'reports': [{'report_id': 'report_cc6a11dc98be4cb99d8a80465e323395', 'user_id': 'user_3f651a74df79', 'video_id': 'video_5f357799b4ab4384b35f0e43bfc4dfd2', 'job_id': 'job_68bf2f206d4f4ad3a210e66d9b08f",
       "error": "",
-      "timestamp": "2025-12-14T09:28:17.304761"
+      "timestamp": "2025-12-14T09:49:38.969538"
     },
     {
       "test_name": "Sharing - Create Share Link",
       "success": true,
-      "details": "Status: 200, Response: {'share_id': 'share_d01f452e53234bc09603f0dbdd90be90', 'expires_at': '2025-12-21T09:28:17.337734+00:00'}",
+      "details": "Status: 200, Response: {'share_id': 'share_a56819c647224117889302ba10cb39c2', 'expires_at': '2025-12-21T09:49:39.003958+00:00'}",
       "error": "",
-      "timestamp": "2025-12-14T09:28:17.365381"
+      "timestamp": "2025-12-14T09:49:39.048927"
     },
     {
       "test_name": "Sharing - Get Shared Report",
       "success": true,
-      "details": "Status: 200, Response: {'share': {'share_id': 'share_d01f452e53234bc09603f0dbdd90be90', 'report_id': 'report_cc6a11dc98be4cb99d8a80465e323395', 'owner_user_id': 'user_3f651a74df79', 'created_at': '2025-12-14T09:28:17.337734",
+      "details": "Status: 200, Response: {'share': {'share_id': 'share_a56819c647224117889302ba10cb39c2', 'report_id': 'report_cc6a11dc98be4cb99d8a80465e323395', 'owner_user_id': 'user_3f651a74df79', 'created_at': '2025-12-14T09:49:39.003958",
       "error": "",
-      "timestamp": "2025-12-14T09:28:17.402248"
+      "timestamp": "2025-12-14T09:49:39.087901"
     },
     {
       "test_name": "Coaching - Create Request",
       "success": true,
-      "details": "Status: 200, Response: {'request_id': 'coachreq_f8a0be85eef644c79a4ac9b118a44510'}",
+      "details": "Status: 200, Response: {'request_id': 'coachreq_f3fa0f48ed13427883d0f9f5a9f9361f'}",
       "error": "",
-      "timestamp": "2025-12-14T09:28:17.442558"
+      "timestamp": "2025-12-14T09:49:39.124229"
     },
     {
       "test_name": "Learning - Daily Tip",
       "success": true,
-      "details": "Status: 200, Response: {'tip': 'Schedule a brief daily reflection period where you consciously examine any habitual speech fillers like \"um,\" \"like,\" or \"you know\" that may dilute your communication. Record a minute of your",
+      "details": "Status: 200, Response: {'tip': 'To amplify your presence in meetings, consciously practice \"active listening.\" Briefly summarize or rephrase key points made by others before responding. This demonstrates respect, enhances u",
       "error": "",
-      "timestamp": "2025-12-14T09:28:19.124465"
+      "timestamp": "2025-12-14T09:49:40.428985"
     },
     {
       "test_name": "Learning - TED Talks",
       "success": true,
       "details": "Status: 200, Response: {'talks': [{'id': 1, 'title': 'Your body language may shape who you are', 'speaker': 'Amy Cuddy', 'duration': '21 min', 'relevance': 'Presence, Body Language, Confidence', 'url': 'https://www.ted.com/",
       "error": "",
-      "timestamp": "2025-12-14T09:28:19.163320"
+      "timestamp": "2025-12-14T09:49:40.464868"
     },
     {
       "test_name": "Training - Modules List",
       "success": true,
       "details": "Status: 200, Response: {'modules': [{'id': 'strategic-pauses', 'title': 'Strategic Pauses', 'description': 'Master the art of using silence to enhance authority and emphasize key points', 'duration': '8 minutes', 'difficult",
       "error": "",
-      "timestamp": "2025-12-14T09:28:19.206028"
+      "timestamp": "2025-12-14T09:49:40.502962"
     },
     {
       "test_name": "Training - Module Content (strategic-pauses)",
       "success": true,
-      "details": "Status: 200, Response: {'module_id': 'strategic-pauses', 'content': '**Key Concept:**  \\nStrategic pauses are intentional breaks executives take during conversations or decision-making processes to gather their thoughts, as",
+      "details": "Status: 200, Response: {'module_id': 'strategic-pauses', 'content': '### Strategic Pause Techniques for Executives\\n\\n**Key Concept:**  \\nStrategic pauses are deliberate breaks in the decision-making process that allow exec",
       "error": "",
-      "timestamp": "2025-12-14T09:28:22.676384"
+      "timestamp": "2025-12-14T09:49:44.526072"
+    },
+    {
+      "test_name": "Retention - Get Settings",
+      "success": true,
+      "details": "Status: 200, Response: {'default_retention': '30_days', 'videos': [{'video_id': 'video_0cff53e803664b61931e9c54c1c04240', 'filename': 'test_video.mp4', 'uploaded_at': '2025-12-14T09:24:05.796743+00:00'}, {'video_id': 'video",
+      "error": "",
+      "timestamp": "2025-12-14T09:49:44.583889"
+    },
+    {
+      "test_name": "Retention - Set Default (Valid)",
+      "success": true,
+      "details": "Status: 200, Response: {'user_id': 'user_3f651a74df79', 'default_retention': '90_days', 'message': 'Default retention set to 90_days'}",
+      "error": "",
+      "timestamp": "2025-12-14T09:49:44.641730"
+    },
+    {
+      "test_name": "Retention - Set Default (Invalid)",
+      "success": true,
+      "details": "Status: 400, Response: {'detail': \"Invalid retention period. Choose from: ['7_days', '30_days', '90_days', '1_year', 'permanent']\"}",
+      "error": "",
+      "timestamp": "2025-12-14T09:49:44.678259"
     },
     {
       "test_name": "Auth - Logout",
       "success": true,
       "details": "Status: 200, Response: {'message': 'Logged out'}",
       "error": "",
-      "timestamp": "2025-12-14T09:28:22.761378"
+      "timestamp": "2025-12-14T09:49:44.714038"
     }
   ]
 }
