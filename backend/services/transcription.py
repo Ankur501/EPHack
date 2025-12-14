@@ -39,7 +39,7 @@ class TranscriptionService:
     
     async def transcribe_audio(self, audio_path: str) -> dict:
         import openai
-        client = openai.OpenAI(api_key=os.getenv("EMERGENT_LLM_KEY"))
+        client = openai.OpenAI(api_key=self.api_key)
         
         with open(audio_path, "rb") as audio_file:
             response = await asyncio.to_thread(
