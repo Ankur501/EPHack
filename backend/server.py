@@ -268,6 +268,9 @@ async def list_reports(
     
     return {"reports": reports}
 
+profile_router = create_profile_router(db)
+api_router.include_router(profile_router)
+
 app.include_router(api_router)
 
 app.add_middleware(
