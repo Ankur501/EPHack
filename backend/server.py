@@ -31,7 +31,13 @@ db = client[os.environ['DB_NAME']]
 app = FastAPI()
 api_router = APIRouter(prefix="/api")
 
-video_processor = VideoProcessorService(db)
+video_processor = None
+
+def get_video_processor():
+    global video_processor
+    if video_processor is None:
+        video_processor = VideoProcessorService(db)
+    return video_processor
 
 @api_router.post("/auth/signup")
 async def signup(request: SignupRequest, response: Response):
