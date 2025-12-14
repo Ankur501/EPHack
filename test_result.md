@@ -277,16 +277,19 @@
 ##
 ## test_plan:
 ##   current_focus:
-##     - "CORS authentication fix required"
-##     - "Enhanced Know Your EP recording interface testing blocked"
-##     - "Research Links in Report page testing blocked"
+##     - "New Dashboard Navigation Bar - COMPLETED"
+##     - "Methodology Page Implementation - COMPLETED"
+##     - "Golden Aesthetic Verification - COMPLETED"
+##     - "Authentication session token issue needs fixing"
 ##   stuck_tasks: 
-##     - "Frontend authentication failing due to CORS policy"
+##     - "Frontend authentication failing due to session token issues"
 ##   test_all: false
-##   test_priority: "fix_cors_first"
+##   test_priority: "fix_auth_tokens"
 ##   backend_completed: true
 ##   retention_api_completed: true
-##   frontend_blocked_by_cors: true
+##   frontend_blocked_by_auth: true
+##   new_navigation_completed: true
+##   methodology_page_completed: true
 ##
 ## agent_communication:
 ##   - agent: "main"
