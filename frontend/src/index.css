@@ -34,6 +34,16 @@
     letter-spacing: -0.025em;
     color: var(--color-primary);
   }
+  
+  /* Global button styling - all buttons have curved edges */
+  button {
+    border-radius: 9999px !important;
+  }
+  
+  /* Input fields - slight rounding */
+  input, textarea, select {
+    border-radius: 12px !important;
+  }
 }
 
 .bg-background { background-color: var(--color-background) !important; }
