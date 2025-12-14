@@ -286,7 +286,7 @@ const Dashboard = () => {
               display: 'flex', alignItems: 'center', justifyContent: 'space-between',
               padding: '16px 0', borderBottom: '1px solid #F1F5F9'
             }}>
-              <div onClick={() => navigate('/dashboard')} style={{fontSize: '24px', fontWeight: 700, color: '#0F172A', cursor: 'pointer'}}>
+              <div onClick={() => navigate('/')} style={{fontSize: '24px', fontWeight: 700, color: '#0F172A', cursor: 'pointer'}}>
                 EP <span style={{color: '#D4AF37'}}>Quotient</span>
               </div>
               <div style={{display: 'flex', alignItems: 'center', gap: '16px'}}>
