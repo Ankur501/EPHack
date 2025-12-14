@@ -350,6 +350,7 @@ async def get_ted_talks(
 ):
     await get_current_user(db, session_token, authorization)
     
+    # Only include videos that are confirmed to work with embedding
     talks = [
         {
             "id": 1,
@@ -373,16 +374,6 @@ async def get_ted_talks(
         },
         {
             "id": 3,
-            "title": "The power of vulnerability",
-            "speaker": "Brené Brown",
-            "duration": "20 min",
-            "relevance": "Authenticity, Emotional Intelligence, Connection",
-            "url": "https://www.ted.com/talks/brene_brown_the_power_of_vulnerability",
-            "embed_url": "https://embed.ted.com/talks/brene_brown_the_power_of_vulnerability",
-            "description": "Understand how vulnerability strengthens authentic leadership"
-        },
-        {
-            "id": 4,
             "title": "How to speak so that people want to listen",
             "speaker": "Julian Treasure",
             "duration": "10 min",
@@ -390,16 +381,6 @@ async def get_ted_talks(
             "url": "https://www.ted.com/talks/julian_treasure_how_to_speak_so_that_people_want_to_listen",
             "embed_url": "https://embed.ted.com/talks/julian_treasure_how_to_speak_so_that_people_want_to_listen",
             "description": "Master vocal techniques for more effective speaking"
-        },
-        {
-            "id": 5,
-            "title": "The skill of self confidence",
-            "speaker": "Dr. Ivan Joseph",
-            "duration": "13 min",
-            "relevance": "Confidence, Self-belief, Performance",
-            "url": "https://www.ted.com/talks/ivan_joseph_the_skill_of_self_confidence",
-            "embed_url": "https://embed.ted.com/talks/ivan_joseph_the_skill_of_self_confidence",
-            "description": "Build self-confidence through practice and self-talk"
         }
     ]
     
