@@ -1,12 +1,15 @@
 import os
+import sys
 import tempfile
 import asyncio
+sys.path.append('/app/backend')
+
 from motor.motor_asyncio import AsyncIOMotorDatabase
-from .transcription import TranscriptionService
-from .audio_analysis import AudioAnalysisService
-from .vision_analysis import VisionAnalysisService
-from .nlp_analysis import NLPAnalysisService
-from ..utils.gridfs_helper import get_video_from_gridfs
+from services.transcription import TranscriptionService
+from services.audio_analysis import AudioAnalysisService
+from services.vision_analysis import VisionAnalysisService
+from services.nlp_analysis import NLPAnalysisService
+from utils.gridfs_helper import get_video_from_gridfs
 import uuid
 from datetime import datetime, timezone
 
