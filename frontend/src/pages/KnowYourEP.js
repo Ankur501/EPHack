@@ -189,26 +189,53 @@ const KnowYourEP = () => {
             </div>
             
             <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '24px'}}>
-              <Button 
-                size="lg" 
+              <button 
                 onClick={() => setStep('record')}
-                className="h-32 flex-col gap-3"
+                className="card-3d"
+                style={{
+                  height: '180px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '16px',
+                  backgroundColor: '#FFFFFF',
+                  border: '2px solid #D4AF37',
+                  borderRadius: '12px',
+                  cursor: 'pointer',
+                  fontSize: '18px',
+                  fontWeight: 600,
+                  color: '#0F172A'
+                }}
                 data-testid="record-button"
               >
-                <Video className="h-8 w-8" />
-                <span className="text-lg">Record Video</span>
-              </Button>
+                <Video style={{width: '40px', height: '40px', color: '#D4AF37'}} />
+                <span>Record Video</span>
+              </button>
               
-              <Button 
-                size="lg" 
-                variant="outline"
+              <button 
                 onClick={() => fileInputRef.current?.click()}
-                className="h-32 flex-col gap-3"
+                className="card-3d"
+                style={{
+                  height: '180px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '16px',
+                  backgroundColor: '#FFFFFF',
+                  border: '2px solid #D4AF37',
+                  borderRadius: '12px',
+                  cursor: 'pointer',
+                  fontSize: '18px',
+                  fontWeight: 600,
+                  color: '#0F172A'
+                }}
                 data-testid="upload-button"
               >
-                <Upload className="h-8 w-8" />
-                <span className="text-lg">Upload Video</span>
-              </Button>
+                <Upload style={{width: '40px', height: '40px', color: '#D4AF37'}} />
+                <span>Upload Video</span>
+              </button>
               
               <input 
                 ref={fileInputRef}
