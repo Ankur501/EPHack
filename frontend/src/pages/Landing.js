@@ -24,6 +24,12 @@ const Landing = () => {
           <div className="flex gap-3">
             <Button 
               variant="ghost" 
+              onClick={() => navigate('/pricing')}
+            >
+              Pricing
+            </Button>
+            <Button 
+              variant="ghost" 
               onClick={() => navigate('/login')} 
               data-testid="login-link"
             >
@@ -107,7 +113,7 @@ const Landing = () => {
               Upload a 3-minute video and receive research-backed insights on communication, gravitas, presence, and storytelling—powered by AI.
             </p>
             
-            <div className="flex gap-4 justify-center">
+            <div className="flex gap-4 justify-center flex-wrap">
               <Button 
                 size="lg" 
                 onClick={() => navigate('/signup')} 
@@ -123,13 +129,16 @@ const Landing = () => {
               <Button 
                 size="lg" 
                 variant="outline" 
-                onClick={() => navigate('/login')}
+                onClick={() => navigate('/pricing')}
                 style={{
                   fontSize: '17px',
-                  padding: '14px 36px'
+                  padding: '14px 36px',
+                  borderColor: '#D4AF37',
+                  color: '#D4AF37',
+                  border: '2px solid #D4AF37'
                 }}
               >
-                Sign In
+                View Pricing
               </Button>
             </div>
             
