@@ -65,7 +65,7 @@ Provide JSON response:
         except Exception as e:
             return self._default_gravitas(error=str(e))
     
-    async def analyze_storytelling(self, transcript: str) -> Dict[str, Any]:
+    async def analyze_storytelling(self, transcript: str, user_profile: Dict[str, Any] = None) -> Dict[str, Any]:
         prompt = f"""Analyze this transcript for STORYTELLING quality:
 
 **Transcript:**
