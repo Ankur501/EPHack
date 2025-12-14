@@ -612,12 +612,40 @@ const Report = () => {
                   <div style={{fontSize: '14px', fontWeight: 600, color: '#0F172A', marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '8px'}}>
                     📚 Research References
                   </div>
-                  <div style={{display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '12px'}}>
+                  <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '12px'}}>
                     {researchReferences.gravitas.map((ref, idx) => (
-                      <div key={idx} style={{fontSize: '13px', color: '#64748B'}}>
-                        <strong style={{color: '#0F172A'}}>{ref.title}</strong> — {ref.source}<br/>
-                        <span style={{fontStyle: 'italic'}}>{ref.insight}</span>
-                      </div>
+                      <a 
+                        key={idx} 
+                        href={ref.link} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        style={{
+                          fontSize: '13px', 
+                          color: '#64748B', 
+                          textDecoration: 'none',
+                          padding: '12px',
+                          backgroundColor: '#FFFFFF',
+                          borderRadius: '8px',
+                          border: '1px solid #E2E8F0',
+                          display: 'block',
+                          transition: 'all 0.2s'
+                        }}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.borderColor = '#D4AF37';
+                          e.currentTarget.style.boxShadow = '0 2px 8px rgba(212,175,55,0.15)';
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.borderColor = '#E2E8F0';
+                          e.currentTarget.style.boxShadow = 'none';
+                        }}
+                      >
+                        <div style={{display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '4px'}}>
+                          <strong style={{color: '#0F172A'}}>{ref.title}</strong>
+                          <ExternalLink style={{width: '12px', height: '12px', color: '#D4AF37'}} />
+                        </div>
+                        <div style={{fontSize: '11px', color: '#D4AF37', marginBottom: '4px'}}>{ref.source}</div>
+                        <span style={{fontStyle: 'italic', fontSize: '12px'}}>{ref.insight}</span>
+                      </a>
                     ))}
                   </div>
                 </div>
