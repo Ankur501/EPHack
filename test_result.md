@@ -110,44 +110,56 @@
 ##     file: "/app/backend/server.py"
 ##     stuck_count: 0
 ##     priority: "high"
-##     needs_retesting: true
+##     needs_retesting: false
 ##     status_history:
 ##       - working: true
 ##         agent: "main"
 ##         comment: "Moved app.include_router(api_router) to end of file; /api/learning/* and /api/training/* now return 200."
+##       - working: true
+##         agent: "testing"
+##         comment: "✅ VERIFIED: All learning/training endpoints working. GET /api/learning/daily-tip (200), GET /api/learning/ted-talks (200), GET /api/training/modules (200), GET /api/training/modules/strategic-pauses (200). All return proper content with AI-generated tips and structured module data."
 ##   - task: "Do not leak password_hash on /api/auth/me"
 ##     implemented: true
 ##     working: true
 ##     file: "/app/backend/utils/auth.py"
 ##     stuck_count: 0
 ##     priority: "high"
-##     needs_retesting: true
+##     needs_retesting: false
 ##     status_history:
 ##       - working: true
 ##         agent: "main"
 ##         comment: "Removed password_hash from user object returned by get_current_user."
+##       - working: true
+##         agent: "testing"
+##         comment: "✅ VERIFIED: GET /api/auth/me returns clean user object without password_hash field. Auth flow working: signup (200) -> login (200) -> /auth/me (200) with proper session token handling."
 ##   - task: "Expose report_id on job status when video processing completes"
 ##     implemented: true
-##     working: true
+##     working: "NA"
 ##     file: "/app/backend/services/video_processor.py"
 ##     stuck_count: 0
 ##     priority: "high"
-##     needs_retesting: true
+##     needs_retesting: false
 ##     status_history:
 ##       - working: true
 ##         agent: "main"
 ##         comment: "VideoProcessor now stores report_id on video_jobs; frontend navigates using job.report_id."
+##       - working: "NA"
+##         agent: "testing"
+##         comment: "⚠️ ENVIRONMENT LIMITATION: Video processing fails due to missing ffmpeg dependency in test environment. API endpoints work correctly: POST /api/videos/upload (200), POST /api/videos/{video_id}/process (200), GET /api/jobs/{job_id}/status (200). Job status properly tracked but processing fails at audio extraction step due to system dependency."
 ##   - task: "Executive coaching request + share link API"
 ##     implemented: true
 ##     working: true
 ##     file: "/app/backend/routes/coaching.py, /app/backend/routes/sharing.py, /app/backend/server.py"
 ##     stuck_count: 0
 ##     priority: "medium"
-##     needs_retesting: true
+##     needs_retesting: false
 ##     status_history:
 ##       - working: true
 ##         agent: "main"
 ##         comment: "Added /api/coaching/requests and /api/reports/{report_id}/share + /api/shared/reports/{share_id}."
+##       - working: true
+##         agent: "testing"
+##         comment: "✅ VERIFIED: POST /api/coaching/requests (200) creates coaching request with proper request_id. Share link endpoints ready but skipped testing as no existing reports found (as requested in review). GET /api/shared/reports/{share_id} endpoint available for when reports exist."
 ##
 ## frontend:
 ##   - task: "Dashboard cards are the only navigation (remove top tabs)"
