@@ -137,13 +137,13 @@ const Landing = () => {
         </div>
       </div>
       
-      <div className="py-24 bg-primary">
+      <div className="py-24" style={{backgroundColor: '#0F172A'}}>
         <div className="container mx-auto px-6 text-center">
-          <h2 className="font-display text-5xl font-bold mb-6 text-white">Ready to Assess Your Executive Presence?</h2>
-          <p className="text-xl text-white/80 mb-10 max-w-2xl mx-auto">
+          <h2 className="font-display text-5xl font-bold mb-6" style={{color: 'white'}}>Ready to Assess Your Executive Presence?</h2>
+          <p className="text-xl mb-10 max-w-2xl mx-auto" style={{color: 'rgba(255,255,255,0.8)'}}>
             Join leaders who are mastering their communication and presence through AI-powered insights.
           </p>
-          <Button size="lg" onClick={() => navigate('/signup')} className="text-lg px-12 bg-accent hover:bg-accent/90 text-white" data-testid="footer-cta">
+          <Button size="lg" onClick={() => navigate('/signup')} style={{backgroundColor: '#D4AF37', color: 'white'}} className="text-lg px-12" data-testid="footer-cta">
             Get Started Now <ArrowRight className="ml-2 h-5 w-5" />
           </Button>
         </div>
