@@ -298,46 +298,13 @@ const Simulator = () => {
       </nav>
       
       <div className="container mx-auto px-6 py-12">
-        <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'start', marginBottom: '40px'}}>
-          <div>
-            <h1 style={{fontSize: '42px', fontWeight: 700, color: '#0F172A', marginBottom: '12px'}}>
-              Boardroom <span style={{color: '#D4AF37'}}>Simulator</span>
-            </h1>
-            <p style={{fontSize: '18px', color: '#64748B'}}>
-              Practice high-pressure executive scenarios with AI-powered feedback
-            </p>
-          </div>
-          
-          {/* Rotation Timer */}
-          {rotationInfo && (
-            <div className="card-3d" style={{
-              backgroundColor: 'rgba(212, 175, 55, 0.05)',
-              border: '2px solid #D4AF37',
-              borderRadius: '16px', padding: '20px',
-              textAlign: 'center', minWidth: '200px'
-            }}>
-              <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', marginBottom: '8px'}}>
-                <Timer style={{width: '20px', height: '20px', color: '#D4AF37'}} />
-                <span style={{fontSize: '14px', fontWeight: 600, color: '#0F172A'}}>New Scenarios In</span>
-              </div>
-              <div style={{
-                fontSize: '28px', fontWeight: 700, color: '#D4AF37',
-                fontFamily: 'IBM Plex Mono, monospace'
-              }}>
-                {rotationInfo.remaining_formatted}
-              </div>
-              <div style={{fontSize: '12px', color: '#64748B', marginTop: '4px'}}>
-                Rotates every 3 days
-              </div>
-              <div style={{
-                marginTop: '8px', padding: '4px 12px',
-                backgroundColor: 'rgba(212, 175, 55, 0.15)',
-                borderRadius: '12px', fontSize: '12px', fontWeight: 600, color: '#92400E'
-              }}>
-                {poolName}
-              </div>
-            </div>
-          )}
+        <div style={{marginBottom: '40px'}}>
+          <h1 style={{fontSize: '42px', fontWeight: 700, color: '#0F172A', marginBottom: '12px'}}>
+            Boardroom <span style={{color: '#D4AF37'}}>Simulator</span>
+          </h1>
+          <p style={{fontSize: '18px', color: '#64748B'}}>
+            Practice high-pressure executive scenarios with AI-powered feedback
+          </p>
         </div>
         
         <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '24px'}}>
