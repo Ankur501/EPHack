@@ -12,7 +12,7 @@ from pathlib import Path
 from datetime import datetime
 
 class VideoPipelineE2ETester:
-    def __init__(self, base_url="https://epquotient-1.preview.emergentagent.com"):
+    def __init__(self, base_url="https://exec-presence.preview.emergentagent.com"):
         self.base_url = base_url
         self.session_token = None
         self.test_results = []

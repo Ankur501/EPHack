@@ -35,7 +35,7 @@ def create_test_video():
         return None
 
 def test_comprehensive_video_pipeline():
-    base_url = "https://epquotient-1.preview.emergentagent.com"
+    base_url = "https://exec-presence.preview.emergentagent.com"
     session_token = "session_715dbc2d083042dba4122d189f6b55e4"
     
     print("🎬 COMPREHENSIVE VIDEO PROCESSING PIPELINE TEST")

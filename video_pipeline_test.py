@@ -5,7 +5,7 @@ import time
 import json
 
 def test_video_pipeline():
-    base_url = "https://epquotient-1.preview.emergentagent.com"
+    base_url = "https://exec-presence.preview.emergentagent.com"
     session_token = "session_715dbc2d083042dba4122d189f6b55e4"
     
     headers = {
