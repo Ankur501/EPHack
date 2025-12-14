@@ -134,7 +134,7 @@
 ##         comment: "✅ VERIFIED: GET /api/auth/me returns clean user object without password_hash field. Auth flow working: signup (200) -> login (200) -> /auth/me (200) with proper session token handling."
 ##   - task: "Expose report_id on job status when video processing completes"
 ##     implemented: true
-##     working: "NA"
+##     working: true
 ##     file: "/app/backend/services/video_processor.py"
 ##     stuck_count: 0
 ##     priority: "high"
@@ -146,6 +146,9 @@
 ##       - working: "NA"
 ##         agent: "testing"
 ##         comment: "⚠️ ENVIRONMENT LIMITATION: Video processing fails due to missing ffmpeg dependency in test environment. API endpoints work correctly: POST /api/videos/upload (200), POST /api/videos/{video_id}/process (200), GET /api/jobs/{job_id}/status (200). Job status properly tracked but processing fails at audio extraction step due to system dependency."
+##       - working: true
+##         agent: "testing"
+##         comment: "✅ FIXED & VERIFIED: FFmpeg now installed and working. Fixed transcription service to use full path '/usr/bin/ffmpeg' and vision analysis division-by-zero error. Complete end-to-end video processing pipeline working: Upload → Audio Extraction → Transcription → Audio Analysis → Video Analysis → NLP Analysis → Scoring → Report Generation. Job status correctly exposes report_id on completion. All processing stages verified: pending → transcribing → audio_analysis → video_analysis → nlp_analysis → scoring → completed. Report retrieval working with all required fields present."
 ##   - task: "Executive coaching request + share link API"
 ##     implemented: true
 ##     working: true
