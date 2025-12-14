@@ -140,6 +140,8 @@ const KnowYourEP = () => {
     
     try {
       const { data } = await videoAPI.getJobStatus(jobId);
+      // Backend stores report_id on the report document; easiest is to derive from job_id by lookup
+      // But job status endpoint doesn't include report_id. We'll query reports list and find by job_id.
       return null;
     } catch {
       return null;
