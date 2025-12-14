@@ -227,3 +227,5 @@
 ##     comment: "Ready for full backend+frontend testing. Please create a new user via Signup, verify all feature pages load, verify share link flow, and run an end-to-end video upload/process/report flow if feasible."
 ##   - agent: "testing"
 ##     comment: "✅ BACKEND TESTING COMPLETE: All 15 API tests passed. Auth flow working (signup/login/me), all feature endpoints operational (learning/training), coaching requests working, video upload/processing APIs functional. Only limitation: video processing fails due to missing ffmpeg in test environment - this is expected and not a code issue. Backend is production-ready."
+##   - agent: "main"
+##     comment: "NEW SESSION - Full E2E testing needed. Priority: 1) Signup + Login flow, 2) All dashboard navigation to feature pages, 3) Learning Bytes AI content, 4) Training modules AI content, 5) Executive Coaching page, 6) Know Your EP page. Frontend URL: http://localhost:3000, Backend URL: https://epquotient-1.preview.emergentagent.com. Create test user: test_ep_user@test.com / TestPass123!"
