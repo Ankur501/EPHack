@@ -20,6 +20,16 @@ body {
   color: #1E293B !important;
 }
 
+/* Global Button Styling - All buttons have fully curved edges */
+button {
+  border-radius: 9999px !important;
+}
+
+/* Input fields styling */
+input, textarea, select {
+  border-radius: 12px !important;
+}
+
 .bg-background { background-color: #FFFFFF !important; }
 .bg-primary { background-color: #0F172A !important; }
 .bg-accent { background-color: #D4AF37 !important; }
