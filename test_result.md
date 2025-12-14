@@ -215,14 +215,12 @@
 ##
 ## test_plan:
 ##   current_focus:
-##     - "Auth: signup/login, token persistence, ProtectedRoute"
-##     - "Feature pages load: Simulator/Learning/Training/Coaching"
-##     - "Video upload -> processing -> report view"
-##     - "Share link creation -> shared report view"
-##   stuck_tasks:
-##     - "Login redirect loop"
-##   test_all: true
-##   test_priority: "high_first"
+##     - "Frontend UI testing and integration"
+##     - "End-to-end user flows"
+##   stuck_tasks: []
+##   test_all: false
+##   test_priority: "frontend_focus"
+##   backend_completed: true
 ##
 ## agent_communication:
 ##   - agent: "main"
