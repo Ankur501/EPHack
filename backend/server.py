@@ -494,3 +494,7 @@ Keep it actionable and professional. Total: ~200 words."""
         "content": content,
         "generated_at": datetime.now(timezone.utc).isoformat()
     }
+
+
+# Ensure routes registered after all endpoints are declared
+app.include_router(api_router)
