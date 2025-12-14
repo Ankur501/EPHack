@@ -13,6 +13,7 @@ const LearningBytes = () => {
   const [rotationInfo, setRotationInfo] = useState(null);
   const [tipNumber, setTipNumber] = useState(1);
   const [totalTips, setTotalTips] = useState(14);
+  const [expandedVideo, setExpandedVideo] = useState(null);
   
   const fetchContent = async () => {
     try {
