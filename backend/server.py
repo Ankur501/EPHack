@@ -291,3 +291,99 @@ logger = logging.getLogger(__name__)
 @app.on_event("shutdown")
 async def shutdown_db_client():
     client.close()
+
+@api_router.get("/learning/daily-tip")
+async def get_daily_tip(
+    session_token: Optional[str] = Cookie(None),
+    authorization: Optional[str] = Header(None)
+):
+    user = await get_current_user(db, session_token, authorization)
+    profile = await db.user_profiles.find_one({"user_id": user["user_id"]}, {"_id": 0})
+    
+    import openai
+    client = openai.OpenAI(api_key=os.getenv("EMERGENT_LLM_KEY"))
+    
+    role_context = f"a {profile.get('role', 'Executive')} at {profile.get('seniority_level', 'Senior')} level" if profile else "an executive"
+    
+    prompt = f"""Generate a practical, actionable executive presence tip for {role_context}. 
+
+Requirements:
+- One specific technique or practice
+- 2-3 sentences maximum
+- Immediately actionable
+- Focus on one of: gravitas, communication, presence, or storytelling
+- Professional tone
+
+Return ONLY the tip text, nothing else."""
+    
+    response = client.chat.completions.create(
+        model="gpt-4o",
+        messages=[{"role": "user", "content": prompt}],
+        max_tokens=150
+    )
+    
+    tip = response.choices[0].message.content.strip()
+    category = ["Gravitas", "Communication", "Presence", "Storytelling"][hash(tip) % 4]
+    
+    return {
+        "tip": tip,
+        "category": category,
+        "date": datetime.now(timezone.utc).isoformat()
+    }
+
+@api_router.get("/learning/ted-talks")
+async def get_ted_talks(
+    session_token: Optional[str] = Cookie(None),
+    authorization: Optional[str] = Header(None)
+):
+    user = await get_current_user(db, session_token, authorization)
+    
+    talks = [
+        {
+            "id": 1,
+            "title": "Your body language may shape who you are",
+            "speaker": "Amy Cuddy",
+            "duration": "21 min",
+            "relevance": "Presence, Body Language, Confidence",
+            "url": "https://www.ted.com/talks/amy_cuddy_your_body_language_may_shape_who_you_are",
+            "description": "Learn how power posing and body language influence confidence and presence"
+        },
+        {
+            "id": 2,
+            "title": "How great leaders inspire action",
+            "speaker": "Simon Sinek",
+            "duration": "18 min",
+            "relevance": "Vision Articulation, Leadership, Communication",
+            "url": "https://www.ted.com/talks/simon_sinek_how_great_leaders_inspire_action",
+            "description": "Discover the power of starting with 'why' in leadership communication"
+        },
+        {
+            "id": 3,
+            "title": "The power of vulnerability",
+            "speaker": "Brené Brown",
+            "duration": "20 min",
+            "relevance": "Authenticity, Emotional Intelligence, Connection",
+            "url": "https://www.ted.com/talks/brene_brown_the_power_of_vulnerability",
+            "description": "Understand how vulnerability strengthens authentic leadership"
+        },
+        {
+            "id": 4,
+            "title": "How to speak so that people want to listen",
+            "speaker": "Julian Treasure",
+            "duration": "10 min",
+            "relevance": "Communication, Vocal Presence, Clarity",
+            "url": "https://www.ted.com/talks/julian_treasure_how_to_speak_so_that_people_want_to_listen",
+            "description": "Master vocal techniques for more effective speaking"
+        },
+        {
+            "id": 5,
+            "title": "The skill of self confidence",
+            "speaker": "Dr. Ivan Joseph",
+            "duration": "13 min",
+            "relevance": "Confidence, Self-belief, Performance",
+            "url": "https://www.ted.com/talks/ivan_joseph_the_skill_of_self_confidence",
+            "description": "Build self-confidence through practice and self-talk"
+        }
+    ]
+    
+    return {"talks": talks}
