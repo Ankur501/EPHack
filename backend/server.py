@@ -404,58 +404,31 @@ async def get_training_modules(
 ):
     await get_current_user(db, session_token, authorization)
     
-    modules = [
-        {
-            "id": "strategic-pauses",
-            "title": "Strategic Pauses",
-            "description": "Master the art of using silence to enhance authority and emphasize key points",
-            "duration": "8 minutes",
-            "difficulty": "Beginner",
-            "focus_area": "Communication"
-        },
-        {
-            "id": "lens-eye-contact",
-            "title": "Camera Lens Eye Contact",
-            "description": "Develop consistent camera presence and connection through lens-focused gaze",
-            "duration": "6 minutes",
-            "difficulty": "Beginner",
-            "focus_area": "Presence"
-        },
-        {
-            "id": "decision-framing",
-            "title": "Executive Decision Framing",
-            "description": "Structure your decision communication with clarity, rationale, and conviction",
-            "duration": "10 minutes",
-            "difficulty": "Intermediate",
-            "focus_area": "Gravitas"
-        },
-        {
-            "id": "vocal-variety",
-            "title": "Vocal Variety & Modulation",
-            "description": "Use pitch, pace, and volume changes to maintain engagement and emphasize meaning",
-            "duration": "9 minutes",
-            "difficulty": "Intermediate",
-            "focus_area": "Communication"
-        },
-        {
-            "id": "storytelling-structure",
-            "title": "Leadership Storytelling Structure",
-            "description": "Craft compelling narratives using the situation-challenge-resolution framework",
-            "duration": "12 minutes",
-            "difficulty": "Advanced",
-            "focus_area": "Storytelling"
-        },
-        {
-            "id": "commanding-openings",
-            "title": "Commanding Openings",
-            "description": "Master first-impression techniques to establish authority in the first 30 seconds",
-            "duration": "7 minutes",
-            "difficulty": "Beginner",
-            "focus_area": "Gravitas"
-        }
-    ]
+    # Get timed training modules (rotates weekly)
+    training_data = get_current_training_modules()
     
-    return {"modules": modules}
+    return {
+        "modules": training_data["modules"],
+        "rotation_info": training_data["rotation_info"],
+        "week_theme": training_data["week_theme"],
+        "week_number": training_data["week_number"]
+    }
+
+@api_router.get("/simulator/scenarios")
+async def get_simulator_scenarios(
+    session_token: Optional[str] = Cookie(None),
+    authorization: Optional[str] = Header(None)
+):
+    await get_current_user(db, session_token, authorization)
+    
+    # Get timed simulator scenarios (rotates every 3 days)
+    scenario_data = get_current_simulator_scenarios()
+    
+    return {
+        "scenarios": scenario_data["scenarios"],
+        "rotation_info": scenario_data["rotation_info"],
+        "pool_name": scenario_data["pool_name"]
+    }
 
 @api_router.get("/training/modules/{module_id}")
 async def get_module_content(
