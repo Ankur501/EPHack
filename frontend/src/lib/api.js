@@ -60,4 +60,10 @@ export const videoAPI = {
 export const reportAPI = {
   getReport: (reportId) => api.get(`/reports/${reportId}`),
   listReports: () => api.get('/reports'),
+  createShareLink: (reportId) => api.post(`/reports/${reportId}/share`),
+  getSharedReport: (shareId) => api.get(`/shared/reports/${shareId}`),
+};
+
+export const coachingAPI = {
+  createRequest: (payload) => api.post('/coaching/requests', payload),
 };
