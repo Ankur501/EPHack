@@ -26,10 +26,10 @@ const Landing = () => {
         <div className="container mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div data-testid="hero-section">
-              <h1 className="font-display text-5xl lg:text-6xl font-bold leading-tight mb-6">
-                Master Your <span className="text-accent">Executive Presence</span>
+              <h1 className="font-display text-5xl lg:text-6xl font-bold leading-tight mb-6" style={{color: '#0F172A'}}>
+                Master Your <span style={{color: '#D4AF37'}}>Executive Presence</span>
               </h1>
-              <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
+              <p className="text-xl mb-8 leading-relaxed" style={{color: '#64748B'}}>
                 Get AI-powered insights on your leadership communication. Upload a 3-minute video and receive a comprehensive EP report with scores, benchmarks, and personalized coaching.
               </p>
               <div className="flex gap-4">
