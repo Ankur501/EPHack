@@ -149,6 +149,9 @@
 ##       - working: true
 ##         agent: "testing"
 ##         comment: "✅ FIXED & VERIFIED: FFmpeg now installed and working. Fixed transcription service to use full path '/usr/bin/ffmpeg' and vision analysis division-by-zero error. Complete end-to-end video processing pipeline working: Upload → Audio Extraction → Transcription → Audio Analysis → Video Analysis → NLP Analysis → Scoring → Report Generation. Job status correctly exposes report_id on completion. All processing stages verified: pending → transcribing → audio_analysis → video_analysis → nlp_analysis → scoring → completed. Report retrieval working with all required fields present."
+##       - working: true
+##         agent: "testing"
+##         comment: "✅ COMPREHENSIVE VIDEO PIPELINE E2E TEST COMPLETE (9/9 TESTS PASSED): Created real test videos using FFmpeg (MP4 & WebM formats) and verified complete processing pipeline. UPLOAD: Both MP4 (158KB) and WebM (237KB) videos upload successfully with proper format detection. PROCESSING: Full pipeline stages working: transcribing → video_analysis → nlp_analysis → scoring → completed. REPORT GENERATION: All required fields present (overall_score, gravitas_score, communication_score, presence_score, storytelling_score, detailed_metrics, coaching_tips, transcript). SCORE VALIDATION: Proper score calculation with adjusted weights when storytelling_score is None (no story detected in test videos). FORMATS SUPPORTED: Both MP4 (H.264/AAC) and WebM (VP8/Vorbis) formats process correctly. FFmpeg integration fully operational for real video files. Note: Dummy video content fails (expected) but real video files process successfully through all stages."
 ##   - task: "Executive coaching request + share link API"
 ##     implemented: true
 ##     working: true
