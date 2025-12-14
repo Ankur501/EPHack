@@ -21,7 +21,7 @@ class TranscriptionService:
         audio_path = video_path.replace(".mp4", ".wav").replace(".mov", ".wav").replace(".avi", ".wav")
         
         command = [
-            'ffmpeg', '-i', video_path,
+            '/usr/bin/ffmpeg', '-i', video_path,
             '-acodec', 'pcm_s16le',
             '-ar', '16000',
             '-ac', '1',
