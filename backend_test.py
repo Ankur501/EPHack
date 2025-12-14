@@ -174,14 +174,26 @@ class EPQuotientAPITester:
         return False, None
 
     def test_job_status(self, job_id):
-        """Test job status check"""
+        """Test job status check with detailed status tracking"""
         success, response = self.run_test(
             "Jobs - Get Status",
             "GET",
             f"jobs/{job_id}/status",
             200
         )
-        return success
+        
+        if success and response:
+            status = response.get('status', 'unknown')
+            progress = response.get('progress', 0)
+            current_step = response.get('current_step', 'N/A')
+            report_id = response.get('report_id')
+            
+            print(f"    Job Status: {status}, Progress: {progress}%, Step: {current_step}")
+            if report_id:
+                print(f"    Report ID: {report_id}")
+                return True, report_id
+        
+        return success, None
 
     def test_reports_list(self):
         """Test list reports"""
