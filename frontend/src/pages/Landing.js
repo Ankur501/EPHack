@@ -107,9 +107,9 @@ const Landing = () => {
               </div>
             </div>
             
-            <div className="bg-card border border-border rounded-2xl p-8 shadow-xl">
+            <div className="rounded-2xl p-8 shadow-xl" style={{backgroundColor: 'white', border: '1px solid #E2E8F0'}}>
               <div className="mb-6">
-                <div className="inline-block px-4 py-2 bg-accent/10 text-accent rounded-full text-sm font-medium mb-4">
+                <div className="inline-block px-4 py-2 rounded-full text-sm font-medium mb-4" style={{backgroundColor: 'rgba(212, 175, 55, 0.1)', color: '#D4AF37'}}>
                   What You'll Get
                 </div>
               </div>
@@ -127,8 +127,8 @@ const Landing = () => {
                   'PDF export for sharing with coaches',
                 ].map((feature, idx) => (
                   <div key={idx} className="flex items-start gap-3">
-                    <CheckCircle className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                    <span className="text-sm">{feature}</span>
+                    <CheckCircle className="h-5 w-5 flex-shrink-0 mt-0.5" style={{color: '#D4AF37'}} />
+                    <span className="text-sm" style={{color: '#0F172A'}}>{feature}</span>
                   </div>
                 ))}
               </div>
