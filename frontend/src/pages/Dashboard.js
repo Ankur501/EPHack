@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Button } from '../components/ui/button';
-import { authAPI, reportAPI } from '../lib/api';
+import { authAPI, reportAPI, subscriptionAPI } from '../lib/api';
 import { toast } from 'sonner';
 import { 
   Video, BookOpen, Dumbbell, Users, LogOut, BarChart3, HelpCircle, 
@@ -27,6 +27,7 @@ const Dashboard = () => {
   const [hasProfile, setHasProfile] = useState(true);
   const [dateFilter, setDateFilter] = useState('all');
   const [refreshing, setRefreshing] = useState(false);
+  const [subscription, setSubscription] = useState(null);
   
   const COLORS = {
     gold: '#D4AF37',
@@ -38,8 +39,36 @@ const Dashboard = () => {
   };
   
   useEffect(() => {
+    checkSubscription();
     fetchData();
   }, []);
+
+  const checkSubscription = async () => {
+    try {
+      const response = await subscriptionAPI.getStatus();
+      setSubscription(response.data);
+      
+      // Redirect to pricing if first time user on free trial
+      const hasSeenPricing = localStorage.getItem('has_seen_pricing');
+      if (!hasSeenPricing && response.data.tier === 'free' && !response.data.is_whitelisted) {
+        localStorage.setItem('has_seen_pricing', 'true');
+        setTimeout(() => navigate('/pricing'), 1000);
+      }
+      
+      // Show upgrade prompt if trial expired
+      if (response.data.status === 'expired') {
+        toast.error('Your trial has expired. Please upgrade to continue.', {
+          duration: 5000,
+          action: {
+            label: 'Upgrade',
+            onClick: () => navigate('/pricing')
+          }
+        });
+      }
+    } catch (error) {
+      console.error('Error checking subscription:', error);
+    }
+  };
   
   const fetchData = async () => {
     try {
