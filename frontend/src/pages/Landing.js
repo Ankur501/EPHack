@@ -7,7 +7,7 @@ const Landing = () => {
   const navigate = useNavigate();
   
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen" style={{backgroundColor: '#F8FAFC'}}>
       <nav className="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-xl border-b border-border shadow-sm">
         <div className="container mx-auto px-6 py-5 flex justify-between items-center">
           <div className="font-display text-3xl font-bold text-primary">EP Quotient</div>
