@@ -222,7 +222,8 @@ async def process_video(
     
     await db.video_jobs.insert_one(job_doc)
     
-    asyncio.create_task(video_processor.process_video(job_id, video_id, user["user_id"]))
+    processor = get_video_processor()
+    asyncio.create_task(processor.process_video(job_id, video_id, user["user_id"]))
     
     return {"job_id": job_id, "message": "Processing started"}
 
