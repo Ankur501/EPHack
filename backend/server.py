@@ -194,8 +194,19 @@ async def upload_video(
         "filename": file.filename,
         "file_size": file.size or 0,
         "format": file.content_type,
-        "uploaded_at": datetime.now(timezone.utc).isoformat()
+        "uploaded_at": datetime.now(timezone.utc).isoformat(),
+        "retention_policy": "30_days",
+        "scheduled_deletion": (datetime.now(timezone.utc) + timedelta(days=30)).isoformat()
     }
+    
+    # Check for user's default retention setting
+    user_settings = await db.user_settings.find_one({"user_id": user["user_id"]}, {"_id": 0})
+    if user_settings and user_settings.get("default_retention"):
+        from services.video_retention import RETENTION_PERIODS
+        policy = user_settings["default_retention"]
+        days = RETENTION_PERIODS.get(policy)
+        metadata_doc["retention_policy"] = policy
+        metadata_doc["scheduled_deletion"] = (datetime.now(timezone.utc) + timedelta(days=days)).isoformat() if days else None
     
     await db.video_metadata.insert_one(metadata_doc)
     
