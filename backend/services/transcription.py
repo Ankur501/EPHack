@@ -39,16 +39,27 @@ class TranscriptionService:
     
     async def transcribe_audio(self, audio_path: str) -> dict:
         with open(audio_path, "rb") as audio_file:
-            response = await self.stt.transcribe(
+            response = await asyncio.to_thread(
+                self.stt.client.audio.transcriptions.create,
                 file=audio_file,
                 model="whisper-1",
                 response_format="verbose_json",
                 timestamp_granularities=["word", "segment"]
             )
         
+        words_list = []
+        if hasattr(response, 'words') and response.words:
+            words_list = [{"word": w.word, "start": w.start, "end": w.end} for w in response.words]
+        
+        segments_list = []
+        if hasattr(response, 'segments') and response.segments:
+            segments_list = [{"text": s.text, "start": s.start, "end": s.end} for s in response.segments]
+        
+        duration = response.duration if hasattr(response, 'duration') else 180
+        
         return {
             "text": response.text,
-            "words": response.words if hasattr(response, 'words') else [],
-            "segments": response.segments if hasattr(response, 'segments') else [],
-            "duration": response.duration if hasattr(response, 'duration') else 0
+            "words": words_list,
+            "segments": segments_list,
+            "duration": duration
         }
