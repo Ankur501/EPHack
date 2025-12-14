@@ -19,7 +19,9 @@ const Login = () => {
     try {
       const response = await authAPI.login({ email, password });
       toast.success('Welcome back!');
-      navigate('/dashboard', { state: { user: response.data.user } });
+      setTimeout(() => {
+        navigate('/dashboard', { replace: true });
+      }, 100);
     } catch (error) {
       toast.error(error.response?.data?.detail || 'Login failed');
     } finally {
@@ -33,36 +35,27 @@ const Login = () => {
   };
   
   return (
-    <div className="min-h-screen grid lg:grid-cols-2">
-      <div className="hidden lg:block relative">
-        <img 
-          src="https://images.unsplash.com/photo-1637216461875-8307722ee8d8?crop=entropy&cs=srgb&fm=jpg&q=85" 
-          alt="Executive boardroom" 
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/80 to-accent/60" />
-        <div className="absolute inset-0 flex items-center justify-center p-12">
-          <div className="text-white max-w-lg">
-            <h1 className="font-display text-5xl font-bold mb-6">Welcome Back</h1>
-            <p className="text-xl text-white/90">Continue your executive presence journey with AI-powered insights and coaching.</p>
-          </div>
-        </div>
-      </div>
-      
-      <div className="flex items-center justify-center p-8 bg-background">
-        <div className="w-full max-w-md">
-          <Button variant="ghost" onClick={() => navigate('/')} className="mb-8" data-testid="back-button">
+    <div style={{minHeight: '100vh', display: 'flex', backgroundColor: '#FFFFFF'}}>
+      <div style={{flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '48px'}}>
+        <div style={{width: '100%', maxWidth: '400px'}}>
+          <Button variant="ghost" onClick={() => navigate('/')} style={{marginBottom: '32px', color: '#64748B'}} data-testid="back-button">
             <ArrowLeft className="mr-2 h-4 w-4" /> Back to Home
           </Button>
           
-          <div className="mb-8">
-            <h2 className="font-display text-3xl font-bold mb-2">Sign In</h2>
-            <p className="text-muted-foreground">Access your EP reports and continue training</p>
+          <div style={{marginBottom: '32px'}}>
+            <h2 style={{fontSize: '28px', fontWeight: 600, color: '#0F172A', marginBottom: '8px'}}>Sign In</h2>
+            <p style={{fontSize: '15px', color: '#64748B'}}>Access your EP reports and continue training</p>
           </div>
           
           <Button 
             variant="outline" 
-            className="w-full mb-6" 
+            style={{
+              width: '100%',
+              marginBottom: '24px',
+              border: '1px solid #E2E8F0',
+              backgroundColor: '#FFFFFF',
+              color: '#1E293B'
+            }}
             onClick={handleGoogleLogin}
             data-testid="google-signin-button"
           >
@@ -75,31 +68,34 @@ const Login = () => {
             Sign in with Google
           </Button>
           
-          <div className="relative mb-6">
-            <div className="absolute inset-0 flex items-center">
-              <span className="w-full border-t border-border" />
-            </div>
-            <div className="relative flex justify-center text-xs uppercase">
-              <span className="bg-background px-2 text-muted-foreground">Or continue with</span>
+          <div style={{position: 'relative', marginBottom: '24px'}}>
+            <div style={{position: 'absolute', top: '50%', left: 0, right: 0, height: '1px', backgroundColor: '#E2E8F0'}} />
+            <div style={{position: 'relative', textAlign: 'center'}}>
+              <span style={{backgroundColor: '#FFFFFF', padding: '0 12px', fontSize: '13px', color: '#64748B'}}>Or continue with email</span>
             </div>
           </div>
           
-          <form onSubmit={handleLogin} className="space-y-4">
+          <form onSubmit={handleLogin} style={{display: 'flex', flexDirection: 'column', gap: '16px'}}>
             <div>
-              <Label htmlFor="email">Email</Label>
+              <Label htmlFor="email" style={{color: '#1E293B', fontWeight: 500, marginBottom: '8px'}}>Email</Label>
               <Input 
                 id="email"
                 type="email" 
-                placeholder="your@email.com" 
+                placeholder="you@company.com" 
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
                 data-testid="email-input"
+                style={{
+                  border: '1px solid #E2E8F0',
+                  borderRadius: '6px',
+                  padding: '10px 12px'
+                }}
               />
             </div>
             
             <div>
-              <Label htmlFor="password">Password</Label>
+              <Label htmlFor="password" style={{color: '#1E293B', fontWeight: 500, marginBottom: '8px'}}>Password</Label>
               <Input 
                 id="password"
                 type="password" 
@@ -108,19 +104,51 @@ const Login = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 required
                 data-testid="password-input"
+                style={{
+                  border: '1px solid #E2E8F0',
+                  borderRadius: '6px',
+                  padding: '10px 12px'
+                }}
               />
             </div>
             
-            <Button type="submit" className="w-full" disabled={loading} data-testid="submit-button">
+            <Button 
+              type="submit" 
+              disabled={loading} 
+              data-testid="submit-button"
+              style={{
+                width: '100%',
+                backgroundColor: '#3B82F6',
+                color: '#FFFFFF',
+                fontWeight: 500,
+                padding: '10px'
+              }}
+            >
               {loading ? 'Signing in...' : 'Sign In'}
             </Button>
           </form>
           
-          <p className="mt-6 text-center text-sm text-muted-foreground">
+          <p style={{marginTop: '24px', textAlign: 'center', fontSize: '14px', color: '#64748B'}}>
             Don't have an account?{' '}
-            <Link to="/signup" className="text-accent hover:underline" data-testid="signup-link">
+            <Link to="/signup" style={{color: '#3B82F6', textDecoration: 'none', fontWeight: 500}} data-testid="signup-link">
               Sign up
             </Link>
+          </p>
+        </div>
+      </div>
+      
+      <div style={{
+        flex: 1,
+        backgroundColor: '#F8FAFC',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: '48px'
+      }} className="hidden lg:flex">
+        <div style={{maxWidth: '500px'}}>
+          <h1 style={{fontSize: '36px', fontWeight: 600, color: '#0F172A', marginBottom: '16px'}}>Welcome Back</h1>
+          <p style={{fontSize: '18px', color: '#64748B', lineHeight: 1.6}}>
+            Continue your executive presence journey with AI-powered insights and professional coaching.
           </p>
         </div>
       </div>
