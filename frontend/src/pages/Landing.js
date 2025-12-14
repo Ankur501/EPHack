@@ -50,9 +50,9 @@ const Landing = () => {
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="absolute -bottom-6 -left-6 bg-card border border-border rounded-xl p-6 shadow-xl">
-                <div className="font-mono text-3xl font-bold text-accent">85+</div>
-                <div className="text-sm text-muted-foreground">Executive-Ready Score</div>
+              <div className="absolute -bottom-6 -left-6 rounded-xl p-6 shadow-xl" style={{backgroundColor: 'white', border: '1px solid #E2E8F0'}}>
+                <div className="font-mono text-3xl font-bold" style={{color: '#D4AF37'}}>85+</div>
+                <div className="text-sm" style={{color: '#64748B'}}>Executive-Ready Score</div>
               </div>
             </div>
           </div>
