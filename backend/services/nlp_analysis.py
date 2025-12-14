@@ -16,7 +16,7 @@ class NLPAnalysisService:
             raise ValueError("EMERGENT_LLM_KEY not found in environment variables")
         self.client = openai.OpenAI(api_key=api_key)
     
-    async def analyze_gravitas(self, transcript: str) -> Dict[str, Any]:
+    async def analyze_gravitas(self, transcript: str, user_profile: Dict[str, Any] = None) -> Dict[str, Any]:
         prompt = f"""Analyze this executive's transcript for GRAVITAS indicators. Score each dimension 0-100:
 
 **Transcript:**
