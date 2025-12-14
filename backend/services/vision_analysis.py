@@ -13,9 +13,9 @@ load_dotenv(ROOT_DIR / '.env')
 
 class VisionAnalysisService:
     def __init__(self):
-        api_key = os.getenv("EMERGENT_LLM_KEY")
+        api_key = os.getenv("OPENAI_API_KEY")
         if not api_key:
-            raise ValueError("EMERGENT_LLM_KEY not found in environment variables")
+            raise ValueError("OPENAI_API_KEY not found in environment variables")
         self.client = openai.OpenAI(api_key=api_key)
     
     def extract_frames(self, video_path: str, fps: int = 2) -> List[str]:
