@@ -255,13 +255,16 @@
 ##
 ## test_plan:
 ##   current_focus:
-##     - "All new features testing completed"
-##     - "Video retention API verified"
-##   stuck_tasks: []
-##   test_all: true
-##   test_priority: "comprehensive_complete"
+##     - "CORS authentication fix required"
+##     - "Enhanced Know Your EP recording interface testing blocked"
+##     - "Research Links in Report page testing blocked"
+##   stuck_tasks: 
+##     - "Frontend authentication failing due to CORS policy"
+##   test_all: false
+##   test_priority: "fix_cors_first"
 ##   backend_completed: true
 ##   retention_api_completed: true
+##   frontend_blocked_by_cors: true
 ##
 ## agent_communication:
 ##   - agent: "main"
