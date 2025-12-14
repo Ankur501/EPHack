@@ -17,9 +17,11 @@ sys.path.append('/app/backend')
 
 from models.user import UserCreate, User, LoginRequest, SignupRequest, AuthResponse
 from models.video import JobStatus, VideoMetadata, EPReport
+from models.profile import ProfileCreateRequest, UserProfile
 from utils.auth import hash_password, verify_password, create_session_token, get_current_user
 from utils.gridfs_helper import save_video_to_gridfs, get_video_from_gridfs
 from services.video_processor import VideoProcessorService
+from routes.profile import create_profile_router
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
