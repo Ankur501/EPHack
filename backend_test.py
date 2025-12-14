@@ -474,12 +474,19 @@ class EPQuotientAPITester:
         coaching_success, request_id = self.test_coaching_request()
         
         # Feature endpoints
-        print("\n📋 ADDITIONAL: FEATURE ENDPOINTS")
-        print("-" * 35)
+        print("\n📋 PRIORITY 3: ALL API ENDPOINTS HEALTH CHECK")
+        print("-" * 45)
         self.test_learning_daily_tip()
         self.test_learning_ted_talks()
         self.test_training_modules()
         self.test_training_module_content("strategic-pauses")
+        
+        # NEW: Video Retention API Tests (as per review request)
+        print("\n📋 PRIORITY 4: VIDEO RETENTION API")
+        print("-" * 35)
+        self.test_retention_get_settings()
+        self.test_retention_set_default_valid()
+        self.test_retention_set_default_invalid()
         
         # Cleanup
         print("\n📋 CLEANUP")
