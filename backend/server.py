@@ -23,6 +23,9 @@ from utils.gridfs_helper import save_video_to_gridfs, get_video_from_gridfs
 from services.video_processor import VideoProcessorService
 from routes.profile import create_profile_router
 
+from routes.coaching import create_coaching_router
+from routes.sharing import create_sharing_router
+
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
 
@@ -267,6 +270,11 @@ async def list_reports(
     reports = await db.ep_reports.find({"user_id": user["user_id"]}, {"_id": 0}).sort("created_at", -1).to_list(50)
     
     return {"reports": reports}
+
+coaching_router = create_coaching_router(db)
+sharing_router = create_sharing_router(db)
+api_router.include_router(coaching_router)
+api_router.include_router(sharing_router)
 
 profile_router = create_profile_router(db)
 api_router.include_router(profile_router)
