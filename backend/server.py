@@ -25,6 +25,7 @@ from routes.profile import create_profile_router
 
 from routes.coaching import create_coaching_router
 from routes.sharing import create_sharing_router
+from services.video_retention import create_retention_router, VideoRetentionService
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
