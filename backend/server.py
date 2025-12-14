@@ -301,7 +301,7 @@ async def get_daily_tip(
     profile = await db.user_profiles.find_one({"user_id": user["user_id"]}, {"_id": 0})
     
     import openai
-    client = openai.OpenAI(api_key=os.getenv("EMERGENT_LLM_KEY"))
+    client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
     
     role_context = f"a {profile.get('role', 'Executive')} at {profile.get('seniority_level', 'Senior')} level" if profile else "an executive"
     
@@ -458,7 +458,7 @@ async def get_module_content(
     profile = await db.user_profiles.find_one({"user_id": user["user_id"]}, {"_id": 0})
     
     import openai
-    client = openai.OpenAI(api_key=os.getenv("EMERGENT_LLM_KEY"))
+    client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
     
     role_context = f"{profile.get('role', 'Executive')} at {profile.get('seniority_level', 'Senior')} level" if profile else "executive"
     
