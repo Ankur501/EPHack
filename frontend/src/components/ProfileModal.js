@@ -143,11 +143,11 @@ const ProfileModal = ({ onComplete, onClose }) => {
         <form onSubmit={handleSubmit} style={{padding: '32px'}}>
           <div style={{display: 'flex', flexDirection: 'column', gap: '24px'}}>
             <div>
-              <Label htmlFor=\"role\" style={{color: '#1E293B', fontWeight: 500, marginBottom: '8px', display: 'block'}}>
+              <Label htmlFor="role" style={{color: '#1E293B', fontWeight: 500, marginBottom: '8px', display: 'block'}}>
                 Current Role / Title <span style={{color: '#EF4444'}}>*</span>
               </Label>
               <select
-                id=\"role\"
+                id="role"
                 required
                 value={formData.role}
                 onChange={(e) => setFormData({...formData, role: e.target.value})}
