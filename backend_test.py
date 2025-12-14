@@ -312,6 +312,63 @@ class EPQuotientAPITester:
         
         return success
 
+    def test_retention_get_settings(self):
+        """Test get retention settings"""
+        success, response = self.run_test(
+            "Retention - Get Settings",
+            "GET",
+            "retention/settings",
+            200
+        )
+        
+        if success and response:
+            # Verify required fields are present
+            required_fields = ['default_retention', 'videos', 'available_policies']
+            missing_fields = [field for field in required_fields if field not in response]
+            
+            if missing_fields:
+                print(f"    ⚠️  Missing fields: {missing_fields}")
+            else:
+                print(f"    ✅ All required retention settings fields present")
+                print(f"    Default retention: {response.get('default_retention')}")
+                print(f"    Available policies: {response.get('available_policies')}")
+        
+        return success
+
+    def test_retention_set_default_valid(self):
+        """Test set default retention with valid period"""
+        retention_data = {"retention_period": "90_days"}
+        
+        success, response = self.run_test(
+            "Retention - Set Default (Valid)",
+            "PUT",
+            "retention/settings/default",
+            200,
+            data=retention_data
+        )
+        
+        if success and response:
+            print(f"    ✅ Default retention set to: {response.get('default_retention')}")
+        
+        return success
+
+    def test_retention_set_default_invalid(self):
+        """Test set default retention with invalid period"""
+        retention_data = {"retention_period": "invalid_period"}
+        
+        success, response = self.run_test(
+            "Retention - Set Default (Invalid)",
+            "PUT",
+            "retention/settings/default",
+            400,  # Expecting 400 error for invalid period
+            data=retention_data
+        )
+        
+        if success:
+            print(f"    ✅ Correctly rejected invalid retention period")
+        
+        return success
+
     def test_auth_logout(self):
         """Test logout"""
         success, response = self.run_test(
