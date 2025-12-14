@@ -41,9 +41,26 @@ class VideoProcessorService:
             
             video_data = await get_video_from_gridfs(self.db, video_id)
             
-            with tempfile.NamedTemporaryFile(suffix=".mp4", delete=False) as temp_video:
+            # Get video metadata to determine actual format
+            metadata = await self.db.video_metadata.find_one({"video_id": video_id}, {"_id": 0})
+            content_type = metadata.get("format", "video/mp4") if metadata else "video/mp4"
+            filename = metadata.get("filename", "video.mp4") if metadata else "video.mp4"
+            
+            # Determine file extension based on content type or filename
+            if "webm" in content_type.lower() or filename.lower().endswith(".webm"):
+                suffix = ".webm"
+            elif "quicktime" in content_type.lower() or filename.lower().endswith(".mov"):
+                suffix = ".mov"
+            elif "avi" in content_type.lower() or filename.lower().endswith(".avi"):
+                suffix = ".avi"
+            else:
+                suffix = ".mp4"
+            
+            with tempfile.NamedTemporaryFile(suffix=suffix, delete=False) as temp_video:
                 temp_video.write(video_data)
                 video_path = temp_video.name
+            
+            print(f"Processing video: {video_path}, content_type: {content_type}, filename: {filename}")
             
             audio_path = await self.transcription_service.extract_audio_from_video(video_path)
             
