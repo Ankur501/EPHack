@@ -161,7 +161,9 @@ const KnowYourEP = () => {
       <div className="container mx-auto px-6 py-12 max-w-4xl">
         {step === 'intro' && (
           <div data-testid="intro-step">
-            <h1 className="font-display text-4xl font-bold mb-4">Know Your EP</h1>
+            <h1 style={{fontSize: '42px', fontWeight: 700, color: '#0F172A', marginBottom: '12px'}}>
+              Know Your <span style={{color: '#D4AF37'}}>EP</span>
+            </h1>
             <p className="text-lg text-muted-foreground mb-8">
               Record or upload a 3-minute video and get your Executive Presence report in 2-3 minutes
             </p>
