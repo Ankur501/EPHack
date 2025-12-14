@@ -101,6 +101,24 @@ SIMULATOR_SCENARIOS_POOL = [
             "prompt": "Respond to tough questions while protecting company reputation and showing accountability.",
             "focus": ["Composure", "Message Control", "Authenticity"]
         },
+        {
+            "id": 4,
+            "title": "Emergency Shareholder Meeting",
+            "difficulty": "High",
+            "duration": "2-3 min",
+            "situation": "A major product recall has triggered an emergency shareholder meeting. Shareholders are demanding explanations and accountability.",
+            "prompt": "Present your crisis management plan, address liability concerns, and restore shareholder confidence.",
+            "focus": ["Transparency", "Risk Management", "Executive Presence"]
+        },
+        {
+            "id": 5,
+            "title": "Regulatory Investigation Response",
+            "difficulty": "High",
+            "duration": "2-3 min",
+            "situation": "Your company faces a regulatory investigation. You must address the executive team about compliance and next steps.",
+            "prompt": "Outline your response strategy while maintaining team morale and demonstrating leadership during uncertainty.",
+            "focus": ["Legal Awareness", "Team Leadership", "Crisis Communication"]
+        },
     ],
     # Pool 2 - Leadership Challenges
     [
