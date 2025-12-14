@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Label } from './ui/label';
-import { X } from 'lucide-react';
 import axios from 'axios';
 
 const ProfileModal = ({ onComplete, onClose }) => {
@@ -109,7 +108,7 @@ const ProfileModal = ({ onComplete, onClose }) => {
       <div style={{
         backgroundColor: '#FFFFFF',
         borderRadius: '12px',
-        boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+        boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1)',
         maxWidth: '650px',
         width: '100%',
         maxHeight: '90vh',
@@ -119,35 +118,30 @@ const ProfileModal = ({ onComplete, onClose }) => {
           padding: '32px',
           borderBottom: '1px solid #E2E8F0'
         }}>
-          <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'start'}}>
-            <div>
-              <h2 style={{
-                fontSize: '24px',
-                fontWeight: 600,
-                color: '#0F172A',
-                marginBottom: '8px'
-              }}>
-                Complete Your Profile
-              </h2>
-              <p style={{
-                fontSize: '15px',
-                color: '#64748B',
-                lineHeight: 1.5
-              }}>
-                Help us tailor your Executive Presence analysis to your specific role and leadership level. Your responses ensure accurate, role-appropriate benchmarking.
-              </p>
-            </div>
-          </div>
+          <h2 style={{
+            fontSize: '24px',
+            fontWeight: 600,
+            color: '#0F172A',
+            marginBottom: '8px'
+          }}>
+            Complete Your Profile
+          </h2>
+          <p style={{
+            fontSize: '15px',
+            color: '#64748B',
+            lineHeight: 1.5
+          }}>
+            Help us tailor your Executive Presence analysis to your specific role and leadership level.
+          </p>
         </div>
         
         <form onSubmit={handleSubmit} style={{padding: '32px'}}>
           <div style={{display: 'flex', flexDirection: 'column', gap: '24px'}}>
             <div>
-              <Label htmlFor="role" style={{color: '#1E293B', fontWeight: 500, marginBottom: '8px', display: 'block'}}>
+              <label style={{color: '#1E293B', fontWeight: 500, marginBottom: '8px', display: 'block', fontSize: '14px'}}>
                 Current Role / Title <span style={{color: '#EF4444'}}>*</span>
-              </Label>
+              </label>
               <select
-                id="role"
                 required
                 value={formData.role}
                 onChange={(e) => setFormData({...formData, role: e.target.value})}
@@ -169,11 +163,10 @@ const ProfileModal = ({ onComplete, onClose }) => {
             </div>
             
             <div>
-              <Label htmlFor="seniority" style={{color: '#1E293B', fontWeight: 500, marginBottom: '8px', display: 'block'}}>
+              <label style={{color: '#1E293B', fontWeight: 500, marginBottom: '8px', display: 'block', fontSize: '14px'}}>
                 Seniority Level <span style={{color: '#EF4444'}}>*</span>
-              </Label>
+              </label>
               <select
-                id="seniority"
                 required
                 value={formData.seniority_level}
                 onChange={(e) => setFormData({...formData, seniority_level: e.target.value})}
@@ -195,32 +188,32 @@ const ProfileModal = ({ onComplete, onClose }) => {
             </div>
             
             <div>
-              <Label htmlFor="experience" style={{color: '#1E293B', fontWeight: 500, marginBottom: '8px', display: 'block'}}>
+              <label style={{color: '#1E293B', fontWeight: 500, marginBottom: '8px', display: 'block', fontSize: '14px'}}>
                 Years of Professional Experience <span style={{color: '#EF4444'}}>*</span>
-              </Label>
-              <Input
-                id="experience"
-                type=\"number\"
-                min=\"0\"
-                max=\"50\"
+              </label>
+              <input
+                type="number"
+                min="0"
+                max="50"
                 required
                 value={formData.years_experience}
                 onChange={(e) => setFormData({...formData, years_experience: parseInt(e.target.value)})}
-                placeholder=\"e.g., 15\"
+                placeholder="e.g., 15"
                 style={{
+                  width: '100%',
                   border: '1px solid #E2E8F0',
                   borderRadius: '6px',
-                  padding: '10px 12px'
+                  padding: '10px 12px',
+                  fontSize: '15px'
                 }}
               />
             </div>
             
             <div>
-              <Label htmlFor="industry" style={{color: '#1E293B', fontWeight: 500, marginBottom: '8px', display: 'block'}}>
+              <label style={{color: '#1E293B', fontWeight: 500, marginBottom: '8px', display: 'block', fontSize: '14px'}}>
                 Industry
-              </Label>
+              </label>
               <select
-                id="industry"
                 value={formData.industry}
                 onChange={(e) => setFormData({...formData, industry: e.target.value})}
                 style={{
@@ -241,11 +234,10 @@ const ProfileModal = ({ onComplete, onClose }) => {
             </div>
             
             <div>
-              <Label htmlFor="company_size" style={{color: '#1E293B', fontWeight: 500, marginBottom: '8px', display: 'block'}}>
+              <label style={{color: '#1E293B', fontWeight: 500, marginBottom: '8px', display: 'block', fontSize: '14px'}}>
                 Company Size
-              </Label>
+              </label>
               <select
-                id="company_size"
                 value={formData.company_size}
                 onChange={(e) => setFormData({...formData, company_size: e.target.value})}
                 style={{
@@ -266,11 +258,10 @@ const ProfileModal = ({ onComplete, onClose }) => {
             </div>
             
             <div>
-              <Label htmlFor="goal" style={{color: '#1E293B', fontWeight: 500, marginBottom: '8px', display: 'block'}}>
+              <label style={{color: '#1E293B', fontWeight: 500, marginBottom: '8px', display: 'block', fontSize: '14px'}}>
                 Primary Goal
-              </Label>
+              </label>
               <select
-                id="goal"
                 value={formData.primary_goal}
                 onChange={(e) => setFormData({...formData, primary_goal: e.target.value})}
                 style={{
