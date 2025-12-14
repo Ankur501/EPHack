@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '../components/ui/button';
-import { ArrowLeft, Lightbulb, Video, ExternalLink, RefreshCw } from 'lucide-react';
+import { ArrowLeft, Lightbulb, Video, ExternalLink, Timer, Calendar } from 'lucide-react';
 import axios from 'axios';
 import { toast } from 'sonner';
 
@@ -10,7 +10,9 @@ const LearningBytes = () => {
   const [dailyTip, setDailyTip] = useState(null);
   const [tedTalks, setTedTalks] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [refreshing, setRefreshing] = useState(false);
+  const [rotationInfo, setRotationInfo] = useState(null);
+  const [tipNumber, setTipNumber] = useState(1);
+  const [totalTips, setTotalTips] = useState(14);
   
   const fetchContent = async () => {
     try {
@@ -28,38 +30,38 @@ const LearningBytes = () => {
         })
       ]);
       
-      setDailyTip(tipRes.data);
+      setDailyTip({ tip: tipRes.data.tip, category: tipRes.data.category });
+      setRotationInfo(tipRes.data.rotation_info);
+      setTipNumber(tipRes.data.tip_number || 1);
+      setTotalTips(tipRes.data.total_tips || 14);
       setTedTalks(talksRes.data.talks);
     } catch (error) {
       console.error('Error fetching learning content:', error);
       toast.error('Failed to load content');
     } finally {
       setLoading(false);
-      setRefreshing(false);
     }
   };
   
   useEffect(() => {
     fetchContent();
+    
+    // Update countdown every minute
+    const interval = setInterval(() => {
+      fetchContent();
+    }, 60000);
+    
+    return () => clearInterval(interval);
   }, []);
-  
-  const handleRefreshTip = async () => {
-    setRefreshing(true);
-    await fetchContent();
-    toast.success('New tip generated!');
-  };
   
   if (loading) {
     return (
       <div style={{minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#FAFAFA'}}>
         <div style={{textAlign: 'center'}}>
           <div style={{
-            width: '48px',
-            height: '48px',
-            border: '4px solid #E2E8F0',
-            borderTopColor: '#D4AF37',
-            borderRadius: '50%',
-            animation: 'spin 1s linear infinite',
+            width: '48px', height: '48px',
+            border: '4px solid #E2E8F0', borderTopColor: '#D4AF37',
+            borderRadius: '50%', animation: 'spin 1s linear infinite',
             margin: '0 auto 16px'
           }}></div>
           <p style={{color: '#64748B'}}>Loading...</p>
@@ -74,9 +76,7 @@ const LearningBytes = () => {
         backgroundColor: '#FFFFFF',
         borderBottom: '1px solid #E2E8F0',
         padding: '16px 24px',
-        position: 'sticky',
-        top: 0,
-        zIndex: 50
+        position: 'sticky', top: 0, zIndex: 50
       }}>
         <Button variant="ghost" onClick={() => navigate('/dashboard')}>
           <ArrowLeft className="mr-2 h-4 w-4" /> Back to Dashboard
@@ -84,62 +84,81 @@ const LearningBytes = () => {
       </nav>
       
       <div className="container mx-auto px-6 py-12 max-w-5xl">
-        <div style={{marginBottom: '40px'}}>
-          <h1 style={{fontSize: '42px', fontWeight: 700, color: '#0F172A', marginBottom: '12px'}}>
-            Learning <span style={{color: '#D4AF37'}}>Bytes</span>
-          </h1>
-          <p style={{fontSize: '18px', color: '#64748B'}}>
-            Daily insights and expert resources to enhance your executive presence
-          </p>
+        <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'start', marginBottom: '40px'}}>
+          <div>
+            <h1 style={{fontSize: '42px', fontWeight: 700, color: '#0F172A', marginBottom: '12px'}}>
+              Learning <span style={{color: '#D4AF37'}}>Bytes</span>
+            </h1>
+            <p style={{fontSize: '18px', color: '#64748B'}}>
+              Daily insights and expert resources to enhance your executive presence
+            </p>
+          </div>
+          
+          {/* Daily Countdown Timer */}
+          {rotationInfo && (
+            <div className="card-3d" style={{
+              backgroundColor: 'rgba(212, 175, 55, 0.05)',
+              border: '2px solid #D4AF37',
+              borderRadius: '16px', padding: '20px',
+              textAlign: 'center', minWidth: '180px'
+            }}>
+              <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', marginBottom: '8px'}}>
+                <Calendar style={{width: '20px', height: '20px', color: '#D4AF37'}} />
+                <span style={{fontSize: '14px', fontWeight: 600, color: '#0F172A'}}>New Tip In</span>
+              </div>
+              <div style={{
+                fontSize: '28px', fontWeight: 700, color: '#D4AF37',
+                fontFamily: 'IBM Plex Mono, monospace'
+              }}>
+                {rotationInfo.remaining_formatted}
+              </div>
+              <div style={{fontSize: '12px', color: '#64748B', marginTop: '4px'}}>
+                Updates Daily
+              </div>
+              <div style={{
+                marginTop: '8px', padding: '4px 12px',
+                backgroundColor: 'rgba(212, 175, 55, 0.15)',
+                borderRadius: '12px', fontSize: '12px', fontWeight: 600, color: '#92400E'
+              }}>
+                Tip {tipNumber} of {totalTips}
+              </div>
+            </div>
+          )}
         </div>
         
         {dailyTip && (
           <div className="card-3d" style={{
             backgroundColor: 'rgba(212, 175, 55, 0.05)',
             border: '2px solid #D4AF37',
-            borderRadius: '16px',
-            padding: '32px',
-            marginBottom: '40px'
+            borderRadius: '16px', padding: '32px', marginBottom: '40px'
           }}>
             <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'start', marginBottom: '16px'}}>
               <div style={{display: 'flex', alignItems: 'center', gap: '12px'}}>
                 <div style={{
-                  width: '48px',
-                  height: '48px',
-                  borderRadius: '12px',
+                  width: '48px', height: '48px', borderRadius: '12px',
                   backgroundColor: 'rgba(212, 175, 55, 0.15)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center'
+                  display: 'flex', alignItems: 'center', justifyContent: 'center'
                 }}>
                   <Lightbulb style={{width: '24px', height: '24px', color: '#D4AF37'}} />
                 </div>
                 <div>
                   <h2 style={{fontSize: '20px', fontWeight: 600, color: '#0F172A'}}>
-                    Daily Tip — {dailyTip.category}
+                    Today's Tip — {dailyTip.category}
                   </h2>
                   <p style={{fontSize: '13px', color: '#64748B', marginTop: '4px'}}>
-                    AI-generated for your profile
+                    Fresh insight every day at midnight UTC
                   </p>
                 </div>
               </div>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={handleRefreshTip}
-                disabled={refreshing}
-                style={{color: '#D4AF37'}}
-              >
-                <RefreshCw className={`h-4 w-4 mr-2 ${refreshing ? 'animate-spin' : ''}`} />
-                New Tip
-              </Button>
+              <div style={{
+                padding: '6px 14px',
+                backgroundColor: '#D4AF37', color: '#FFFFFF',
+                borderRadius: '20px', fontSize: '12px', fontWeight: 600
+              }}>
+                #{tipNumber}
+              </div>
             </div>
-            <p style={{
-              fontSize: '17px',
-              color: '#1E293B',
-              lineHeight: 1.7,
-              fontWeight: 400
-            }}>
+            <p style={{fontSize: '17px', color: '#1E293B', lineHeight: 1.7, fontWeight: 400}}>
               {dailyTip.tip}
             </p>
           </div>
@@ -162,8 +181,7 @@ const LearningBytes = () => {
               style={{
                 backgroundColor: '#FFFFFF',
                 border: '2px solid #E2E8F0',
-                borderRadius: '16px',
-                padding: '24px',
+                borderRadius: '16px', padding: '24px',
                 transition: 'all 0.3s ease'
               }}
               onMouseEnter={(e) => {
@@ -181,49 +199,26 @@ const LearningBytes = () => {
                 <div style={{flex: 1}}>
                   <div style={{display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px'}}>
                     <Video style={{width: '18px', height: '18px', color: '#D4AF37'}} />
-                    <span style={{fontSize: '13px', color: '#64748B', fontWeight: 500}}>
-                      {talk.duration}
-                    </span>
+                    <span style={{fontSize: '13px', color: '#64748B', fontWeight: 500}}>{talk.duration}</span>
                   </div>
                   
-                  <h3 style={{fontSize: '18px', fontWeight: 600, color: '#0F172A', marginBottom: '4px'}}>
-                    {talk.title}
-                  </h3>
-                  
-                  <p style={{fontSize: '14px', color: '#D4AF37', marginBottom: '8px', fontWeight: 500}}>
-                    by {talk.speaker}
-                  </p>
-                  
-                  <p style={{fontSize: '15px', color: '#1E293B', marginBottom: '12px', lineHeight: 1.6}}>
-                    {talk.description}
-                  </p>
+                  <h3 style={{fontSize: '18px', fontWeight: 600, color: '#0F172A', marginBottom: '4px'}}>{talk.title}</h3>
+                  <p style={{fontSize: '14px', color: '#D4AF37', marginBottom: '8px', fontWeight: 500}}>by {talk.speaker}</p>
+                  <p style={{fontSize: '15px', color: '#1E293B', marginBottom: '12px', lineHeight: 1.6}}>{talk.description}</p>
                   
                   <div style={{display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '16px'}}>
                     {talk.relevance.split(', ').map((tag, idx) => (
                       <span key={idx} style={{
                         backgroundColor: 'rgba(212, 175, 55, 0.1)',
                         border: '1px solid rgba(212, 175, 55, 0.3)',
-                        borderRadius: '12px',
-                        padding: '4px 10px',
-                        fontSize: '12px',
-                        color: '#92400E'
-                      }}>
-                        {tag}
-                      </span>
+                        borderRadius: '12px', padding: '4px 10px',
+                        fontSize: '12px', color: '#92400E'
+                      }}>{tag}</span>
                     ))}
                   </div>
                   
-                  <a
-                    href={talk.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{textDecoration: 'none'}}
-                  >
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      style={{border: '2px solid #D4AF37', color: '#D4AF37'}}
-                    >
+                  <a href={talk.url} target="_blank" rel="noopener noreferrer" style={{textDecoration: 'none'}}>
+                    <Button variant="outline" size="sm" style={{border: '2px solid #D4AF37', color: '#D4AF37'}}>
                       Watch on TED <ExternalLink className="ml-2 h-4 w-4" />
                     </Button>
                   </a>
@@ -237,9 +232,7 @@ const LearningBytes = () => {
           marginTop: '48px',
           backgroundColor: 'rgba(212, 175, 55, 0.05)',
           border: '2px solid #D4AF37',
-          borderRadius: '16px',
-          padding: '32px',
-          textAlign: 'center'
+          borderRadius: '16px', padding: '32px', textAlign: 'center'
         }}>
           <h3 style={{fontSize: '22px', fontWeight: 700, color: '#0F172A', marginBottom: '8px'}}>
             Want Personalized Learning?
@@ -252,6 +245,10 @@ const LearningBytes = () => {
           </Button>
         </div>
       </div>
+      
+      <style>{`
+        @keyframes spin { to { transform: rotate(360deg); } }
+      `}</style>
     </div>
   );
 };
