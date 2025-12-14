@@ -4,12 +4,16 @@ import { Button } from '../components/ui/button';
 import { authAPI, reportAPI } from '../lib/api';
 import { toast } from 'sonner';
 import { Video, BookOpen, Dumbbell, Users, LogOut, BarChart3 } from 'lucide-react';
+import ProfileModal from '../components/ProfileModal';
+import axios from 'axios';
 
 const Dashboard = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
   const [reports, setReports] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [showProfileModal, setShowProfileModal] = useState(false);
+  const [hasProfile, setHasProfile] = useState(true);
   
   useEffect(() => {
     const fetchData = async () => {
