@@ -131,8 +131,17 @@ const Report = () => {
             <Button variant="outline" style={{border: '2px solid #D4AF37', color: '#D4AF37'}}>
               <Share2 className="mr-2 h-4 w-4" /> Share Report
             </Button>
-            <Button style={{backgroundColor: '#D4AF37', color: '#FFFFFF'}} data-testid="download-pdf">
-              <Download className="mr-2 h-4 w-4" /> Download PDF
+            <Button 
+              onClick={handleDownloadPDF}
+              disabled={generatingPDF}
+              style={{backgroundColor: '#D4AF37', color: '#FFFFFF'}} 
+              data-testid="download-pdf"
+            >
+              {generatingPDF ? (
+                <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> Generating...</>
+              ) : (
+                <><Download className="mr-2 h-4 w-4" /> Download PDF</>
+              )}
             </Button>
           </div>
         </div>
