@@ -33,10 +33,10 @@ const Landing = () => {
                 Get AI-powered insights on your leadership communication. Upload a 3-minute video and receive a comprehensive EP report with scores, benchmarks, and personalized coaching.
               </p>
               <div className="flex gap-4">
-                <Button size="lg" onClick={() => navigate('/signup')} className="text-lg px-8" data-testid="cta-button">
+                <Button size="lg" onClick={() => navigate('/signup')} style={{backgroundColor: '#D4AF37', color: 'white'}} className="text-lg px-8" data-testid="cta-button">
                   Start Your Assessment <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
-                <Button size="lg" variant="outline" onClick={() => navigate('/login')}>
+                <Button size="lg" variant="outline" onClick={() => navigate('/login')} style={{borderColor: '#0F172A', color: '#0F172A'}}>
                   Sign In
                 </Button>
               </div>
