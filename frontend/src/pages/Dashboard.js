@@ -18,12 +18,25 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [userRes, reportsRes] = await Promise.all([
+        const token = localStorage.getItem('session_token');
+        const API_URL = process.env.REACT_APP_BACKEND_URL;
+        
+        const [userRes, reportsRes, profileRes] = await Promise.all([
           authAPI.getMe(),
-          reportAPI.listReports()
+          reportAPI.listReports(),
+          axios.get(`${API_URL}/api/profile/`, {
+            headers: { 'Authorization': `Bearer ${token}` },
+            withCredentials: true
+          })
         ]);
+        
         setUser(userRes.data);
         setReports(reportsRes.data.reports || []);
+        
+        if (!profileRes.data.has_profile) {
+          setHasProfile(false);
+          setShowProfileModal(true);
+        }
       } catch (error) {
         console.error('Error fetching data:', error);
       } finally {
