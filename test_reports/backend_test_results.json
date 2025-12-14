@@ -1,70 +1,112 @@
 {
-  "total_tests": 9,
-  "passed_tests": 9,
+  "total_tests": 15,
+  "passed_tests": 15,
   "success_rate": 100.0,
   "test_results": [
     {
       "test_name": "Auth - Signup",
       "success": true,
-      "details": "Status: 200, Response: {'user': {'user_id': 'user_487b9052880c', 'email': 'test_1765692591@example.com', 'name': 'Test User', 'picture': None, 'created_at': '2025-12-14T06:09:52.154167+00:00'}, 'session_token': 'session_197",
+      "details": "Status: 200, Response: {'user': {'user_id': 'user_0a355f0cc5a5', 'email': 'test_1765700244@example.com', 'name': 'Test User', 'picture': None, 'created_at': '2025-12-14T08:17:24.756241+00:00'}, 'session_token': 'session_67f",
       "error": "",
-      "timestamp": "2025-12-14T06:09:52.163912"
+      "timestamp": "2025-12-14T08:17:24.762440"
     },
     {
       "test_name": "Auth - Login",
       "success": true,
-      "details": "Status: 200, Response: {'user': {'user_id': 'user_487b9052880c', 'email': 'test_1765692591@example.com', 'name': 'Test User', 'picture': None, 'created_at': '2025-12-14T06:09:52.154167+00:00'}, 'session_token': 'session_bc3",
+      "details": "Status: 200, Response: {'user': {'user_id': 'user_0a355f0cc5a5', 'email': 'test_1765700244@example.com', 'name': 'Test User', 'picture': None, 'created_at': '2025-12-14T08:17:24.756241+00:00'}, 'session_token': 'session_618",
       "error": "",
-      "timestamp": "2025-12-14T06:09:52.462412"
+      "timestamp": "2025-12-14T08:17:25.033865"
     },
     {
       "test_name": "Auth - Get Me",
       "success": true,
-      "details": "Status: 200, Response: {'user_id': 'user_487b9052880c', 'email': 'test_1765692591@example.com', 'name': 'Test User', 'picture': None, 'password_hash': '$2b$12$q2wN8lBjvy6xmdq5rAf9v.7zXKUN0ra8KRBQpam/fiCqLiiRoK28e', 'created",
+      "details": "Status: 200, Response: {'user_id': 'user_0a355f0cc5a5', 'email': 'test_1765700244@example.com', 'name': 'Test User', 'picture': None, 'created_at': '2025-12-14T08:17:24.756241+00:00'}",
       "error": "",
-      "timestamp": "2025-12-14T06:09:52.502562"
+      "timestamp": "2025-12-14T08:17:25.114151"
     },
     {
-      "test_name": "Auth - Google Redirect",
+      "test_name": "Learning - Daily Tip",
       "success": true,
-      "details": "Status: 200, Response: {'auth_url': 'https://auth.emergentagent.com/?redirect=http://localhost:3000/dashboard'}",
+      "details": "Status: 200, Response: {'tip': \"To enhance your gravitas in meetings, practice active listening by maintaining eye contact with the speaker and nodding periodically to convey engagement. This not only demonstrates confidenc",
       "error": "",
-      "timestamp": "2025-12-14T06:09:52.557571"
+      "timestamp": "2025-12-14T08:17:26.737716"
+    },
+    {
+      "test_name": "Learning - TED Talks",
+      "success": true,
+      "details": "Status: 200, Response: {'talks': [{'id': 1, 'title': 'Your body language may shape who you are', 'speaker': 'Amy Cuddy', 'duration': '21 min', 'relevance': 'Presence, Body Language, Confidence', 'url': 'https://www.ted.com/",
+      "error": "",
+      "timestamp": "2025-12-14T08:17:26.780507"
+    },
+    {
+      "test_name": "Training - Modules List",
+      "success": true,
+      "details": "Status: 200, Response: {'modules': [{'id': 'strategic-pauses', 'title': 'Strategic Pauses', 'description': 'Master the art of using silence to enhance authority and emphasize key points', 'duration': '8 minutes', 'difficult",
+      "error": "",
+      "timestamp": "2025-12-14T08:17:26.822151"
+    },
+    {
+      "test_name": "Training - Module Content (strategic-pauses)",
+      "success": true,
+      "details": "Status: 200, Response: {'module_id': 'strategic-pauses', 'content': '**Key Concept**  \\nStrategic pause techniques involve deliberately taking brief moments of reflection before making decisions or responding in high-stakes",
+      "error": "",
+      "timestamp": "2025-12-14T08:17:30.963997"
+    },
+    {
+      "test_name": "Coaching - Create Request",
+      "success": true,
+      "details": "Status: 200, Response: {'request_id': 'coachreq_31feebd5fad748db9abcc9d78a5b4bc4'}",
+      "error": "",
+      "timestamp": "2025-12-14T08:17:31.028717"
+    },
+    {
+      "test_name": "Reports - Check Existing",
+      "success": true,
+      "details": "Status: 200, Response: {'reports': []}",
+      "error": "",
+      "timestamp": "2025-12-14T08:17:31.068899"
     },
     {
       "test_name": "Video - Upload",
       "success": true,
-      "details": "Status: 200, Response: {'video_id': 'video_1a3c9fb0bac3436a9d2768045321ebd2', 'message': 'Video uploaded successfully'}",
+      "details": "Status: 200, Response: {'video_id': 'video_8f77066cd47741feadc74d5082e7cea3', 'message': 'Video uploaded successfully'}",
       "error": "",
-      "timestamp": "2025-12-14T06:09:52.730502"
+      "timestamp": "2025-12-14T08:17:31.285852"
     },
     {
       "test_name": "Video - Process",
       "success": true,
-      "details": "Status: 200, Response: {'job_id': 'job_80a67fd355464594b8486ffddab87c4e', 'message': 'Processing started'}",
+      "details": "Status: 200, Response: {'job_id': 'job_52fe9ba856b14520bd9d29f5be89c8d7', 'message': 'Processing started'}",
       "error": "",
-      "timestamp": "2025-12-14T06:09:52.849795"
+      "timestamp": "2025-12-14T08:17:31.381234"
     },
     {
       "test_name": "Jobs - Get Status",
       "success": true,
-      "details": "Status: 200, Response: {'job_id': 'job_80a67fd355464594b8486ffddab87c4e', 'user_id': 'user_487b9052880c', 'video_id': 'video_1a3c9fb0bac3436a9d2768045321ebd2', 'status': 'transcribing', 'progress': 10, 'current_step': 'Extr",
+      "details": "Status: 200, Response: {'job_id': 'job_52fe9ba856b14520bd9d29f5be89c8d7', 'user_id': 'user_0a355f0cc5a5', 'video_id': 'video_8f77066cd47741feadc74d5082e7cea3', 'status': 'failed', 'progress': 10, 'current_step': 'Extracting",
       "error": "",
-      "timestamp": "2025-12-14T06:09:52.900776"
+      "timestamp": "2025-12-14T08:17:31.431276"
     },
     {
-      "test_name": "Reports - List",
+      "test_name": "Jobs - Get Status",
       "success": true,
-      "details": "Status: 200, Response: {'reports': []}",
+      "details": "Status: 200, Response: {'job_id': 'job_52fe9ba856b14520bd9d29f5be89c8d7', 'user_id': 'user_0a355f0cc5a5', 'video_id': 'video_8f77066cd47741feadc74d5082e7cea3', 'status': 'failed', 'progress': 10, 'current_step': 'Extracting",
       "error": "",
-      "timestamp": "2025-12-14T06:09:52.957667"
+      "timestamp": "2025-12-14T08:17:33.470992"
+    },
+    {
+      "test_name": "Jobs - Get Status",
+      "success": true,
+      "details": "Status: 200, Response: {'job_id': 'job_52fe9ba856b14520bd9d29f5be89c8d7', 'user_id': 'user_0a355f0cc5a5', 'video_id': 'video_8f77066cd47741feadc74d5082e7cea3', 'status': 'failed', 'progress': 10, 'current_step': 'Extracting",
+      "error": "",
+      "timestamp": "2025-12-14T08:17:35.511267"
     },
     {
       "test_name": "Auth - Logout",
       "success": true,
       "details": "Status: 200, Response: {'message': 'Logged out'}",
       "error": "",
-      "timestamp": "2025-12-14T06:09:53.008162"
+      "timestamp": "2025-12-14T08:17:37.566260"
     }
   ]
 }
