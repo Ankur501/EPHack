@@ -8,7 +8,7 @@ from datetime import datetime
 from pathlib import Path
 
 class EPQuotientAPITester:
-    def __init__(self, base_url="https://speak-better-68.preview.emergentagent.com"):
+    def __init__(self, base_url="https://epquotient.preview.emergentagent.com"):
         self.base_url = base_url
         self.session_token = None
         self.tests_run = 0
