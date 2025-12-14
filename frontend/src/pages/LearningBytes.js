@@ -181,23 +181,13 @@ const LearningBytes = () => {
               className="card-3d"
               style={{
                 backgroundColor: '#FFFFFF',
-                border: '2px solid #E2E8F0',
+                border: expandedVideo === talk.id ? '2px solid #D4AF37' : '2px solid #E2E8F0',
                 borderRadius: '16px', padding: '24px',
                 transition: 'all 0.3s ease'
               }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = '#D4AF37';
-                e.currentTarget.style.transform = 'translateY(-4px)';
-                e.currentTarget.style.boxShadow = '0 12px 24px -8px rgba(212, 175, 55, 0.15)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = '#E2E8F0';
-                e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.boxShadow = 'none';
-              }}
             >
-              <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'start'}}>
-                <div style={{flex: 1}}>
+              <div style={{display: 'flex', flexDirection: 'column', gap: '16px'}}>
+                <div>
                   <div style={{display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px'}}>
                     <Video style={{width: '18px', height: '18px', color: '#D4AF37'}} />
                     <span style={{fontSize: '13px', color: '#64748B', fontWeight: 500}}>{talk.duration}</span>
@@ -217,13 +207,50 @@ const LearningBytes = () => {
                       }}>{tag}</span>
                     ))}
                   </div>
-                  
-                  <a href={talk.url} target="_blank" rel="noopener noreferrer" style={{textDecoration: 'none'}}>
-                    <Button variant="outline" size="sm" style={{border: '2px solid #D4AF37', color: '#D4AF37'}}>
-                      Watch on TED <ExternalLink className="ml-2 h-4 w-4" />
-                    </Button>
-                  </a>
                 </div>
+                
+                {expandedVideo === talk.id ? (
+                  <>
+                    <div style={{
+                      position: 'relative',
+                      paddingBottom: '56.25%',
+                      height: 0,
+                      overflow: 'hidden',
+                      borderRadius: '12px',
+                      backgroundColor: '#000'
+                    }}>
+                      <iframe
+                        src={talk.embed_url}
+                        style={{
+                          position: 'absolute',
+                          top: 0,
+                          left: 0,
+                          width: '100%',
+                          height: '100%',
+                          border: 'none'
+                        }}
+                        allowFullScreen
+                        title={talk.title}
+                      />
+                    </div>
+                    <Button 
+                      variant="outline" 
+                      size="sm" 
+                      onClick={() => setExpandedVideo(null)}
+                      style={{border: '2px solid #D4AF37', color: '#D4AF37'}}
+                    >
+                      Hide Video
+                    </Button>
+                  </>
+                ) : (
+                  <Button 
+                    size="sm" 
+                    onClick={() => setExpandedVideo(talk.id)}
+                    style={{backgroundColor: '#D4AF37', color: '#FFFFFF'}}
+                  >
+                    <Play className="mr-2 h-4 w-4" /> Watch Video
+                  </Button>
+                )}
               </div>
             </div>
           ))}
