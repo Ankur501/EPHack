@@ -337,7 +337,7 @@ async def get_ted_talks(
     session_token: Optional[str] = Cookie(None),
     authorization: Optional[str] = Header(None)
 ):
-    user = await get_current_user(db, session_token, authorization)
+    await get_current_user(db, session_token, authorization)
     
     talks = [
         {
@@ -394,7 +394,7 @@ async def get_training_modules(
     session_token: Optional[str] = Cookie(None),
     authorization: Optional[str] = Header(None)
 ):
-    user = await get_current_user(db, session_token, authorization)
+    await get_current_user(db, session_token, authorization)
     
     modules = [
         {
