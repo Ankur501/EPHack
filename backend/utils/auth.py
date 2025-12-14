@@ -55,5 +55,8 @@ async def get_current_user(db: AsyncIOMotorDatabase, session_token: Optional[str
     
     if not user_doc:
         raise HTTPException(status_code=404, detail="User not found")
+
+    # Never expose password hashes beyond the backend
+    user_doc.pop("password_hash", None)
     
     return user_doc
