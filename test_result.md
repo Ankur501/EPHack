@@ -101,3 +101,117 @@
 #====================================================================================================
 # Testing Data - Main Agent and testing sub agent both should log testing data below this section
 #====================================================================================================
+
+## user_problem_statement: EP Quotient app must have working auth, working feature pages (Simulator/Learning/Training/Coaching), stable video processing and report viewing.
+## backend:
+##   - task: "Fix API router registration order so learning/training endpoints load"
+##     implemented: true
+##     working: true
+##     file: "/app/backend/server.py"
+##     stuck_count: 0
+##     priority: "high"
+##     needs_retesting: true
+##     status_history:
+##       - working: true
+##         agent: "main"
+##         comment: "Moved app.include_router(api_router) to end of file; /api/learning/* and /api/training/* now return 200."
+##   - task: "Do not leak password_hash on /api/auth/me"
+##     implemented: true
+##     working: true
+##     file: "/app/backend/utils/auth.py"
+##     stuck_count: 0
+##     priority: "high"
+##     needs_retesting: true
+##     status_history:
+##       - working: true
+##         agent: "main"
+##         comment: "Removed password_hash from user object returned by get_current_user."
+##   - task: "Expose report_id on job status when video processing completes"
+##     implemented: true
+##     working: true
+##     file: "/app/backend/services/video_processor.py"
+##     stuck_count: 0
+##     priority: "high"
+##     needs_retesting: true
+##     status_history:
+##       - working: true
+##         agent: "main"
+##         comment: "VideoProcessor now stores report_id on video_jobs; frontend navigates using job.report_id."
+##   - task: "Executive coaching request + share link API"
+##     implemented: true
+##     working: true
+##     file: "/app/backend/routes/coaching.py, /app/backend/routes/sharing.py, /app/backend/server.py"
+##     stuck_count: 0
+##     priority: "medium"
+##     needs_retesting: true
+##     status_history:
+##       - working: true
+##         agent: "main"
+##         comment: "Added /api/coaching/requests and /api/reports/{report_id}/share + /api/shared/reports/{share_id}."
+##
+## frontend:
+##   - task: "Dashboard cards are the only navigation (remove top tabs)"
+##     implemented: true
+##     working: true
+##     file: "/app/frontend/src/pages/Dashboard.js"
+##     stuck_count: 0
+##     priority: "high"
+##     needs_retesting: true
+##     status_history:
+##       - working: true
+##         agent: "main"
+##         comment: "Removed redundant top navigation tabs; cards remain as the single navigation surface."
+##   - task: "Simulator uses report_id from job status"
+##     implemented: true
+##     working: true
+##     file: "/app/frontend/src/pages/Simulator.js"
+##     stuck_count: 0
+##     priority: "high"
+##     needs_retesting: true
+##     status_history:
+##       - working: true
+##         agent: "main"
+##         comment: "On job completed, navigates to /report/{job.report_id}."
+##   - task: "KnowYourEP uses report_id from job status"
+##     implemented: true
+##     working: true
+##     file: "/app/frontend/src/pages/KnowYourEP.js"
+##     stuck_count: 0
+##     priority: "high"
+##     needs_retesting: true
+##     status_history:
+##       - working: true
+##         agent: "main"
+##         comment: "On job completed, navigates to /report/{job.report_id}."
+##   - task: "Executive Coaching: booking link + internal request form + share link UI"
+##     implemented: true
+##     working: true
+##     file: "/app/frontend/src/pages/ExecutiveCoaching.js"
+##     stuck_count: 0
+##     priority: "medium"
+##     needs_retesting: true
+##     status_history:
+##       - working: true
+##         agent: "main"
+##         comment: "Added internal request form and share link generation + /shared/:shareId page."
+##
+## metadata:
+##   created_by: "main_agent"
+##   version: "1.0"
+##   test_sequence: 1
+##   run_ui: true
+##
+## test_plan:
+##   current_focus:
+##     - "Auth: signup/login, token persistence, ProtectedRoute"
+##     - "Feature pages load: Simulator/Learning/Training/Coaching"
+##     - "Video upload -> processing -> report view"
+##     - "Share link creation -> shared report view"
+##   stuck_tasks:
+##     - "Login redirect loop"
+##   test_all: true
+##   test_priority: "high_first"
+##
+## agent_communication:
+##   - agent: "main"
+##     comment: "Ready for full backend+frontend testing. Please create a new user via Signup, verify all feature pages load, verify share link flow, and run an end-to-end video upload/process/report flow if feasible."
