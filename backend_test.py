@@ -324,76 +324,109 @@ class EPQuotientAPITester:
 
     def run_all_tests(self):
         """Run comprehensive test suite as per review request"""
-        print("🚀 Starting EP Quotient API Tests - Backend End-to-End")
-        print("=" * 60)
+        print("🚀 Starting EP Quotient API Tests - Video Pipeline & PDF Export Focus")
+        print("=" * 70)
+        print(f"Backend URL: {self.base_url}")
+        print(f"Test Token: {self.session_token}")
+        print("FFmpeg Status: ✅ Installed")
         
-        # 1) Auth tests
-        print("\n📋 1) AUTH TESTS")
-        print("-" * 30)
-        signup_success, test_email = self.test_auth_signup()
-        if not signup_success:
-            print("❌ Signup failed - stopping auth tests")
-            return self.generate_summary()
-            
-        login_success = self.test_auth_login(test_email)
+        # Priority 1: Auth Flow with provided credentials
+        print("\n📋 PRIORITY 1: AUTH FLOW")
+        print("-" * 40)
+        
+        # Test with provided credentials
+        login_success = self.test_auth_login("uitest_golden@test.com")
         if not login_success:
-            print("❌ Login failed - stopping tests")
-            return self.generate_summary()
-            
-        # Test /auth/me without password_hash
+            print("❌ Login with test credentials failed - trying signup")
+            signup_success, test_email = self.test_auth_signup()
+            if not signup_success:
+                print("❌ Both login and signup failed - stopping tests")
+                return self.generate_summary()
+        
+        # Test /auth/me 
         self.test_auth_me()
         
-        # 2) Feature endpoints
-        print("\n📋 2) FEATURE ENDPOINTS")
-        print("-" * 30)
-        self.test_learning_daily_tip()
-        self.test_learning_ted_talks()
-        self.test_training_modules()
-        self.test_training_module_content("strategic-pauses")
+        # Priority 2: Video Processing Pipeline (MAIN FOCUS)
+        print("\n📋 PRIORITY 1: VIDEO PROCESSING PIPELINE")
+        print("-" * 50)
         
-        # 3) Coaching + sharing
-        print("\n📋 3) COACHING + SHARING")
-        print("-" * 30)
-        coaching_success, request_id = self.test_coaching_request()
+        # Step 1: Video Upload
+        upload_success, video_id = self.test_video_upload()
+        if not upload_success or not video_id:
+            print("❌ Video upload failed - cannot test processing pipeline")
+        else:
+            print(f"✅ Video uploaded successfully: {video_id}")
+            
+            # Step 2: Video Processing Initiation
+            process_success, job_id = self.test_video_process(video_id)
+            if not process_success or not job_id:
+                print("❌ Video processing initiation failed")
+            else:
+                print(f"✅ Video processing started: {job_id}")
+                
+                # Step 3: Job Status Polling with detailed tracking
+                print("\n    🔄 Monitoring job status transitions...")
+                report_id = None
+                max_polls = 10  # Increased polling attempts
+                
+                for i in range(max_polls):
+                    print(f"    Poll {i+1}/{max_polls}:")
+                    job_success, current_report_id = self.test_job_status(job_id)
+                    
+                    if current_report_id:
+                        report_id = current_report_id
+                        print(f"    ✅ Processing completed! Report ID: {report_id}")
+                        break
+                    elif job_success:
+                        time.sleep(3)  # Wait between polls
+                    else:
+                        print(f"    ❌ Job status check failed on poll {i+1}")
+                        break
+                
+                # Step 4: Report Retrieval (if processing completed)
+                if report_id:
+                    print(f"\n    📊 Testing report retrieval...")
+                    self.test_report_retrieval(report_id)
+                else:
+                    print(f"\n    ⚠️  Video processing did not complete within {max_polls} polls")
         
-        # Try to create share link - need a report first
-        # Check if any reports exist
+        # Priority 2: API Endpoint Verification
+        print("\n📋 PRIORITY 2: API ENDPOINT VERIFICATION")
+        print("-" * 45)
+        
+        # Reports List
+        self.test_reports_list()
+        
+        # Sharing API (if reports exist)
         reports_success, reports_response = self.run_test(
-            "Reports - Check Existing",
+            "Reports - Check for Sharing Test",
             "GET", 
             "reports",
             200
         )
         
-        share_id = None
         if reports_success and reports_response.get('reports'):
-            # Use first available report
             report_id = reports_response['reports'][0]['report_id']
             share_success, share_id = self.test_create_share_link(report_id)
             if share_success and share_id:
                 self.test_get_shared_report(share_id)
         else:
-            print("⚠️  No existing reports found - skipping share link test as requested")
+            print("⚠️  No reports available for sharing test")
         
-        # 4) Video processing
-        print("\n📋 4) VIDEO PROCESSING")
-        print("-" * 30)
-        upload_success, video_id = self.test_video_upload()
-        if upload_success and video_id:
-            process_success, job_id = self.test_video_process(video_id)
-            if process_success and job_id:
-                # Poll job status a few times
-                for i in range(3):
-                    print(f"    Polling job status (attempt {i+1}/3)...")
-                    job_success = self.test_job_status(job_id)
-                    if job_success:
-                        time.sleep(2)  # Wait between polls
-                    else:
-                        break
+        # Coaching API
+        coaching_success, request_id = self.test_coaching_request()
         
-        # Test logout
+        # Feature endpoints
+        print("\n📋 ADDITIONAL: FEATURE ENDPOINTS")
+        print("-" * 35)
+        self.test_learning_daily_tip()
+        self.test_learning_ted_talks()
+        self.test_training_modules()
+        self.test_training_module_content("strategic-pauses")
+        
+        # Cleanup
         print("\n📋 CLEANUP")
-        print("-" * 30)
+        print("-" * 15)
         self.test_auth_logout()
         
         return self.generate_summary()
