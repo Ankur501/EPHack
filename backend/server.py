@@ -324,37 +324,17 @@ async def get_daily_tip(
     authorization: Optional[str] = Header(None)
 ):
     user = await get_current_user(db, session_token, authorization)
-    profile = await db.user_profiles.find_one({"user_id": user["user_id"]}, {"_id": 0})
     
-    import openai
-    client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-    
-    role_context = f"a {profile.get('role', 'Executive')} at {profile.get('seniority_level', 'Senior')} level" if profile else "an executive"
-    
-    prompt = f"""Generate a practical, actionable executive presence tip for {role_context}. 
-
-Requirements:
-- One specific technique or practice
-- 2-3 sentences maximum
-- Immediately actionable
-- Focus on one of: gravitas, communication, presence, or storytelling
-- Professional tone
-
-Return ONLY the tip text, nothing else."""
-    
-    response = client.chat.completions.create(
-        model="gpt-4o",
-        messages=[{"role": "user", "content": prompt}],
-        max_tokens=150
-    )
-    
-    tip = response.choices[0].message.content.strip()
-    category = ["Gravitas", "Communication", "Presence", "Storytelling"][hash(tip) % 4]
+    # Get timed daily tip
+    tip_data = get_current_daily_tip()
     
     return {
-        "tip": tip,
-        "category": category,
-        "date": datetime.now(timezone.utc).isoformat()
+        "tip": tip_data["tip"],
+        "category": tip_data["category"],
+        "date": datetime.now(timezone.utc).isoformat(),
+        "rotation_info": tip_data["rotation_info"],
+        "tip_number": tip_data["tip_number"],
+        "total_tips": tip_data["total_tips"]
     }
 
 # Public-facing learning/training endpoints are defined below; include router at the end of file.
