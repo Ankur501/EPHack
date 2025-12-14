@@ -289,7 +289,63 @@ const Dashboard = () => {
               <div onClick={() => navigate('/')} style={{fontSize: '24px', fontWeight: 700, color: '#0F172A', cursor: 'pointer'}}>
                 EP <span style={{color: '#D4AF37'}}>Quotient</span>
               </div>
-              <div style={{display: 'flex', alignItems: 'center', gap: '16px'}}>
+              <div style={{display: 'flex', alignItems: 'center', gap: '12px'}}>
+                {/* Subscription Tier Badge */}
+                {subscription && (
+                  <div 
+                    onClick={() => navigate('/pricing')}
+                    style={{
+                      padding: '6px 14px',
+                      borderRadius: '20px',
+                      backgroundColor: subscription.tier === 'pro' ? 'rgba(212, 175, 55, 0.15)' : 
+                                     subscription.tier === 'basic' ? 'rgba(59, 130, 246, 0.15)' : 
+                                     'rgba(100, 116, 139, 0.15)',
+                      border: `2px solid ${subscription.tier === 'pro' ? '#D4AF37' : 
+                                          subscription.tier === 'basic' ? '#3B82F6' : 
+                                          '#64748B'}`,
+                      cursor: 'pointer',
+                      transition: 'all 0.2s',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '6px'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.transform = 'scale(1.05)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.transform = 'scale(1)';
+                    }}
+                  >
+                    <div style={{
+                      width: '8px',
+                      height: '8px',
+                      borderRadius: '50%',
+                      backgroundColor: subscription.tier === 'pro' ? '#D4AF37' : 
+                                     subscription.tier === 'basic' ? '#3B82F6' : 
+                                     '#64748B'
+                    }}></div>
+                    <span style={{
+                      fontSize: '12px',
+                      fontWeight: 700,
+                      color: subscription.tier === 'pro' ? '#92400E' : 
+                             subscription.tier === 'basic' ? '#1E40AF' : 
+                             '#475569',
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.5px'
+                    }}>
+                      {subscription.is_whitelisted ? 'PRO ∞' : subscription.tier === 'free' ? 'FREE TRIAL' : subscription.tier.toUpperCase()}
+                    </span>
+                    {subscription.tier !== 'pro' && subscription.video_limit !== -1 && (
+                      <span style={{
+                        fontSize: '11px',
+                        color: '#64748B',
+                        fontWeight: 500
+                      }}>
+                        ({subscription.videos_used || 0}/{subscription.video_limit})
+                      </span>
+                    )}
+                  </div>
+                )}
                 <span style={{fontSize: '14px', color: '#64748B'}}>Welcome, <strong style={{color: '#0F172A'}}>{user?.name}</strong></span>
                 <Button variant="ghost" size="sm" onClick={handleLogout}><LogOut className="h-4 w-4 mr-2" /> Logout</Button>
               </div>
