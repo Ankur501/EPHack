@@ -195,41 +195,66 @@ def get_subscription_routes(db: AsyncIOMotorDatabase):
                     detail="Free trial already used on this device or email. Please upgrade to continue."
                 )
         
-        # Calculate expiration
+        # For free tier, no payment needed
         if request.tier == "free":
             expires_at = datetime.now(timezone.utc) + timedelta(days=2)
-        elif request.billing_cycle == "monthly":
-            expires_at = datetime.now(timezone.utc) + timedelta(days=30)
-        else:  # yearly
-            expires_at = datetime.now(timezone.utc) + timedelta(days=365)
+            
+            await db.subscriptions.update_one(
+                {"user_id": user["user_id"]},
+                {
+                    "$set": {
+                        "tier": request.tier,
+                        "status": "active",
+                        "expires_at": expires_at,
+                        "updated_at": datetime.now(timezone.utc)
+                    }
+                },
+                upsert=True
+            )
+            
+            if device_fingerprint:
+                await db.device_fingerprints.update_one(
+                    {"fingerprint": device_fingerprint},
+                    {"$set": {"free_trial_used": True}}
+                )
+            
+            return {
+                "success": True,
+                "tier": request.tier,
+                "message": "Free trial activated"
+            }
         
-        # Update subscription
-        await db.subscriptions.update_one(
+        # For paid tiers, create Dodo payment session
+        from services.dodo_payment import create_payment_session
+        
+        payment_result = await create_payment_session(
+            tier=request.tier,
+            billing_cycle=request.billing_cycle,
+            user_email=user["email"],
+            user_id=user["user_id"]
+        )
+        
+        if "error" in payment_result:
+            raise HTTPException(status_code=500, detail=payment_result["error"])
+        
+        # Store pending subscription upgrade
+        await db.pending_subscriptions.update_one(
             {"user_id": user["user_id"]},
             {
                 "$set": {
                     "tier": request.tier,
-                    "status": "active",
-                    "expires_at": expires_at,
-                    "updated_at": datetime.now(timezone.utc)
+                    "billing_cycle": request.billing_cycle,
+                    "payment_session_id": payment_result.get("session_id"),
+                    "created_at": datetime.now(timezone.utc)
                 }
             },
             upsert=True
         )
         
-        # Mark device as trial used if free tier
-        if request.tier == "free" and device_fingerprint:
-            await db.device_fingerprints.update_one(
-                {"fingerprint": device_fingerprint},
-                {"$set": {"free_trial_used": True}}
-            )
-        
-        # In production, integrate with Stripe here
-        # For now, return success
         return {
             "success": True,
-            "tier": request.tier,
-            "message": f"Subscription upgraded to {request.tier}"
+            "checkout_url": payment_result["checkout_url"],
+            "message": "Redirecting to payment..."
         }
     
     @router.post("/subscription/check-video-limit")
