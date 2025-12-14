@@ -22,6 +22,7 @@ from utils.auth import hash_password, verify_password, create_session_token, get
 from utils.gridfs_helper import save_video_to_gridfs, get_video_from_gridfs
 from services.video_processor import VideoProcessorService
 from routes.profile import create_profile_router
+from routes.subscription import get_subscription_routes
 from services.timed_content import (
     get_current_simulator_scenarios, 
     get_current_training_modules, 
@@ -471,3 +472,7 @@ Keep it actionable and professional. Total: ~200 words."""
 
 # Ensure routes registered after all endpoints are declared
 app.include_router(api_router)
+
+# Include subscription routes
+subscription_router = get_subscription_routes(db)
+app.include_router(subscription_router, prefix="/api", tags=["subscription"])
