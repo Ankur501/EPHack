@@ -12,10 +12,10 @@ const Landing = () => {
         <div className="container mx-auto px-6 py-5 flex justify-between items-center">
           <div className="font-display text-3xl font-bold text-primary">EP Quotient</div>
           <div className="flex gap-4">
-            <Button variant="ghost" onClick={() => navigate('/login')} data-testid="login-link">
+            <Button variant="ghost" onClick={() => navigate('/login')} data-testid="login-link" style={{color: '#0F172A'}}>
               Sign In
             </Button>
-            <Button onClick={() => navigate('/signup')} data-testid="signup-link">
+            <Button onClick={() => navigate('/signup')} data-testid="signup-link" style={{backgroundColor: '#D4AF37', color: 'white'}}>
               Get Started <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
           </div>
