@@ -82,8 +82,10 @@ class VideoProcessorService:
             
             await self.update_job_status(job_id, "nlp_analysis", 70, "Analyzing leadership signals...")
             
-            gravitas_analysis = await self.nlp_service.analyze_gravitas(transcript)
-            storytelling_analysis = await self.nlp_service.analyze_storytelling(transcript)
+            user_profile = await self.db.user_profiles.find_one({"user_id": user_id}, {"_id": 0})
+            
+            gravitas_analysis = await self.nlp_service.analyze_gravitas(transcript, user_profile)
+            storytelling_analysis = await self.nlp_service.analyze_storytelling(transcript, user_profile)
             
             await self.update_job_status(job_id, "scoring", 85, "Calculating scores...")
             
