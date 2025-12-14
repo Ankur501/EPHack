@@ -387,3 +387,112 @@ async def get_ted_talks(
     ]
     
     return {"talks": talks}
+
+@api_router.get("/training/modules")
+async def get_training_modules(
+    session_token: Optional[str] = Cookie(None),
+    authorization: Optional[str] = Header(None)
+):
+    user = await get_current_user(db, session_token, authorization)
+    
+    modules = [
+        {
+            "id": "strategic-pauses",
+            "title": "Strategic Pauses",
+            "description": "Master the art of using silence to enhance authority and emphasize key points",
+            "duration": "8 minutes",
+            "difficulty": "Beginner",
+            "focus_area": "Communication"
+        },
+        {
+            "id": "lens-eye-contact",
+            "title": "Camera Lens Eye Contact",
+            "description": "Develop consistent camera presence and connection through lens-focused gaze",
+            "duration": "6 minutes",
+            "difficulty": "Beginner",
+            "focus_area": "Presence"
+        },
+        {
+            "id": "decision-framing",
+            "title": "Executive Decision Framing",
+            "description": "Structure your decision communication with clarity, rationale, and conviction",
+            "duration": "10 minutes",
+            "difficulty": "Intermediate",
+            "focus_area": "Gravitas"
+        },
+        {
+            "id": "vocal-variety",
+            "title": "Vocal Variety & Modulation",
+            "description": "Use pitch, pace, and volume changes to maintain engagement and emphasize meaning",
+            "duration": "9 minutes",
+            "difficulty": "Intermediate",
+            "focus_area": "Communication"
+        },
+        {
+            "id": "storytelling-structure",
+            "title": "Leadership Storytelling Structure",
+            "description": "Craft compelling narratives using the situation-challenge-resolution framework",
+            "duration": "12 minutes",
+            "difficulty": "Advanced",
+            "focus_area": "Storytelling"
+        },
+        {
+            "id": "commanding-openings",
+            "title": "Commanding Openings",
+            "description": "Master first-impression techniques to establish authority in the first 30 seconds",
+            "duration": "7 minutes",
+            "difficulty": "Beginner",
+            "focus_area": "Gravitas"
+        }
+    ]
+    
+    return {"modules": modules}
+
+@api_router.get("/training/modules/{module_id}")
+async def get_module_content(
+    module_id: str,
+    session_token: Optional[str] = Cookie(None),
+    authorization: Optional[str] = Header(None)
+):
+    user = await get_current_user(db, session_token, authorization)
+    profile = await db.user_profiles.find_one({"user_id": user["user_id"]}, {"_id": 0})
+    
+    import openai
+    client = openai.OpenAI(api_key=os.getenv("EMERGENT_LLM_KEY"))
+    
+    role_context = f"{profile.get('role', 'Executive')} at {profile.get('seniority_level', 'Senior')} level" if profile else "executive"
+    
+    module_prompts = {
+        "strategic-pauses": "strategic pause techniques for executives",
+        "lens-eye-contact": "camera eye contact and lens presence",
+        "decision-framing": "executive decision communication framework",
+        "vocal-variety": "vocal modulation and variety techniques",
+        "storytelling-structure": "leadership storytelling structure",
+        "commanding-openings": "commanding opening statements for executives"
+    }
+    
+    topic = module_prompts.get(module_id, "executive presence")
+    
+    prompt = f"""Create a micro-training module on {topic} for a {role_context}.
+
+Structure (keep concise):
+1. **Key Concept** (2-3 sentences)
+2. **Why It Matters** (2 sentences)
+3. **3 Practical Techniques** (each 1-2 sentences)
+4. **Practice Prompt** (specific scenario to practice)
+
+Keep it actionable and professional. Total: ~200 words."""
+    
+    response = client.chat.completions.create(
+        model="gpt-4o",
+        messages=[{"role": "user", "content": prompt}],
+        max_tokens=400
+    )
+    
+    content = response.choices[0].message.content
+    
+    return {
+        "module_id": module_id,
+        "content": content,
+        "generated_at": datetime.now(timezone.utc).isoformat()
+    }
