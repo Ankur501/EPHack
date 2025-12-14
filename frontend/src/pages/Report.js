@@ -3,8 +3,9 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { Button } from '../components/ui/button';
 import { reportAPI } from '../lib/api';
 import { toast } from 'sonner';
-import { ArrowLeft, Download, Share2, TrendingUp, AlertTriangle, CheckCircle, Info, ChevronDown, ChevronUp, ExternalLink } from 'lucide-react';
+import { ArrowLeft, Download, Share2, TrendingUp, AlertTriangle, CheckCircle, Info, ChevronDown, ChevronUp, ExternalLink, Loader2 } from 'lucide-react';
 import { getScoreLabel, formatTimestamp } from '../lib/utils';
+import { generateEPReportPDF } from '../lib/pdfGenerator';
 
 const Report = () => {
   const { reportId } = useParams();
