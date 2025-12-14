@@ -120,9 +120,12 @@ const KnowYourEP = () => {
           clearInterval(interval);
           toast.success('Analysis complete!');
           
-          const reportId = await getReportId(jobId);
-          if (reportId) {
-            navigate(`/report/${reportId}`);
+          if (job.report_id) {
+            navigate(`/report/${job.report_id}`);
+          } else {
+            toast.error('Report not found for this job');
+            setProcessing(false);
+            setStep('preview');
           }
         } else if (job.status === 'failed') {
           clearInterval(interval);
@@ -135,18 +138,8 @@ const KnowYourEP = () => {
     }, 2000);
   };
   
-  const getReportId = async (jobId) => {
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    try {
-      const { data } = await videoAPI.getJobStatus(jobId);
-      // Backend stores report_id on the report document; easiest is to derive from job_id by lookup
-      // But job status endpoint doesn't include report_id. We'll query reports list and find by job_id.
-      return null;
-    } catch {
-      return null;
-    }
-  };
+  // Job status now contains report_id when processing completes.
+
   
   return (
     <div className="min-h-screen bg-background">

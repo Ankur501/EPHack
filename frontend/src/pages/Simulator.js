@@ -125,9 +125,13 @@ const Simulator = () => {
           clearInterval(pollInterval);
           toast.success('Analysis complete!');
           setTimeout(() => {
-            const reportPath = `/report/${job.job_id.replace('job_', 'report_')}`;
-            navigate(reportPath);
-          }, 1000);
+            if (job.report_id) {
+              navigate(`/report/${job.report_id}`);
+            } else {
+              toast.error('Report not found for this job');
+              setProcessing(false);
+            }
+          }, 500);
         } else if (job.status === 'failed') {
           clearInterval(pollInterval);
           toast.error('Processing failed: ' + job.error);

@@ -21,15 +21,18 @@ class VideoProcessorService:
         self.vision_service = VisionAnalysisService()
         self.nlp_service = NLPAnalysisService()
     
-    async def update_job_status(self, job_id: str, status: str, progress: float, step: str):
+    async def update_job_status(self, job_id: str, status: str, progress: float, step: str, extra_fields: dict | None = None):
+        update = {
+            "status": status,
+            "progress": progress,
+            "current_step": step,
+            "updated_at": datetime.now(timezone.utc).isoformat()
+        }
+        if extra_fields:
+            update.update(extra_fields)
         await self.db.video_jobs.update_one(
             {"job_id": job_id},
-            {"$set": {
-                "status": status,
-                "progress": progress,
-                "current_step": step,
-                "updated_at": datetime.now(timezone.utc).isoformat()
-            }}
+            {"$set": update}
         )
     
     async def process_video(self, job_id: str, video_id: str, user_id: str):
@@ -125,7 +128,7 @@ class VideoProcessorService:
             
             await self.db.ep_reports.insert_one(report_doc)
             
-            await self.update_job_status(job_id, "completed", 100, "Report generated")
+            await self.update_job_status(job_id, "completed", 100, "Report generated", extra_fields={"report_id": report_id})
             
             os.unlink(video_path)
             if os.path.exists(audio_path):
