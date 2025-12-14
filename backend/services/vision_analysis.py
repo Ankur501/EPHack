@@ -21,7 +21,12 @@ class VisionAnalysisService:
     def extract_frames(self, video_path: str, fps: int = 2) -> List[str]:
         cap = cv2.VideoCapture(video_path)
         video_fps = cap.get(cv2.CAP_PROP_FPS)
-        frame_interval = int(video_fps / fps)
+        
+        # Handle edge cases where video_fps might be 0 or invalid
+        if video_fps <= 0:
+            video_fps = 30  # Default to 30 fps if detection fails
+        
+        frame_interval = max(1, int(video_fps / fps))  # Ensure minimum interval of 1
         
         frames_base64 = []
         frame_count = 0
