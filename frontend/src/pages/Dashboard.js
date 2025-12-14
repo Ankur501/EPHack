@@ -131,7 +131,16 @@ const Dashboard = () => {
             <button
               key={idx}
               onClick={() => navigate(tab.path)}
-              className="bg-card border border-border rounded-xl p-6 hover:shadow-lg hover:border-accent/50 transition-all text-left group"
+              className="card-hover"
+              style={{
+                backgroundColor: '#FFFFFF',
+                border: '2px solid #D4AF37',
+                borderRadius: '12px',
+                padding: '24px',
+                textAlign: 'left',
+                width: '100%',
+                cursor: 'pointer'
+              }}
               data-testid={`card-${tab.name.toLowerCase().replace(/\s+/g, '-')}`}
             >
               <tab.icon className="h-8 w-8 text-accent mb-4 group-hover:scale-110 transition-transform" />
