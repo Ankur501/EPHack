@@ -11,6 +11,7 @@ import Simulator from './pages/Simulator';
 import LearningBytes from './pages/LearningBytes';
 import Training from './pages/Training';
 import ExecutiveCoaching from './pages/ExecutiveCoaching';
+import SharedReport from './pages/SharedReport';
 import AuthCallback from './pages/AuthCallback';
 import { ProtectedRoute } from './components/ProtectedRoute';
 
