@@ -13,6 +13,7 @@ import Training from './pages/Training';
 import ExecutiveCoaching from './pages/ExecutiveCoaching';
 import SharedReport from './pages/SharedReport';
 import AuthCallback from './pages/AuthCallback';
+import Methodology from './pages/Methodology';
 import { ProtectedRoute } from './components/ProtectedRoute';
 
 function AppRouter() {
@@ -35,6 +36,7 @@ function AppRouter() {
       <Route path="/learning" element={<ProtectedRoute><LearningBytes /></ProtectedRoute>} />
       <Route path="/training" element={<ProtectedRoute><Training /></ProtectedRoute>} />
       <Route path="/coaching" element={<ProtectedRoute><ExecutiveCoaching /></ProtectedRoute>} />
+      <Route path="/methodology" element={<ProtectedRoute><Methodology /></ProtectedRoute>} />
       <Route path="/shared/:shareId" element={<SharedReport />} />
       
       <Route path="*" element={<Navigate to="/" />} />
