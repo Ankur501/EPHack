@@ -17,7 +17,11 @@ class NLPAnalysisService:
         self.client = openai.OpenAI(api_key=api_key)
     
     async def analyze_gravitas(self, transcript: str, user_profile: Dict[str, Any] = None) -> Dict[str, Any]:
-        prompt = f"""Analyze this executive's transcript for GRAVITAS indicators. Score each dimension 0-100:
+        profile_context = ""
+        if user_profile:
+            profile_context = f"\n\n**Speaker Profile:**\n- Role: {user_profile.get('role', 'Executive')}\n- Seniority: {user_profile.get('seniority_level', 'Senior')}\n- Experience: {user_profile.get('years_experience', 5)} years\n- Industry: {user_profile.get('industry', 'Technology')}\n\nIMPORTANT: Evaluate this speaker against the standards expected for their specific role and seniority level. A {user_profile.get('role', 'Executive')} at {user_profile.get('seniority_level', 'Senior')} level should demonstrate authority, strategic thinking, and leadership appropriate to this position.\n"
+        
+        prompt = f"""Analyze this executive's transcript for GRAVITAS indicators. Score each dimension 0-100:{profile_context}
 
 **Transcript:**
 {transcript}
