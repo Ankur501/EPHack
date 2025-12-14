@@ -148,12 +148,14 @@ const KnowYourEP = () => {
   
   return (
     <div className="min-h-screen bg-background">
-      <nav className="bg-card border-b border-border">
-        <div className="container mx-auto px-6 py-4 flex items-center">
-          <Button variant="ghost" onClick={() => navigate('/dashboard')} data-testid="back-to-dashboard">
-            <ArrowLeft className="mr-2 h-4 w-4" /> Back to Dashboard
-          </Button>
-        </div>
+      <nav style={{
+        backgroundColor: '#FFFFFF',
+        borderBottom: '1px solid #E2E8F0',
+        padding: '16px 24px'
+      }}>
+        <Button variant="ghost" onClick={() => navigate('/dashboard')} data-testid="back-to-dashboard">
+          <ArrowLeft className="mr-2 h-4 w-4" /> Back to Dashboard
+        </Button>
       </nav>
       
       <div className="container mx-auto px-6 py-12 max-w-4xl">
