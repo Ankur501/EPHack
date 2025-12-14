@@ -21,8 +21,13 @@ body {
 }
 
 /* Global Button Styling - All buttons have fully curved edges */
-button {
+button:not(.card-3d):not([class*="card"]) {
   border-radius: 9999px !important;
+}
+
+/* Cards should have rectangular/slightly rounded corners */
+.card-3d {
+  border-radius: 16px !important;
 }
 
 /* Input fields styling */
