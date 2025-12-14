@@ -329,6 +329,9 @@ Return ONLY the tip text, nothing else."""
         "date": datetime.now(timezone.utc).isoformat()
     }
 
+# Public-facing learning/training endpoints are defined below; include router at the end of file.
+
+
 @api_router.get("/learning/ted-talks")
 async def get_ted_talks(
     session_token: Optional[str] = Cookie(None),
