@@ -38,9 +38,12 @@ class TranscriptionService:
         return audio_path
     
     async def transcribe_audio(self, audio_path: str) -> dict:
+        import openai
+        client = openai.OpenAI(api_key=os.getenv("EMERGENT_LLM_KEY"))
+        
         with open(audio_path, "rb") as audio_file:
             response = await asyncio.to_thread(
-                self.stt.client.audio.transcriptions.create,
+                client.audio.transcriptions.create,
                 file=audio_file,
                 model="whisper-1",
                 response_format="verbose_json",
