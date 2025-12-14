@@ -260,6 +260,20 @@ const Dashboard = () => {
       )}
       
       <div style={{minHeight: '100vh', backgroundColor: '#F8FAFC'}}>
+        {/* Whitelisted User Welcome Banner */}
+        {subscription?.is_whitelisted && (
+          <div style={{
+            background: 'linear-gradient(135deg, #D4AF37 0%, #F4D03F 100%)',
+            padding: '16px 24px',
+            textAlign: 'center',
+            borderBottom: '2px solid #B8941F'
+          }}>
+            <p style={{fontSize: '16px', fontWeight: 600, color: '#FFFFFF', margin: 0}}>
+              🎉 Your Subscription: <strong>Pro Tier</strong> - Enjoy unlimited usage of EP Quotient!
+            </p>
+          </div>
+        )}
+        
         {/* Top Navigation */}
         <nav style={{
           backgroundColor: '#FFFFFF',
