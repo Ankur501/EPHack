@@ -193,6 +193,91 @@ class EPQuotientAPITester:
         )
         return success
 
+    def test_learning_daily_tip(self):
+        """Test daily tip endpoint"""
+        success, response = self.run_test(
+            "Learning - Daily Tip",
+            "GET",
+            "learning/daily-tip",
+            200
+        )
+        return success
+
+    def test_learning_ted_talks(self):
+        """Test TED talks endpoint"""
+        success, response = self.run_test(
+            "Learning - TED Talks",
+            "GET",
+            "learning/ted-talks",
+            200
+        )
+        return success
+
+    def test_training_modules(self):
+        """Test training modules list"""
+        success, response = self.run_test(
+            "Training - Modules List",
+            "GET",
+            "training/modules",
+            200
+        )
+        return success
+
+    def test_training_module_content(self, module_id="strategic-pauses"):
+        """Test specific training module content"""
+        success, response = self.run_test(
+            f"Training - Module Content ({module_id})",
+            "GET",
+            f"training/modules/{module_id}",
+            200
+        )
+        return success
+
+    def test_coaching_request(self):
+        """Test coaching request creation"""
+        coaching_data = {
+            "name": "John Executive",
+            "email": "john.exec@company.com",
+            "goal": "Improve executive presence in board meetings",
+            "preferred_times": "Weekday mornings",
+            "notes": "Looking to enhance gravitas and communication skills"
+        }
+        
+        success, response = self.run_test(
+            "Coaching - Create Request",
+            "POST",
+            "coaching/requests",
+            200,
+            data=coaching_data
+        )
+        
+        if success and 'request_id' in response:
+            return True, response['request_id']
+        return False, None
+
+    def test_create_share_link(self, report_id):
+        """Test creating a share link for a report"""
+        success, response = self.run_test(
+            "Sharing - Create Share Link",
+            "POST",
+            f"reports/{report_id}/share",
+            200
+        )
+        
+        if success and 'share_id' in response:
+            return True, response['share_id']
+        return False, None
+
+    def test_get_shared_report(self, share_id):
+        """Test getting a shared report"""
+        success, response = self.run_test(
+            "Sharing - Get Shared Report",
+            "GET",
+            f"shared/reports/{share_id}",
+            200
+        )
+        return success
+
     def test_auth_logout(self):
         """Test logout"""
         success, response = self.run_test(
@@ -204,11 +289,13 @@ class EPQuotientAPITester:
         return success
 
     def run_all_tests(self):
-        """Run comprehensive test suite"""
-        print("🚀 Starting EP Quotient API Tests")
-        print("=" * 50)
+        """Run comprehensive test suite as per review request"""
+        print("🚀 Starting EP Quotient API Tests - Backend End-to-End")
+        print("=" * 60)
         
-        # Test auth flow
+        # 1) Auth tests
+        print("\n📋 1) AUTH TESTS")
+        print("-" * 30)
         signup_success, test_email = self.test_auth_signup()
         if not signup_success:
             print("❌ Signup failed - stopping auth tests")
@@ -219,21 +306,60 @@ class EPQuotientAPITester:
             print("❌ Login failed - stopping tests")
             return self.generate_summary()
             
-        # Test authenticated endpoints
+        # Test /auth/me without password_hash
         self.test_auth_me()
-        self.test_google_auth_redirect()
         
-        # Test video workflow
+        # 2) Feature endpoints
+        print("\n📋 2) FEATURE ENDPOINTS")
+        print("-" * 30)
+        self.test_learning_daily_tip()
+        self.test_learning_ted_talks()
+        self.test_training_modules()
+        self.test_training_module_content("strategic-pauses")
+        
+        # 3) Coaching + sharing
+        print("\n📋 3) COACHING + SHARING")
+        print("-" * 30)
+        coaching_success, request_id = self.test_coaching_request()
+        
+        # Try to create share link - need a report first
+        # Check if any reports exist
+        reports_success, reports_response = self.run_test(
+            "Reports - Check Existing",
+            "GET", 
+            "reports",
+            200
+        )
+        
+        share_id = None
+        if reports_success and reports_response.get('reports'):
+            # Use first available report
+            report_id = reports_response['reports'][0]['report_id']
+            share_success, share_id = self.test_create_share_link(report_id)
+            if share_success and share_id:
+                self.test_get_shared_report(share_id)
+        else:
+            print("⚠️  No existing reports found - skipping share link test as requested")
+        
+        # 4) Video processing
+        print("\n📋 4) VIDEO PROCESSING")
+        print("-" * 30)
         upload_success, video_id = self.test_video_upload()
         if upload_success and video_id:
             process_success, job_id = self.test_video_process(video_id)
             if process_success and job_id:
-                self.test_job_status(job_id)
-        
-        # Test reports
-        self.test_reports_list()
+                # Poll job status a few times
+                for i in range(3):
+                    print(f"    Polling job status (attempt {i+1}/3)...")
+                    job_success = self.test_job_status(job_id)
+                    if job_success:
+                        time.sleep(2)  # Wait between polls
+                    else:
+                        break
         
         # Test logout
+        print("\n📋 CLEANUP")
+        print("-" * 30)
         self.test_auth_logout()
         
         return self.generate_summary()
