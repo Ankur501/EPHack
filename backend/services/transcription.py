@@ -5,12 +5,17 @@ from emergentintegrations.llm.openai import OpenAISpeechToText
 from dotenv import load_dotenv
 from pydub import AudioSegment
 import subprocess
+from pathlib import Path
 
-load_dotenv()
+ROOT_DIR = Path(__file__).parent.parent
+load_dotenv(ROOT_DIR / '.env')
 
 class TranscriptionService:
     def __init__(self):
-        self.stt = OpenAISpeechToText(api_key=os.getenv("EMERGENT_LLM_KEY"))
+        api_key = os.getenv("EMERGENT_LLM_KEY")
+        if not api_key:
+            raise ValueError("EMERGENT_LLM_KEY not found in environment variables")
+        self.stt = OpenAISpeechToText(api_key=api_key)
     
     async def extract_audio_from_video(self, video_path: str) -> str:
         audio_path = video_path.replace(".mp4", ".wav").replace(".mov", ".wav").replace(".avi", ".wav")
