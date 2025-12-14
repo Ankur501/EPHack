@@ -143,7 +143,7 @@ const Dashboard = () => {
               }}
               data-testid={`card-${tab.name.toLowerCase().replace(/\s+/g, '-')}`}
             >
-              <tab.icon className="h-8 w-8 text-accent mb-4 group-hover:scale-110 transition-transform" />
+              <tab.icon style={{width: '32px', height: '32px', color: '#D4AF37', marginBottom: '16px'}} />
               <h3 className="font-display text-xl font-semibold mb-2">{tab.name}</h3>
               <p className="text-sm text-muted-foreground">
                 {idx === 0 && 'Upload and analyze your executive presence video'}
