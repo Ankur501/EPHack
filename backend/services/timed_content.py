@@ -245,6 +245,24 @@ SIMULATOR_SCENARIOS_POOL = [
             "prompt": "Present the transformation roadmap with empathy. Address fears while inspiring change.",
             "focus": ["Change Leadership", "Empathy", "Future Vision"]
         },
+        {
+            "id": 4,
+            "title": "IPO Roadshow Pitch",
+            "difficulty": "High",
+            "duration": "2-3 min",
+            "situation": "Your company is going public. You're presenting to institutional investors who will determine your valuation.",
+            "prompt": "Present your company's growth story, competitive advantages, and vision with conviction and clarity.",
+            "focus": ["Storytelling", "Market Positioning", "Financial Confidence"]
+        },
+        {
+            "id": 5,
+            "title": "Sustainability Initiative Pitch",
+            "difficulty": "Medium",
+            "duration": "2-3 min",
+            "situation": "You're proposing a major sustainability initiative that requires significant investment but uncertain short-term ROI.",
+            "prompt": "Make the business case for sustainability, balancing environmental responsibility with stakeholder value.",
+            "focus": ["Purpose-Driven Leadership", "Long-term Thinking", "Stakeholder Balance"]
+        },
     ],
 ]
 
