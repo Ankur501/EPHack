@@ -186,9 +186,9 @@ const KnowYourEP = () => {
                 </ul>
                 <p><strong>Setup:</strong> Face camera, upper torso visible, good lighting</p>
               </div>
-            </Card>
+            </div>
             
-            <div className="grid md:grid-cols-2 gap-6">
+            <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '24px'}}>
               <Button 
                 size="lg" 
                 onClick={() => setStep('record')}
