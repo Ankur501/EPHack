@@ -161,7 +161,7 @@ const ProfileModal = ({ onComplete, onClose }) => {
                   backgroundColor: '#FFFFFF'
                 }}
               >
-                <option value=\"\">Select your role</option>
+                <option value="">Select your role</option>
                 {roles.map(role => (
                   <option key={role} value={role}>{role}</option>
                 ))}
@@ -169,11 +169,11 @@ const ProfileModal = ({ onComplete, onClose }) => {
             </div>
             
             <div>
-              <Label htmlFor=\"seniority\" style={{color: '#1E293B', fontWeight: 500, marginBottom: '8px', display: 'block'}}>
+              <Label htmlFor="seniority" style={{color: '#1E293B', fontWeight: 500, marginBottom: '8px', display: 'block'}}>
                 Seniority Level <span style={{color: '#EF4444'}}>*</span>
               </Label>
               <select
-                id=\"seniority\"
+                id="seniority"
                 required
                 value={formData.seniority_level}
                 onChange={(e) => setFormData({...formData, seniority_level: e.target.value})}
@@ -187,7 +187,7 @@ const ProfileModal = ({ onComplete, onClose }) => {
                   backgroundColor: '#FFFFFF'
                 }}
               >
-                <option value=\"\">Select seniority level</option>
+                <option value="">Select seniority level</option>
                 {seniority.map(level => (
                   <option key={level} value={level}>{level}</option>
                 ))}
@@ -195,11 +195,11 @@ const ProfileModal = ({ onComplete, onClose }) => {
             </div>
             
             <div>
-              <Label htmlFor=\"experience\" style={{color: '#1E293B', fontWeight: 500, marginBottom: '8px', display: 'block'}}>
+              <Label htmlFor="experience" style={{color: '#1E293B', fontWeight: 500, marginBottom: '8px', display: 'block'}}>
                 Years of Professional Experience <span style={{color: '#EF4444'}}>*</span>
               </Label>
               <Input
-                id=\"experience\"
+                id="experience"
                 type=\"number\"
                 min=\"0\"
                 max=\"50\"
@@ -216,11 +216,11 @@ const ProfileModal = ({ onComplete, onClose }) => {
             </div>
             
             <div>
-              <Label htmlFor=\"industry\" style={{color: '#1E293B', fontWeight: 500, marginBottom: '8px', display: 'block'}}>
+              <Label htmlFor="industry" style={{color: '#1E293B', fontWeight: 500, marginBottom: '8px', display: 'block'}}>
                 Industry
               </Label>
               <select
-                id=\"industry\"
+                id="industry"
                 value={formData.industry}
                 onChange={(e) => setFormData({...formData, industry: e.target.value})}
                 style={{
@@ -233,7 +233,7 @@ const ProfileModal = ({ onComplete, onClose }) => {
                   backgroundColor: '#FFFFFF'
                 }}
               >
-                <option value=\"\">Select industry (optional)</option>
+                <option value="">Select industry (optional)</option>
                 {industries.map(ind => (
                   <option key={ind} value={ind}>{ind}</option>
                 ))}
@@ -241,11 +241,11 @@ const ProfileModal = ({ onComplete, onClose }) => {
             </div>
             
             <div>
-              <Label htmlFor=\"company_size\" style={{color: '#1E293B', fontWeight: 500, marginBottom: '8px', display: 'block'}}>
+              <Label htmlFor="company_size" style={{color: '#1E293B', fontWeight: 500, marginBottom: '8px', display: 'block'}}>
                 Company Size
               </Label>
               <select
-                id=\"company_size\"
+                id="company_size"
                 value={formData.company_size}
                 onChange={(e) => setFormData({...formData, company_size: e.target.value})}
                 style={{
@@ -258,7 +258,7 @@ const ProfileModal = ({ onComplete, onClose }) => {
                   backgroundColor: '#FFFFFF'
                 }}
               >
-                <option value=\"\">Select company size (optional)</option>
+                <option value="">Select company size (optional)</option>
                 {companySizes.map(size => (
                   <option key={size} value={size}>{size}</option>
                 ))}
@@ -266,11 +266,11 @@ const ProfileModal = ({ onComplete, onClose }) => {
             </div>
             
             <div>
-              <Label htmlFor=\"goal\" style={{color: '#1E293B', fontWeight: 500, marginBottom: '8px', display: 'block'}}>
+              <Label htmlFor="goal" style={{color: '#1E293B', fontWeight: 500, marginBottom: '8px', display: 'block'}}>
                 Primary Goal
               </Label>
               <select
-                id=\"goal\"
+                id="goal"
                 value={formData.primary_goal}
                 onChange={(e) => setFormData({...formData, primary_goal: e.target.value})}
                 style={{
@@ -283,7 +283,7 @@ const ProfileModal = ({ onComplete, onClose }) => {
                   backgroundColor: '#FFFFFF'
                 }}
               >
-                <option value=\"\">Select your primary goal (optional)</option>
+                <option value="">Select your primary goal (optional)</option>
                 {goals.map(goal => (
                   <option key={goal} value={goal}>{goal}</option>
                 ))}
@@ -300,7 +300,7 @@ const ProfileModal = ({ onComplete, onClose }) => {
             justifyContent: 'flex-end'
           }}>
             <Button
-              type=\"submit\"
+              type="submit"
               disabled={loading}
               style={{
                 backgroundColor: '#3B82F6',
