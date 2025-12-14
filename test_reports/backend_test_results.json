@@ -1,112 +1,161 @@
 {
-  "total_tests": 15,
-  "passed_tests": 15,
+  "total_tests": 22,
+  "passed_tests": 22,
   "success_rate": 100.0,
   "test_results": [
     {
-      "test_name": "Auth - Signup",
-      "success": true,
-      "details": "Status: 200, Response: {'user': {'user_id': 'user_576d29e59b01', 'email': 'test_1765701362@example.com', 'name': 'Test User', 'picture': None, 'created_at': '2025-12-14T08:36:02.967696+00:00'}, 'session_token': 'session_f8e",
-      "error": "",
-      "timestamp": "2025-12-14T08:36:02.986047"
-    },
-    {
       "test_name": "Auth - Login",
       "success": true,
-      "details": "Status: 200, Response: {'user': {'user_id': 'user_576d29e59b01', 'email': 'test_1765701362@example.com', 'name': 'Test User', 'picture': None, 'created_at': '2025-12-14T08:36:02.967696+00:00'}, 'session_token': 'session_e95",
+      "details": "Status: 200, Response: {'user': {'user_id': 'user_3f651a74df79', 'email': 'uitest_golden@test.com', 'name': 'Golden UI Tester', 'picture': None, 'created_at': '2025-12-14T08:50:10.078145+00:00'}, 'session_token': 'session_4",
       "error": "",
-      "timestamp": "2025-12-14T08:36:03.255176"
+      "timestamp": "2025-12-14T09:24:05.716817"
     },
     {
       "test_name": "Auth - Get Me",
       "success": true,
-      "details": "Status: 200, Response: {'user_id': 'user_576d29e59b01', 'email': 'test_1765701362@example.com', 'name': 'Test User', 'picture': None, 'created_at': '2025-12-14T08:36:02.967696+00:00'}",
+      "details": "Status: 200, Response: {'user_id': 'user_3f651a74df79', 'email': 'uitest_golden@test.com', 'name': 'Golden UI Tester', 'picture': None, 'created_at': '2025-12-14T08:50:10.078145+00:00'}",
       "error": "",
-      "timestamp": "2025-12-14T08:36:03.298332"
+      "timestamp": "2025-12-14T09:24:05.756456"
+    },
+    {
+      "test_name": "Video - Upload",
+      "success": true,
+      "details": "Status: 200, Response: {'video_id': 'video_0cff53e803664b61931e9c54c1c04240', 'message': 'Video uploaded successfully'}",
+      "error": "",
+      "timestamp": "2025-12-14T09:24:05.800540"
+    },
+    {
+      "test_name": "Video - Process",
+      "success": true,
+      "details": "Status: 200, Response: {'job_id': 'job_5be182985c9f4312be42eacefed8fa67', 'message': 'Processing started'}",
+      "error": "",
+      "timestamp": "2025-12-14T09:24:05.919690"
+    },
+    {
+      "test_name": "Jobs - Get Status",
+      "success": true,
+      "details": "Status: 200, Response: {'job_id': 'job_5be182985c9f4312be42eacefed8fa67', 'user_id': 'user_3f651a74df79', 'video_id': 'video_0cff53e803664b61931e9c54c1c04240', 'status': 'transcribing', 'progress': 10, 'current_step': 'Extr",
+      "error": "",
+      "timestamp": "2025-12-14T09:24:05.958260"
+    },
+    {
+      "test_name": "Jobs - Get Status",
+      "success": true,
+      "details": "Status: 200, Response: {'job_id': 'job_5be182985c9f4312be42eacefed8fa67', 'user_id': 'user_3f651a74df79', 'video_id': 'video_0cff53e803664b61931e9c54c1c04240', 'status': 'failed', 'progress': 20, 'current_step': 'Transcribi",
+      "error": "",
+      "timestamp": "2025-12-14T09:24:08.997484"
+    },
+    {
+      "test_name": "Jobs - Get Status",
+      "success": true,
+      "details": "Status: 200, Response: {'job_id': 'job_5be182985c9f4312be42eacefed8fa67', 'user_id': 'user_3f651a74df79', 'video_id': 'video_0cff53e803664b61931e9c54c1c04240', 'status': 'failed', 'progress': 20, 'current_step': 'Transcribi",
+      "error": "",
+      "timestamp": "2025-12-14T09:24:12.054658"
+    },
+    {
+      "test_name": "Jobs - Get Status",
+      "success": true,
+      "details": "Status: 200, Response: {'job_id': 'job_5be182985c9f4312be42eacefed8fa67', 'user_id': 'user_3f651a74df79', 'video_id': 'video_0cff53e803664b61931e9c54c1c04240', 'status': 'failed', 'progress': 20, 'current_step': 'Transcribi",
+      "error": "",
+      "timestamp": "2025-12-14T09:24:15.094882"
+    },
+    {
+      "test_name": "Jobs - Get Status",
+      "success": true,
+      "details": "Status: 200, Response: {'job_id': 'job_5be182985c9f4312be42eacefed8fa67', 'user_id': 'user_3f651a74df79', 'video_id': 'video_0cff53e803664b61931e9c54c1c04240', 'status': 'failed', 'progress': 20, 'current_step': 'Transcribi",
+      "error": "",
+      "timestamp": "2025-12-14T09:24:18.155120"
+    },
+    {
+      "test_name": "Jobs - Get Status",
+      "success": true,
+      "details": "Status: 200, Response: {'job_id': 'job_5be182985c9f4312be42eacefed8fa67', 'user_id': 'user_3f651a74df79', 'video_id': 'video_0cff53e803664b61931e9c54c1c04240', 'status': 'failed', 'progress': 20, 'current_step': 'Transcribi",
+      "error": "",
+      "timestamp": "2025-12-14T09:24:21.195296"
+    },
+    {
+      "test_name": "Jobs - Get Status",
+      "success": true,
+      "details": "Status: 200, Response: {'job_id': 'job_5be182985c9f4312be42eacefed8fa67', 'user_id': 'user_3f651a74df79', 'video_id': 'video_0cff53e803664b61931e9c54c1c04240', 'status': 'failed', 'progress': 20, 'current_step': 'Transcribi",
+      "error": "",
+      "timestamp": "2025-12-14T09:24:24.251550"
+    },
+    {
+      "test_name": "Jobs - Get Status",
+      "success": true,
+      "details": "Status: 200, Response: {'job_id': 'job_5be182985c9f4312be42eacefed8fa67', 'user_id': 'user_3f651a74df79', 'video_id': 'video_0cff53e803664b61931e9c54c1c04240', 'status': 'failed', 'progress': 20, 'current_step': 'Transcribi",
+      "error": "",
+      "timestamp": "2025-12-14T09:24:27.290403"
+    },
+    {
+      "test_name": "Jobs - Get Status",
+      "success": true,
+      "details": "Status: 200, Response: {'job_id': 'job_5be182985c9f4312be42eacefed8fa67', 'user_id': 'user_3f651a74df79', 'video_id': 'video_0cff53e803664b61931e9c54c1c04240', 'status': 'failed', 'progress': 20, 'current_step': 'Transcribi",
+      "error": "",
+      "timestamp": "2025-12-14T09:24:30.342805"
+    },
+    {
+      "test_name": "Jobs - Get Status",
+      "success": true,
+      "details": "Status: 200, Response: {'job_id': 'job_5be182985c9f4312be42eacefed8fa67', 'user_id': 'user_3f651a74df79', 'video_id': 'video_0cff53e803664b61931e9c54c1c04240', 'status': 'failed', 'progress': 20, 'current_step': 'Transcribi",
+      "error": "",
+      "timestamp": "2025-12-14T09:24:33.382956"
+    },
+    {
+      "test_name": "Reports - List",
+      "success": true,
+      "details": "Status: 200, Response: {'reports': []}",
+      "error": "",
+      "timestamp": "2025-12-14T09:24:36.461311"
+    },
+    {
+      "test_name": "Reports - Check for Sharing Test",
+      "success": true,
+      "details": "Status: 200, Response: {'reports': []}",
+      "error": "",
+      "timestamp": "2025-12-14T09:24:36.497503"
+    },
+    {
+      "test_name": "Coaching - Create Request",
+      "success": true,
+      "details": "Status: 200, Response: {'request_id': 'coachreq_ab477b9712534c5a8b4c7c26cf56f8f7'}",
+      "error": "",
+      "timestamp": "2025-12-14T09:24:36.534131"
     },
     {
       "test_name": "Learning - Daily Tip",
       "success": true,
-      "details": "Status: 200, Response: {'tip': 'To enhance your gravitas, practice the 10-second pause before responding to complex questions. This brief interlude signals thoughtfulness and confidence, demonstrating that you value both th",
+      "details": "Status: 200, Response: {'tip': 'To enhance your gravitas, practice pausing for a brief moment before responding to questions or during discussions. This deliberate pause not only conveys thoughtfulness and confidence but al",
       "error": "",
-      "timestamp": "2025-12-14T08:36:05.302032"
+      "timestamp": "2025-12-14T09:24:39.184019"
     },
     {
       "test_name": "Learning - TED Talks",
       "success": true,
       "details": "Status: 200, Response: {'talks': [{'id': 1, 'title': 'Your body language may shape who you are', 'speaker': 'Amy Cuddy', 'duration': '21 min', 'relevance': 'Presence, Body Language, Confidence', 'url': 'https://www.ted.com/",
       "error": "",
-      "timestamp": "2025-12-14T08:36:05.339306"
+      "timestamp": "2025-12-14T09:24:39.220761"
     },
     {
       "test_name": "Training - Modules List",
       "success": true,
       "details": "Status: 200, Response: {'modules': [{'id': 'strategic-pauses', 'title': 'Strategic Pauses', 'description': 'Master the art of using silence to enhance authority and emphasize key points', 'duration': '8 minutes', 'difficult",
       "error": "",
-      "timestamp": "2025-12-14T08:36:05.378814"
+      "timestamp": "2025-12-14T09:24:39.258073"
     },
     {
       "test_name": "Training - Module Content (strategic-pauses)",
       "success": true,
-      "details": "Status: 200, Response: {'module_id': 'strategic-pauses', 'content': '### Strategic Pause Techniques for Executives\\n\\n**Key Concept:**  \\nStrategic pause techniques involve intentionally stopping to reflect, assess, and cla",
+      "details": "Status: 200, Response: {'module_id': 'strategic-pauses', 'content': \"**Key Concept:**  \\nStrategic pauses are intentional breaks executives use to reflect, recalibrate, and make informed decisions. Employing these pauses en",
       "error": "",
-      "timestamp": "2025-12-14T08:36:09.103831"
-    },
-    {
-      "test_name": "Coaching - Create Request",
-      "success": true,
-      "details": "Status: 200, Response: {'request_id': 'coachreq_1788c63ffa3d4b858ab6dc4adf146891'}",
-      "error": "",
-      "timestamp": "2025-12-14T08:36:09.177175"
-    },
-    {
-      "test_name": "Reports - Check Existing",
-      "success": true,
-      "details": "Status: 200, Response: {'reports': []}",
-      "error": "",
-      "timestamp": "2025-12-14T08:36:09.255442"
-    },
-    {
-      "test_name": "Video - Upload",
-      "success": true,
-      "details": "Status: 200, Response: {'video_id': 'video_eaa9d62ec92d431b978908647962ef26', 'message': 'Video uploaded successfully'}",
-      "error": "",
-      "timestamp": "2025-12-14T08:36:09.508338"
-    },
-    {
-      "test_name": "Video - Process",
-      "success": true,
-      "details": "Status: 200, Response: {'job_id': 'job_6e880248691f46e288d39b28c2d627b8', 'message': 'Processing started'}",
-      "error": "",
-      "timestamp": "2025-12-14T08:36:09.602408"
-    },
-    {
-      "test_name": "Jobs - Get Status",
-      "success": true,
-      "details": "Status: 200, Response: {'job_id': 'job_6e880248691f46e288d39b28c2d627b8', 'user_id': 'user_576d29e59b01', 'video_id': 'video_eaa9d62ec92d431b978908647962ef26', 'status': 'failed', 'progress': 10, 'current_step': 'Extracting",
-      "error": "",
-      "timestamp": "2025-12-14T08:36:09.637811"
-    },
-    {
-      "test_name": "Jobs - Get Status",
-      "success": true,
-      "details": "Status: 200, Response: {'job_id': 'job_6e880248691f46e288d39b28c2d627b8', 'user_id': 'user_576d29e59b01', 'video_id': 'video_eaa9d62ec92d431b978908647962ef26', 'status': 'failed', 'progress': 10, 'current_step': 'Extracting",
-      "error": "",
-      "timestamp": "2025-12-14T08:36:11.676140"
-    },
-    {
-      "test_name": "Jobs - Get Status",
-      "success": true,
-      "details": "Status: 200, Response: {'job_id': 'job_6e880248691f46e288d39b28c2d627b8', 'user_id': 'user_576d29e59b01', 'video_id': 'video_eaa9d62ec92d431b978908647962ef26', 'status': 'failed', 'progress': 10, 'current_step': 'Extracting",
-      "error": "",
-      "timestamp": "2025-12-14T08:36:13.714177"
+      "timestamp": "2025-12-14T09:24:43.784491"
     },
     {
       "test_name": "Auth - Logout",
       "success": true,
       "details": "Status: 200, Response: {'message': 'Logged out'}",
       "error": "",
-      "timestamp": "2025-12-14T08:36:15.775830"
+      "timestamp": "2025-12-14T09:24:43.836533"
     }
   ]
 }
