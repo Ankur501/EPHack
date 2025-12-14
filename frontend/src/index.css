@@ -35,9 +35,14 @@
     color: var(--color-primary);
   }
   
-  /* Global button styling - all buttons have curved edges */
-  button {
+  /* Global button styling - all buttons have fully curved edges */
+  button:not(.card-3d):not([class*="card"]) {
     border-radius: 9999px !important;
+  }
+  
+  /* Cards should have rectangular/slightly rounded corners */
+  .card-3d {
+    border-radius: 16px !important;
   }
   
   /* Input fields - slight rounding */
