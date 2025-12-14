@@ -5,7 +5,7 @@ import { Input } from '../components/ui/input';
 import { Label } from '../components/ui/label';
 import { authAPI } from '../lib/api';
 import { toast } from 'sonner';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, Sparkles } from 'lucide-react';
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -38,24 +38,36 @@ const Signup = () => {
   return (
     <div style={{minHeight: '100vh', display: 'flex', backgroundColor: '#FFFFFF'}}>
       <div style={{flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '48px'}}>
-        <div style={{width: '100%', maxWidth: '400px'}}>
-          <Button variant="ghost" onClick={() => navigate('/')} style={{marginBottom: '32px', color: '#64748B'}} data-testid="back-button">
+        <div style={{width: '100%', maxWidth: '440px'}}>
+          <Button variant="ghost" onClick={() => navigate('/')} style={{marginBottom: '32px'}} data-testid="back-button">
             <ArrowLeft className="mr-2 h-4 w-4" /> Back to Home
           </Button>
           
-          <div style={{marginBottom: '32px'}}>
-            <h2 style={{fontSize: '28px', fontWeight: 600, color: '#0F172A', marginBottom: '8px'}}>Create Account</h2>
-            <p style={{fontSize: '15px', color: '#64748B'}}>Start your executive presence assessment</p>
+          <div style={{marginBottom: '40px'}}>
+            <div style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '6px',
+              padding: '6px 12px',
+              backgroundColor: 'rgba(212, 175, 55, 0.1)',
+              border: '1px solid rgba(212, 175, 55, 0.3)',
+              borderRadius: '20px',
+              marginBottom: '16px'
+            }}>
+              <Sparkles style={{width: '14px', height: '14px', color: '#D4AF37'}} />
+              <span style={{fontSize: '13px', color: '#D4AF37', fontWeight: 500}}>Join Leaders</span>
+            </div>
+            
+            <h2 style={{fontSize: '36px', fontWeight: 700, color: '#0F172A', marginBottom: '12px'}}>Create Your Account</h2>
+            <p style={{fontSize: '16px', color: '#64748B'}}>Start your executive presence journey today</p>
           </div>
           
           <Button 
             variant="outline" 
             style={{
               width: '100%',
-              marginBottom: '24px',
-              border: '1px solid #E2E8F0',
-              backgroundColor: '#FFFFFF',
-              color: '#1E293B'
+              marginBottom: '28px',
+              padding: '12px'
             }}
             onClick={handleGoogleSignup}
             data-testid="google-signup-button"
@@ -69,16 +81,16 @@ const Signup = () => {
             Sign up with Google
           </Button>
           
-          <div style={{position: 'relative', marginBottom: '24px'}}>
+          <div style={{position: 'relative', marginBottom: '28px'}}>
             <div style={{position: 'absolute', top: '50%', left: 0, right: 0, height: '1px', backgroundColor: '#E2E8F0'}} />
             <div style={{position: 'relative', textAlign: 'center'}}>
               <span style={{backgroundColor: '#FFFFFF', padding: '0 12px', fontSize: '13px', color: '#64748B'}}>Or continue with email</span>
             </div>
           </div>
           
-          <form onSubmit={handleSignup} style={{display: 'flex', flexDirection: 'column', gap: '16px'}}>
+          <form onSubmit={handleSignup} style={{display: 'flex', flexDirection: 'column', gap: '20px'}}>
             <div>
-              <Label htmlFor="name" style={{color: '#1E293B', fontWeight: 500, marginBottom: '8px'}}>Full Name</Label>
+              <Label htmlFor="name" style={{color: '#1E293B', fontWeight: 500, marginBottom: '8px', display: 'block'}}>Full Name</Label>
               <Input 
                 id="name"
                 type="text" 
@@ -88,15 +100,19 @@ const Signup = () => {
                 required
                 data-testid="name-input"
                 style={{
-                  border: '1px solid #E2E8F0',
-                  borderRadius: '6px',
-                  padding: '10px 12px'
+                  border: '2px solid #E2E8F0',
+                  borderRadius: '8px',
+                  padding: '12px 14px',
+                  fontSize: '15px',
+                  transition: 'all 0.2s'
                 }}
+                onFocus={(e) => e.target.style.borderColor = '#D4AF37'}
+                onBlur={(e) => e.target.style.borderColor = '#E2E8F0'}
               />
             </div>
             
             <div>
-              <Label htmlFor="email" style={{color: '#1E293B', fontWeight: 500, marginBottom: '8px'}}>Email</Label>
+              <Label htmlFor="email" style={{color: '#1E293B', fontWeight: 500, marginBottom: '8px', display: 'block'}}>Email Address</Label>
               <Input 
                 id="email"
                 type="email" 
@@ -106,15 +122,19 @@ const Signup = () => {
                 required
                 data-testid="email-input"
                 style={{
-                  border: '1px solid #E2E8F0',
-                  borderRadius: '6px',
-                  padding: '10px 12px'
+                  border: '2px solid #E2E8F0',
+                  borderRadius: '8px',
+                  padding: '12px 14px',
+                  fontSize: '15px',
+                  transition: 'all 0.2s'
                 }}
+                onFocus={(e) => e.target.style.borderColor = '#D4AF37'}
+                onBlur={(e) => e.target.style.borderColor = '#E2E8F0'}
               />
             </div>
             
             <div>
-              <Label htmlFor="password" style={{color: '#1E293B', fontWeight: 500, marginBottom: '8px'}}>Password</Label>
+              <Label htmlFor="password" style={{color: '#1E293B', fontWeight: 500, marginBottom: '8px', display: 'block'}}>Password</Label>
               <Input 
                 id="password"
                 type="password" 
@@ -125,10 +145,14 @@ const Signup = () => {
                 minLength={6}
                 data-testid="password-input"
                 style={{
-                  border: '1px solid #E2E8F0',
-                  borderRadius: '6px',
-                  padding: '10px 12px'
+                  border: '2px solid #E2E8F0',
+                  borderRadius: '8px',
+                  padding: '12px 14px',
+                  fontSize: '15px',
+                  transition: 'all 0.2s'
                 }}
+                onFocus={(e) => e.target.style.borderColor = '#D4AF37'}
+                onBlur={(e) => e.target.style.borderColor = '#E2E8F0'}
               />
             </div>
             
@@ -138,19 +162,19 @@ const Signup = () => {
               data-testid="submit-button"
               style={{
                 width: '100%',
-                backgroundColor: '#3B82F6',
-                color: '#FFFFFF',
-                fontWeight: 500,
-                padding: '10px'
+                padding: '12px',
+                fontSize: '16px',
+                fontWeight: 600,
+                marginTop: '8px'
               }}
             >
               {loading ? 'Creating account...' : 'Create Account'}
             </Button>
           </form>
           
-          <p style={{marginTop: '24px', textAlign: 'center', fontSize: '14px', color: '#64748B'}}>
+          <p style={{marginTop: '32px', textAlign: 'center', fontSize: '15px', color: '#64748B'}}>
             Already have an account?{' '}
-            <Link to="/login" style={{color: '#3B82F6', textDecoration: 'none', fontWeight: 500}} data-testid="login-link">
+            <Link to="/login" style={{color: '#D4AF37', textDecoration: 'none', fontWeight: 600}} data-testid="login-link">
               Sign in
             </Link>
           </p>
@@ -159,17 +183,45 @@ const Signup = () => {
       
       <div style={{
         flex: 1,
-        backgroundColor: '#F8FAFC',
+        background: 'linear-gradient(135deg, #0F172A 0%, #1E293B 100%)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        padding: '48px'
+        padding: '64px',
+        position: 'relative',
+        overflow: 'hidden'
       }} className="hidden lg:flex">
-        <div style={{maxWidth: '500px'}}>
-          <h1 style={{fontSize: '36px', fontWeight: 600, color: '#0F172A', marginBottom: '16px'}}>Begin Your Journey</h1>
-          <p style={{fontSize: '18px', color: '#64748B', lineHeight: 1.6}}>
-            Join leaders mastering their executive presence through AI-powered insights and personalized coaching.
+        <div style={{
+          position: 'absolute',
+          top: '0',
+          left: '0',
+          right: '0',
+          bottom: '0',
+          backgroundImage: 'radial-gradient(circle at 30% 40%, rgba(212, 175, 55, 0.15) 0%, transparent 50%), radial-gradient(circle at 70% 60%, rgba(212, 175, 55, 0.15) 0%, transparent 50%)',
+          pointerEvents: 'none'
+        }}></div>
+        
+        <div style={{maxWidth: '500px', position: 'relative', zIndex: 1}}>
+          <h1 style={{fontSize: '42px', fontWeight: 700, color: '#FFFFFF', marginBottom: '24px'}}>
+            Begin Your <span style={{color: '#D4AF37'}}>Leadership Transformation</span>
+          </h1>
+          <p style={{fontSize: '18px', color: 'rgba(255,255,255,0.8)', lineHeight: 1.7, marginBottom: '32px'}}>
+            Join executives who are mastering their presence through AI-powered video analysis and personalized coaching.
           </p>
+          
+          <div style={{marginTop: '40px', display: 'flex', flexDirection: 'column', gap: '16px'}}>
+            {[
+              { icon: '✓', text: 'Research-backed EP scoring across 4 dimensions' },
+              { icon: '✓', text: 'Real-time AI analysis with GPT-4o & Whisper' },
+              { icon: '✓', text: 'Personalized coaching tips and training modules' },
+              { icon: '✓', text: 'Executive scenarios and practice simulations' }
+            ].map((item, idx) => (
+              <div key={idx} style={{display: 'flex', alignItems: 'start', gap: '12px'}}>
+                <div style={{color: '#D4AF37', fontSize: '20px', fontWeight: 'bold'}}>{item.icon}</div>
+                <p style={{fontSize: '16px', color: 'rgba(255,255,255,0.9)', margin: 0}}>{item.text}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
