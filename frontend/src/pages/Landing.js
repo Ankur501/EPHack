@@ -73,11 +73,11 @@ const Landing = () => {
               { icon: Video, title: 'Presence', weight: '25%', desc: 'Posture, eye contact, facial expressions, gestures' },
               { icon: BarChart3, title: 'Storytelling', weight: '15%', desc: 'Narrative structure, authenticity, concreteness' },
             ].map((dim, idx) => (
-              <div key={idx} className="bg-card border border-border rounded-xl p-6 hover:shadow-lg transition-all hover:border-accent/50">
-                <dim.icon className="h-10 w-10 text-accent mb-4" />
-                <h3 className="font-display text-xl font-semibold mb-2">{dim.title}</h3>
-                <div className="text-sm text-accent font-mono mb-3">{dim.weight}</div>
-                <p className="text-sm text-muted-foreground">{dim.desc}</p>
+              <div key={idx} className="rounded-xl p-6 hover:shadow-lg transition-all" style={{backgroundColor: 'white', border: '1px solid #E2E8F0'}}>
+                <dim.icon className="h-10 w-10 mb-4" style={{color: '#D4AF37'}} />
+                <h3 className="font-display text-xl font-semibold mb-2" style={{color: '#0F172A'}}>{dim.title}</h3>
+                <div className="text-sm font-mono mb-3" style={{color: '#D4AF37'}}>{dim.weight}</div>
+                <p className="text-sm" style={{color: '#64748B'}}>{dim.desc}</p>
               </div>
             ))}
           </div>
