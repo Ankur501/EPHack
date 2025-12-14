@@ -100,8 +100,8 @@ class EPQuotientAPITester:
             return True, test_email
         return False, None
 
-    def test_auth_login(self, email):
-        """Test user login"""
+    def test_auth_login(self, email="uitest_golden@test.com"):
+        """Test user login with provided test credentials"""
         login_data = {
             "email": email,
             "password": "TestPass123!"
