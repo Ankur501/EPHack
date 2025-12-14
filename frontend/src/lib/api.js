@@ -67,3 +67,10 @@ export const reportAPI = {
 export const coachingAPI = {
   createRequest: (payload) => api.post('/coaching/requests', payload),
 };
+
+export const retentionAPI = {
+  getSettings: () => api.get('/retention/settings'),
+  setDefaultRetention: (retention_period) => api.put('/retention/settings/default', { retention_period }),
+  setVideoRetention: (videoId, retention_period) => api.put(`/retention/videos/${videoId}`, { retention_period }),
+  deleteVideo: (videoId) => api.delete(`/retention/videos/${videoId}`),
+};
