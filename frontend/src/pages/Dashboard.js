@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Button } from '../components/ui/button';
 import { authAPI, reportAPI } from '../lib/api';
 import { toast } from 'sonner';
-import { Video, BookOpen, Dumbbell, Users, LogOut, BarChart3 } from 'lucide-react';
+import { Video, BookOpen, Dumbbell, Users, LogOut, BarChart3, HelpCircle } from 'lucide-react';
 import ProfileModal from '../components/ProfileModal';
 import axios from 'axios';
 
 const Dashboard = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [user, setUser] = useState(null);
   const [reports, setReports] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -56,12 +57,13 @@ const Dashboard = () => {
     }
   };
   
-  const tabs = [
-    { name: 'Know your EP', path: '/know-your-ep', icon: Video },
-    { name: 'Simulator', path: '/simulator', icon: BarChart3 },
-    { name: 'Learning Bytes', path: '/learning', icon: BookOpen },
-    { name: 'Training', path: '/training', icon: Dumbbell },
-    { name: 'Executive Coaching', path: '/coaching', icon: Users },
+  const navItems = [
+    { name: 'Know your EP', path: '/know-your-ep', icon: Video, desc: 'Analyze your video' },
+    { name: 'Simulator', path: '/simulator', icon: BarChart3, desc: 'Practice scenarios' },
+    { name: 'Learning Bytes', path: '/learning', icon: BookOpen, desc: 'Daily tips' },
+    { name: 'Training', path: '/training', icon: Dumbbell, desc: 'Skill courses' },
+    { name: 'Executive Coaching', path: '/coaching', icon: Users, desc: 'Book sessions' },
+    { name: 'How It Works', path: '/methodology', icon: HelpCircle, desc: 'Our methodology' },
   ];
   
   if (loading) {
@@ -97,17 +99,28 @@ const Dashboard = () => {
       )}
       
       <div style={{minHeight: '100vh', backgroundColor: '#FAFAFA'}}>
+        {/* Top Navigation Bar with Nav Items */}
         <nav style={{
           backgroundColor: '#FFFFFF',
           borderBottom: '1px solid #E2E8F0',
           position: 'sticky',
           top: 0,
           zIndex: 50,
-          boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.02)'
+          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.04)'
         }} data-testid="main-nav">
-          <div className="container mx-auto px-6 py-4">
-            <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
-              <div style={{fontSize: '22px', fontWeight: 600, color: '#0F172A'}}>
+          <div className="container mx-auto px-6">
+            {/* Top row - Logo and user info */}
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              padding: '16px 0',
+              borderBottom: '1px solid #F1F5F9'
+            }}>
+              <div 
+                onClick={() => navigate('/dashboard')}
+                style={{fontSize: '24px', fontWeight: 700, color: '#0F172A', cursor: 'pointer'}}
+              >
                 EP <span style={{color: '#D4AF37'}}>Quotient</span>
               </div>
               <div style={{display: 'flex', alignItems: 'center', gap: '16px'}}>
@@ -120,63 +133,102 @@ const Dashboard = () => {
                 </Button>
               </div>
             </div>
-
-            {/* Dashboard cards below are the single navigation surface */}
+            
+            {/* Navigation Items Row */}
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px',
+              padding: '12px 0',
+              overflowX: 'auto'
+            }}>
+              {navItems.map((item, idx) => {
+                const isActive = location.pathname === item.path;
+                return (
+                  <button
+                    key={idx}
+                    onClick={() => navigate(item.path)}
+                    className="nav-item-3d"
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '10px',
+                      padding: '12px 20px',
+                      backgroundColor: isActive ? 'rgba(212, 175, 55, 0.1)' : '#FFFFFF',
+                      border: isActive ? '2px solid #D4AF37' : '2px solid transparent',
+                      borderRadius: '12px',
+                      cursor: 'pointer',
+                      transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                      whiteSpace: 'nowrap',
+                      position: 'relative',
+                      overflow: 'hidden'
+                    }}
+                    onMouseEnter={(e) => {
+                      if (!isActive) {
+                        e.currentTarget.style.border = '2px solid #D4AF37';
+                        e.currentTarget.style.backgroundColor = 'rgba(212, 175, 55, 0.05)';
+                        e.currentTarget.style.transform = 'translateY(-2px)';
+                        e.currentTarget.style.boxShadow = '0 8px 20px -4px rgba(212, 175, 55, 0.25), 0 0 0 1px rgba(212, 175, 55, 0.1)';
+                      }
+                    }}
+                    onMouseLeave={(e) => {
+                      if (!isActive) {
+                        e.currentTarget.style.border = '2px solid transparent';
+                        e.currentTarget.style.backgroundColor = '#FFFFFF';
+                        e.currentTarget.style.transform = 'translateY(0)';
+                        e.currentTarget.style.boxShadow = 'none';
+                      }
+                    }}
+                    data-testid={`nav-${item.name.toLowerCase().replace(/\s+/g, '-')}`}
+                  >
+                    <div style={{
+                      width: '36px',
+                      height: '36px',
+                      borderRadius: '10px',
+                      backgroundColor: isActive ? '#D4AF37' : 'rgba(212, 175, 55, 0.15)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      transition: 'all 0.3s ease'
+                    }}>
+                      <item.icon style={{
+                        width: '18px',
+                        height: '18px',
+                        color: isActive ? '#FFFFFF' : '#D4AF37'
+                      }} />
+                    </div>
+                    <div style={{textAlign: 'left'}}>
+                      <div style={{
+                        fontSize: '14px',
+                        fontWeight: 600,
+                        color: isActive ? '#D4AF37' : '#0F172A'
+                      }}>
+                        {item.name}
+                      </div>
+                      <div style={{fontSize: '11px', color: '#64748B'}}>
+                        {item.desc}
+                      </div>
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
           </div>
         </nav>
         
+        {/* Main Content */}
         <div className="container mx-auto px-6 py-12">
           <div style={{marginBottom: '48px'}}>
             <h1 style={{fontSize: '42px', fontWeight: 700, color: '#0F172A', marginBottom: '12px'}}>
               Your <span style={{color: '#D4AF37'}}>EP Dashboard</span>
             </h1>
-            <p style={{fontSize: '18px', color: '#64748B'}}>Track your executive presence journey</p>
+            <p style={{fontSize: '18px', color: '#64748B'}}>Track your executive presence journey with AI-powered analysis</p>
           </div>
           
-          <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '24px', marginBottom: '48px'}}>
-            {tabs.map((tab, idx) => (
-              <button
-                key={idx}
-                onClick={() => navigate(tab.path)}
-                className="card-3d"
-                style={{
-                  backgroundColor: '#FFFFFF',
-                  border: '2px solid #D4AF37',
-                  borderRadius: '16px',
-                  padding: '32px',
-                  textAlign: 'left',
-                  width: '100%',
-                  cursor: 'pointer'
-                }}
-                data-testid={`card-${tab.name.toLowerCase().replace(/\s+/g, '-')}`}
-              >
-                <div style={{
-                  width: '56px',
-                  height: '56px',
-                  borderRadius: '12px',
-                  backgroundColor: 'rgba(212, 175, 55, 0.1)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  marginBottom: '20px'
-                }}>
-                  <tab.icon style={{width: '28px', height: '28px', color: '#D4AF37'}} />
-                </div>
-                <h3 style={{fontSize: '20px', fontWeight: 600, color: '#0F172A', marginBottom: '8px'}}>{tab.name}</h3>
-                <p style={{fontSize: '14px', color: '#64748B', lineHeight: 1.6}}>
-                  {idx === 0 && 'Upload and analyze your executive presence video'}
-                  {idx === 1 && 'Practice with challenging boardroom scenarios'}
-                  {idx === 2 && 'Daily tips and recommended TED talks'}
-                  {idx === 3 && 'Structured micro-courses for skill building'}
-                  {idx === 4 && 'Book sessions and share reports with coaches'}
-                </p>
-              </button>
-            ))}
-          </div>
-          
+          {/* Reports Section */}
           <div className="card-3d" style={{
             backgroundColor: '#FFFFFF',
-            border: '2px solid #D4AF37',
+            border: '2px solid #E2E8F0',
             borderRadius: '16px',
             padding: '32px'
           }}>
@@ -224,7 +276,16 @@ const Dashboard = () => {
                       border: '2px solid #E2E8F0',
                       borderRadius: '12px',
                       cursor: 'pointer',
-                      backgroundColor: '#FAFAFA'
+                      backgroundColor: '#FAFAFA',
+                      transition: 'all 0.3s ease'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.borderColor = '#D4AF37';
+                      e.currentTarget.style.boxShadow = '0 4px 12px rgba(212, 175, 55, 0.15)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.borderColor = '#E2E8F0';
+                      e.currentTarget.style.boxShadow = 'none';
                     }}
                     data-testid={`report-${report.report_id}`}
                   >
@@ -243,7 +304,7 @@ const Dashboard = () => {
                         fontSize: '32px',
                         fontWeight: 700,
                         color: '#D4AF37',
-                        fontFamily: 'IBM Plex Mono',
+                        fontFamily: 'IBM Plex Mono, monospace',
                         lineHeight: 1
                       }}>
                         {report.overall_score}
@@ -257,6 +318,15 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
+      
+      <style>{`
+        @keyframes spin {
+          to { transform: rotate(360deg); }
+        }
+        .nav-item-3d {
+          transform-style: preserve-3d;
+        }
+      `}</style>
     </>
   );
 };
