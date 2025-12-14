@@ -60,24 +60,35 @@ const Training = () => {
   
   if (loading) {
     return (
-      <div style={{minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-        <div style={{
-          width: '48px',
-          height: '48px',
-          border: '4px solid #E2E8F0',
-          borderTopColor: '#3B82F6',
-          borderRadius: '50%',
-          animation: 'spin 1s linear infinite'
-        }}></div>
+      <div style={{minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#FAFAFA'}}>
+        <div style={{textAlign: 'center'}}>
+          <div style={{
+            width: '48px',
+            height: '48px',
+            border: '4px solid #E2E8F0',
+            borderTopColor: '#D4AF37',
+            borderRadius: '50%',
+            animation: 'spin 1s linear infinite',
+            margin: '0 auto 16px'
+          }}></div>
+          <p style={{color: '#64748B'}}>Loading modules...</p>
+        </div>
       </div>
     );
   }
   
   if (selectedModule) {
     return (
-      <div style={{minHeight: '100vh', backgroundColor: '#FFFFFF'}}>
-        <nav style={{backgroundColor: '#FFFFFF', borderBottom: '1px solid #E2E8F0', padding: '16px 24px'}}>
-          <Button variant="ghost" onClick={() => { setSelectedModule(null); setModuleContent(null); }} style={{color: '#64748B'}}>
+      <div style={{minHeight: '100vh', backgroundColor: '#FAFAFA'}}>
+        <nav style={{
+          backgroundColor: '#FFFFFF',
+          borderBottom: '1px solid #E2E8F0',
+          padding: '16px 24px',
+          position: 'sticky',
+          top: 0,
+          zIndex: 50
+        }}>
+          <Button variant="ghost" onClick={() => { setSelectedModule(null); setModuleContent(null); }}>
             <ArrowLeft className="mr-2 h-4 w-4" /> Back to Modules
           </Button>
         </nav>
@@ -86,18 +97,19 @@ const Training = () => {
           <div style={{marginBottom: '32px'}}>
             <div style={{
               display: 'inline-block',
-              padding: '6px 12px',
-              backgroundColor: '#F0F9FF',
-              color: '#3B82F6',
-              borderRadius: '16px',
+              padding: '6px 16px',
+              backgroundColor: 'rgba(212, 175, 55, 0.1)',
+              color: '#92400E',
+              borderRadius: '20px',
               fontSize: '13px',
-              fontWeight: 500,
-              marginBottom: '16px'
+              fontWeight: 600,
+              marginBottom: '16px',
+              border: '1px solid rgba(212, 175, 55, 0.3)'
             }}>
               {selectedModule.focus_area}
             </div>
             
-            <h1 style={{fontSize: '36px', fontWeight: 600, color: '#0F172A', marginBottom: '12px'}}>
+            <h1 style={{fontSize: '36px', fontWeight: 700, color: '#0F172A', marginBottom: '12px'}}>
               {selectedModule.title}
             </h1>
             
@@ -107,16 +119,17 @@ const Training = () => {
             
             <div style={{display: 'flex', gap: '16px', alignItems: 'center'}}>
               <div style={{display: 'flex', alignItems: 'center', gap: '6px'}}>
-                <Clock style={{width: '18px', height: '18px', color: '#64748B'}} />
+                <Clock style={{width: '18px', height: '18px', color: '#D4AF37'}} />
                 <span style={{fontSize: '14px', color: '#64748B'}}>{selectedModule.duration}</span>
               </div>
               <div style={{
-                padding: '4px 10px',
-                backgroundColor: '#F8FAFC',
-                border: '1px solid #E2E8F0',
+                padding: '4px 12px',
+                backgroundColor: 'rgba(212, 175, 55, 0.1)',
+                border: '1px solid rgba(212, 175, 55, 0.3)',
                 borderRadius: '12px',
                 fontSize: '13px',
-                color: '#64748B'
+                color: '#92400E',
+                fontWeight: 500
               }}>
                 {selectedModule.difficulty}
               </div>
@@ -129,7 +142,7 @@ const Training = () => {
                 width: '48px',
                 height: '48px',
                 border: '4px solid #E2E8F0',
-                borderTopColor: '#3B82F6',
+                borderTopColor: '#D4AF37',
                 borderRadius: '50%',
                 animation: 'spin 1s linear infinite',
                 margin: '0 auto 16px'
@@ -138,10 +151,10 @@ const Training = () => {
             </div>
           ) : moduleContent && (
             <div>
-              <div style={{
-                backgroundColor: '#F8FAFC',
-                border: '1px solid #E2E8F0',
-                borderRadius: '12px',
+              <div className="card-3d" style={{
+                backgroundColor: '#FFFFFF',
+                border: '2px solid #E2E8F0',
+                borderRadius: '16px',
                 padding: '32px',
                 marginBottom: '32px'
               }}>
@@ -155,22 +168,22 @@ const Training = () => {
                 </div>
               </div>
               
-              <div style={{
-                backgroundColor: '#DBEAFE',
-                border: '2px solid #3B82F6',
-                borderRadius: '12px',
+              <div className="card-3d" style={{
+                backgroundColor: 'rgba(212, 175, 55, 0.05)',
+                border: '2px solid #D4AF37',
+                borderRadius: '16px',
                 padding: '24px',
                 marginBottom: '32px'
               }}>
-                <h3 style={{fontSize: '18px', fontWeight: 600, color: '#1E40AF', marginBottom: '12px'}}>
+                <h3 style={{fontSize: '18px', fontWeight: 700, color: '#0F172A', marginBottom: '12px'}}>
                   Ready to Practice?
                 </h3>
-                <p style={{fontSize: '15px', color: '#1E3A8A', marginBottom: '16px'}}>
+                <p style={{fontSize: '15px', color: '#64748B', marginBottom: '16px'}}>
                   Apply what you've learned by recording a practice video. Get instant AI feedback on your technique.
                 </p>
                 <Button 
                   onClick={() => navigate('/know-your-ep')}
-                  style={{backgroundColor: '#3B82F6', color: '#FFFFFF'}}
+                  style={{backgroundColor: '#D4AF37', color: '#FFFFFF'}}
                 >
                   <Play className="mr-2 h-4 w-4" /> Start Practice Recording
                 </Button>
@@ -180,7 +193,7 @@ const Training = () => {
                 <Button
                   variant="outline"
                   onClick={() => { setSelectedModule(null); setModuleContent(null); }}
-                  style={{border: '1px solid #E2E8F0'}}
+                  style={{border: '2px solid #D4AF37', color: '#D4AF37'}}
                 >
                   Complete Module
                 </Button>
@@ -193,54 +206,65 @@ const Training = () => {
   }
   
   return (
-    <div style={{minHeight: '100vh', backgroundColor: '#FFFFFF'}}>
-      <nav style={{backgroundColor: '#FFFFFF', borderBottom: '1px solid #E2E8F0', padding: '16px 24px'}}>
-        <Button variant="ghost" onClick={() => navigate('/dashboard')} style={{color: '#64748B'}}>
+    <div style={{minHeight: '100vh', backgroundColor: '#FAFAFA'}}>
+      <nav style={{
+        backgroundColor: '#FFFFFF',
+        borderBottom: '1px solid #E2E8F0',
+        padding: '16px 24px',
+        position: 'sticky',
+        top: 0,
+        zIndex: 50
+      }}>
+        <Button variant="ghost" onClick={() => navigate('/dashboard')}>
           <ArrowLeft className="mr-2 h-4 w-4" /> Back to Dashboard
         </Button>
       </nav>
       
       <div className="container mx-auto px-6 py-12 max-w-5xl">
         <div style={{marginBottom: '40px'}}>
-          <h1 style={{fontSize: '36px', fontWeight: 600, color: '#0F172A', marginBottom: '12px'}}>
-            Training Modules
+          <h1 style={{fontSize: '42px', fontWeight: 700, color: '#0F172A', marginBottom: '12px'}}>
+            Training <span style={{color: '#D4AF37'}}>Modules</span>
           </h1>
           <p style={{fontSize: '18px', color: '#64748B'}}>
             Structured micro-courses with AI-generated content tailored to your profile
           </p>
         </div>
         
-        <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '20px'}}>
+        <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '24px'}}>
           {modules.map((module) => (
             <div
               key={module.id}
+              className="card-3d"
               style={{
                 backgroundColor: '#FFFFFF',
-                border: '1px solid #E2E8F0',
-                borderRadius: '12px',
+                border: '2px solid #E2E8F0',
+                borderRadius: '16px',
                 padding: '24px',
                 cursor: 'pointer',
-                transition: 'all 0.2s'
+                transition: 'all 0.3s ease'
               }}
               onClick={() => loadModule(module)}
               onMouseEnter={(e) => {
-                e.currentTarget.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1)';
-                e.currentTarget.style.borderColor = '#3B82F6';
+                e.currentTarget.style.borderColor = '#D4AF37';
+                e.currentTarget.style.transform = 'translateY(-4px)';
+                e.currentTarget.style.boxShadow = '0 12px 24px -8px rgba(212, 175, 55, 0.15)';
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.boxShadow = 'none';
                 e.currentTarget.style.borderColor = '#E2E8F0';
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = 'none';
               }}
             >
               <div style={{
                 display: 'inline-block',
-                padding: '4px 10px',
-                backgroundColor: '#F0F9FF',
-                color: '#3B82F6',
+                padding: '4px 12px',
+                backgroundColor: 'rgba(212, 175, 55, 0.1)',
+                color: '#92400E',
                 borderRadius: '12px',
                 fontSize: '12px',
-                fontWeight: 500,
-                marginBottom: '12px'
+                fontWeight: 600,
+                marginBottom: '12px',
+                border: '1px solid rgba(212, 175, 55, 0.3)'
               }}>
                 {module.focus_area}
               </div>
@@ -261,15 +285,16 @@ const Training = () => {
                 borderTop: '1px solid #E2E8F0'
               }}>
                 <div style={{display: 'flex', alignItems: 'center', gap: '6px'}}>
-                  <Clock style={{width: '16px', height: '16px', color: '#64748B'}} />
+                  <Clock style={{width: '16px', height: '16px', color: '#D4AF37'}} />
                   <span style={{fontSize: '13px', color: '#64748B'}}>{module.duration}</span>
                 </div>
                 <span style={{
                   fontSize: '12px',
-                  color: '#64748B',
-                  padding: '4px 8px',
-                  backgroundColor: '#F8FAFC',
-                  borderRadius: '8px'
+                  color: '#92400E',
+                  padding: '4px 10px',
+                  backgroundColor: 'rgba(212, 175, 55, 0.1)',
+                  borderRadius: '8px',
+                  fontWeight: 500
                 }}>
                   {module.difficulty}
                 </span>
