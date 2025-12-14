@@ -1,0 +1,71 @@
+{
+  "total_tests": 9,
+  "passed_tests": 7,
+  "success_rate": 77.77777777777779,
+  "test_results": [
+    {
+      "test_name": "Auth - Signup",
+      "success": true,
+      "details": "New user created, Token: session_d27a64fc72fe...",
+      "error": "",
+      "timestamp": "2025-12-14T18:03:30.971988"
+    },
+    {
+      "test_name": "Video Upload - MP4",
+      "success": true,
+      "details": "Video ID: video_fc89ac9b5e724850804f31c095523b73, Size: 158468 bytes",
+      "error": "",
+      "timestamp": "2025-12-14T18:03:31.298826"
+    },
+    {
+      "test_name": "Processing Start - MP4",
+      "success": true,
+      "details": "Job ID: job_5fda9cd9599b48bea29e12f9157034f5",
+      "error": "",
+      "timestamp": "2025-12-14T18:03:31.390246"
+    },
+    {
+      "test_name": "Processing Complete - MP4",
+      "success": true,
+      "details": "All stages completed: transcribing \u2192 video_analysis \u2192 nlp_analysis \u2192 scoring \u2192 completed, Report ID: report_cd99d7f330a849d6a27eb3e04bff1647",
+      "error": "",
+      "timestamp": "2025-12-14T18:03:51.295750"
+    },
+    {
+      "test_name": "Report Verification - MP4",
+      "success": false,
+      "details": "",
+      "error": "unsupported operand type(s) for *: 'NoneType' and 'float'",
+      "timestamp": "2025-12-14T18:03:51.334190"
+    },
+    {
+      "test_name": "Video Upload - WEBM",
+      "success": true,
+      "details": "Video ID: video_649d360502bb40a4a0421799d27a9d29, Size: 237426 bytes",
+      "error": "",
+      "timestamp": "2025-12-14T18:03:51.398955"
+    },
+    {
+      "test_name": "Processing Start - WEBM",
+      "success": true,
+      "details": "Job ID: job_cf920339c1e44c0ea62963632b952621",
+      "error": "",
+      "timestamp": "2025-12-14T18:03:51.450041"
+    },
+    {
+      "test_name": "Processing Complete - WEBM",
+      "success": true,
+      "details": "All stages completed: transcribing \u2192 video_analysis \u2192 nlp_analysis \u2192 scoring \u2192 completed, Report ID: report_bd9bb14269ad4739a307bdb4e5171dbc",
+      "error": "",
+      "timestamp": "2025-12-14T18:04:13.079926"
+    },
+    {
+      "test_name": "Report Verification - WEBM",
+      "success": false,
+      "details": "",
+      "error": "unsupported operand type(s) for *: 'NoneType' and 'float'",
+      "timestamp": "2025-12-14T18:04:13.116737"
+    }
+  ],
+  "pipeline_operational": false
+}
