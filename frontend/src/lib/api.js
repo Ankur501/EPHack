@@ -10,10 +10,32 @@ export const api = axios.create({
   },
 });
 
+// Store session token from login/signup responses
+api.interceptors.response.use((response) => {
+  if (response.data?.session_token) {
+    localStorage.setItem('session_token', response.data.session_token);
+  }
+  return response;
+}, (error) => {
+  return Promise.reject(error);
+});
+
+// Add session token to requests
+api.interceptors.request.use((config) => {
+  const token = localStorage.getItem('session_token');
+  if (token) {
+    config.headers['Authorization'] = `Bearer ${token}`;
+  }
+  return config;
+});
+
 export const authAPI = {
   signup: (data) => api.post('/auth/signup', data),
   login: (data) => api.post('/auth/login', data),
-  logout: () => api.post('/auth/logout'),
+  logout: () => {
+    localStorage.removeItem('session_token');
+    return api.post('/auth/logout');
+  },
   getMe: () => api.get('/auth/me'),
   googleRedirect: () => api.get('/auth/google-redirect'),
   exchangeSession: (sessionId) => api.get(`/auth/session?session_id=${sessionId}`),
