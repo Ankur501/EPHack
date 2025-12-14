@@ -77,7 +77,16 @@ const ProfileModal = ({ onComplete, onClose }) => {
       const token = localStorage.getItem('session_token');
       const API_URL = process.env.REACT_APP_BACKEND_URL;
       
-      await axios.post(`${API_URL}/api/profile/`, formData, {
+      // Prepare data - convert empty strings to null
+      const submitData = {
+        ...formData,
+        years_experience: formData.years_experience ? parseInt(formData.years_experience) : null,
+        industry: formData.industry || null,
+        company_size: formData.company_size || null,
+        primary_goal: formData.primary_goal || null
+      };
+      
+      await axios.post(`${API_URL}/api/profile/`, submitData, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
