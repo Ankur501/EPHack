@@ -76,8 +76,20 @@ const Dashboard = () => {
   }
   
   return (
-    <div className="min-h-screen bg-background">
-      <nav className="bg-card border-b border-border sticky top-0 z-50" data-testid="main-nav">
+    <>
+      {showProfileModal && (
+        <ProfileModal 
+          onComplete={() => {
+            setShowProfileModal(false);
+            setHasProfile(true);
+            toast.success('Profile completed! Your analysis will now be tailored to your role.');
+          }}
+          onClose={() => setShowProfileModal(false)}
+        />
+      )}
+      
+      <div className="min-h-screen bg-background">
+        <nav className="bg-card border-b border-border sticky top-0 z-50" data-testid="main-nav">
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="font-display text-2xl font-bold text-primary">EP Quotient</div>
