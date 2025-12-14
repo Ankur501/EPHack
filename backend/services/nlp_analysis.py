@@ -4,12 +4,17 @@ import openai
 from typing import Dict, Any
 import json
 from dotenv import load_dotenv
+from pathlib import Path
 
-load_dotenv()
+ROOT_DIR = Path(__file__).parent.parent
+load_dotenv(ROOT_DIR / '.env')
 
 class NLPAnalysisService:
     def __init__(self):
-        self.client = openai.OpenAI(api_key=os.getenv("EMERGENT_LLM_KEY"))
+        api_key = os.getenv("EMERGENT_LLM_KEY")
+        if not api_key:
+            raise ValueError("EMERGENT_LLM_KEY not found in environment variables")
+        self.client = openai.OpenAI(api_key=api_key)
     
     async def analyze_gravitas(self, transcript: str) -> Dict[str, Any]:
         prompt = f"""Analyze this executive's transcript for GRAVITAS indicators. Score each dimension 0-100:
