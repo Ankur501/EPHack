@@ -300,10 +300,22 @@ const ProfileModal = ({ onComplete, onClose }) => {
             justifyContent: 'flex-end'
           }}>
             <Button
+              type="button"
+              onClick={onClose}
+              variant="ghost"
+              style={{
+                color: '#64748B',
+                fontWeight: 500,
+                padding: '10px 24px'
+              }}
+            >
+              Skip for Now
+            </Button>
+            <Button
               type="submit"
               disabled={loading}
               style={{
-                backgroundColor: '#3B82F6',
+                backgroundColor: '#D4AF37',
                 color: '#FFFFFF',
                 fontWeight: 500,
                 padding: '10px 24px'
