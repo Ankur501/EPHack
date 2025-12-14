@@ -197,6 +197,24 @@ SIMULATOR_SCENARIOS_POOL = [
             "prompt": "Present ROI data and strategic importance. Make a compelling case for your resources.",
             "focus": ["Data-Driven Argumentation", "Strategic Value", "Negotiation"]
         },
+        {
+            "id": 4,
+            "title": "Q4 Earnings Call",
+            "difficulty": "High",
+            "duration": "2-3 min",
+            "situation": "Your company missed Q4 targets by 12%. Analysts on the earnings call are pressing for explanations and future outlook.",
+            "prompt": "Address analyst concerns with honesty while maintaining market confidence and presenting the path to recovery.",
+            "focus": ["Financial Communication", "Market Confidence", "Forward Vision"]
+        },
+        {
+            "id": 5,
+            "title": "Customer Crisis Communication",
+            "difficulty": "Medium",
+            "duration": "2-3 min",
+            "situation": "A data breach has affected 50,000 customers. You must address them directly about the breach and remediation.",
+            "prompt": "Communicate the breach details, actions taken, and customer protection measures with transparency and accountability.",
+            "focus": ["Crisis Communication", "Customer Trust", "Accountability"]
+        },
     ],
     # Pool 4 - Innovation & Growth
     [
