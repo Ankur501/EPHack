@@ -1,10 +1,11 @@
-/* Professional Corporate Theme */
+/* Professional Corporate Theme with Golden Accents */
 
 :root {
   --color-background: #FFFFFF;
   --color-foreground: #1E293B;
   --color-primary: #0F172A;
-  --color-accent: #3B82F6;
+  --color-accent: #D4AF37;
+  --color-gold: #D4AF37;
   --color-secondary: #F8FAFC;
   --color-muted: #64748B;
   --color-border: #E2E8F0;
@@ -21,11 +22,21 @@ body {
 
 .bg-background { background-color: #FFFFFF !important; }
 .bg-primary { background-color: #0F172A !important; }
-.bg-accent { background-color: #3B82F6 !important; }
+.bg-accent { background-color: #D4AF37 !important; }
+.bg-gold { background-color: #D4AF37 !important; }
 .bg-secondary { background-color: #F8FAFC !important; }
 .text-primary { color: #0F172A !important; }
-.text-accent { color: #3B82F6 !important; }
+.text-accent { color: #D4AF37 !important; }
+.text-gold { color: #D4AF37 !important; }
 .text-foreground { color: #1E293B !important; }
 .text-muted-foreground { color: #64748B !important; }
-.border-accent { border-color: #3B82F6 !important; }
+.border-accent { border-color: #D4AF37 !important; }
+.border-gold { border-color: #D4AF37 !important; }
 .border-border { border-color: #E2E8F0 !important; }
+
+.text-gradient-gold {
+  background: linear-gradient(135deg, #D4AF37 0%, #F4D03F 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}

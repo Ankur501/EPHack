@@ -8,10 +8,11 @@
   --color-background: #FFFFFF;
   --color-foreground: #1E293B;
   --color-primary: #0F172A;
-  --color-accent: #3B82F6;
+  --color-accent: #D4AF37;
   --color-secondary: #F8FAFC;
   --color-muted: #64748B;
   --color-border: #E2E8F0;
+  --color-gold: #D4AF37;
 }
 
 @layer base {
@@ -41,11 +42,36 @@
 .bg-secondary { background-color: var(--color-secondary) !important; }
 .text-primary { color: var(--color-primary) !important; }
 .text-accent { color: var(--color-accent) !important; }
+.text-gold { color: var(--color-gold) !important; }
 .text-foreground { color: var(--color-foreground) !important; }
 .text-muted-foreground { color: var(--color-muted) !important; }
 .border-accent { border-color: var(--color-accent) !important; }
+.border-gold { border-color: var(--color-gold) !important; }
 .border-border { border-color: var(--color-border) !important; }
 
 .font-mono {
   font-family: 'IBM Plex Mono', monospace;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -1000px 0; }
+  100% { background-position: 1000px 0; }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+.card-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 25px -5px rgba(212, 175, 55, 0.1), 0 10px 10px -5px rgba(212, 175, 55, 0.04);
+  border-color: #D4AF37 !important;
 }
