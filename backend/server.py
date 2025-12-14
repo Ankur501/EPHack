@@ -12,6 +12,9 @@ import asyncio
 from typing import Optional
 import httpx
 
+import sys
+sys.path.append('/app/backend')
+
 from models.user import UserCreate, User, LoginRequest, SignupRequest, AuthResponse
 from models.video import JobStatus, VideoMetadata, EPReport
 from utils.auth import hash_password, verify_password, create_session_token, get_current_user
