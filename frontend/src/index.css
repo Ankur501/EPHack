@@ -67,11 +67,24 @@
 }
 
 .card-hover {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
 }
 
 .card-hover:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 25px -5px rgba(212, 175, 55, 0.1), 0 10px 10px -5px rgba(212, 175, 55, 0.04);
+  transform: translateY(-8px) translateZ(20px);
+  box-shadow: 0 25px 50px -12px rgba(212, 175, 55, 0.25), 0 15px 20px -10px rgba(212, 175, 55, 0.15), 0 0 0 1px rgba(212, 175, 55, 0.1);
+  border-color: #D4AF37 !important;
+}
+
+.card-3d {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.card-3d:hover {
+  transform: translateY(-10px) rotateX(2deg);
+  box-shadow: 0 30px 60px -15px rgba(212, 175, 55, 0.3), 0 20px 30px -15px rgba(212, 175, 55, 0.2), inset 0 1px 0 rgba(212, 175, 55, 0.1);
   border-color: #D4AF37 !important;
 }
