@@ -315,10 +315,11 @@ class VideoPipelineE2ETester:
                 scores_valid = all(0 <= score <= 100 for score in scores_to_validate)
                 
                 if score_diff <= 1.0 and scores_valid:  # Allow 1 point tolerance for rounding
+                    storytelling_text = f"Storytelling: {storytelling}" if storytelling is not None else "Storytelling: None (no story detected)"
                     self.log_result(
                         f"Report Validation - {video_format.upper()}", 
                         True, 
-                        f"Overall: {overall}, Gravitas: {gravitas}, Communication: {communication}, Presence: {presence}, Storytelling: {storytelling}"
+                        f"Overall: {overall}, Gravitas: {gravitas}, Communication: {communication}, Presence: {presence}, {storytelling_text}"
                     )
                     return True
                 else:
