@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { getDeviceFingerprint } from './deviceFingerprint';
 
 const API_URL = process.env.REACT_APP_BACKEND_URL;
 
@@ -20,12 +21,17 @@ api.interceptors.response.use((response) => {
   return Promise.reject(error);
 });
 
-// Add session token to requests
+// Add session token and device fingerprint to requests
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem('session_token');
   if (token) {
     config.headers['Authorization'] = `Bearer ${token}`;
   }
+  
+  // Add device fingerprint
+  const fingerprint = getDeviceFingerprint();
+  config.headers['X-Device-Fingerprint'] = fingerprint;
+  
   return config;
 });
 
@@ -66,6 +72,14 @@ export const reportAPI = {
 
 export const coachingAPI = {
   createRequest: (payload) => api.post('/coaching/requests', payload),
+};
+
+
+export const subscriptionAPI = {
+  getStatus: () => api.get('/subscription/status'),
+  upgrade: (tier, billingCycle) => api.post('/subscription/upgrade', { tier, billing_cycle: billingCycle }),
+  checkVideoLimit: () => api.post('/subscription/check-video-limit'),
+  incrementUsage: () => api.post('/subscription/increment-usage'),
 };
 
 export const retentionAPI = {
