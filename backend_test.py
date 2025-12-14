@@ -289,6 +289,28 @@ class EPQuotientAPITester:
             200
         )
         return success
+    
+    def test_report_retrieval(self, report_id):
+        """Test retrieving a specific report"""
+        success, response = self.run_test(
+            "Reports - Get Report",
+            "GET",
+            f"reports/{report_id}",
+            200
+        )
+        
+        if success and response:
+            # Verify all required fields are present
+            required_fields = ['overall_score', 'gravitas_score', 'communication_score', 
+                             'presence_score', 'storytelling_score', 'detailed_metrics', 'coaching_tips']
+            missing_fields = [field for field in required_fields if field not in response]
+            
+            if missing_fields:
+                print(f"    ⚠️  Missing fields: {missing_fields}")
+            else:
+                print(f"    ✅ All required report fields present")
+        
+        return success
 
     def test_auth_logout(self):
         """Test logout"""
