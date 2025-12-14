@@ -1,34 +1,56 @@
-.App-logo {
-    height: 40vmin;
-    pointer-events: none;
+/* Corporate Luxury Theme - Deep Midnight Blue + Metallic Gold */
+
+:root {
+  --color-background: #F8FAFC;
+  --color-foreground: #0F172A;
+  --color-primary: #0F172A;
+  --color-accent: #D4AF37;
+  --color-secondary: #F1F5F9;
+  --color-muted: #64748B;
+  --color-border: #E2E8F0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-        animation: App-logo-spin infinite 20s linear;
-    }
+body {
+  background-color: var(--color-background) !important;
+  color: var(--color-foreground) !important;
 }
 
-.App-header {
-    background-color: #0f0f10;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
+.bg-background {
+  background-color: var(--color-background) !important;
 }
 
-.App-link {
-    color: #61dafb;
+.bg-primary {
+  background-color: var(--color-primary) !important;
 }
 
-@keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+.bg-accent {
+  background-color: var(--color-accent) !important;
+}
+
+.bg-secondary {
+  background-color: var(--color-secondary) !important;
+}
+
+.text-primary {
+  color: var(--color-primary) !important;
+}
+
+.text-accent {
+  color: var(--color-accent) !important;
+}
+
+.text-foreground {
+  color: var(--color-foreground) !important;
+}
+
+.text-muted-foreground {
+  color: var(--color-muted) !important;
+}
+
+.border-accent {
+  border-color: var(--color-accent) !important;
+}
+
+.border-border {
+  border-color: var(--color-border) !important;
 }
