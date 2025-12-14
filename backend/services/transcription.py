@@ -25,17 +25,34 @@ class TranscriptionService:
             '-acodec', 'pcm_s16le',
             '-ar', '16000',
             '-ac', '1',
+            '-y',  # Overwrite output file
             audio_path
         ]
         
-        process = await asyncio.create_subprocess_exec(
-            *command,
-            stdout=asyncio.subprocess.PIPE,
-            stderr=asyncio.subprocess.PIPE
-        )
-        
-        await process.communicate()
-        return audio_path
+        try:
+            process = await asyncio.create_subprocess_exec(
+                *command,
+                stdout=asyncio.subprocess.PIPE,
+                stderr=asyncio.subprocess.PIPE
+            )
+            
+            stdout, stderr = await process.communicate()
+            
+            if process.returncode != 0:
+                print(f"FFmpeg failed with return code {process.returncode}")
+                print(f"STDOUT: {stdout.decode()}")
+                print(f"STDERR: {stderr.decode()}")
+                raise RuntimeError(f"FFmpeg failed: {stderr.decode()}")
+            
+            # Check if audio file was created
+            if not os.path.exists(audio_path):
+                raise FileNotFoundError(f"Audio file was not created: {audio_path}")
+                
+            return audio_path
+            
+        except Exception as e:
+            print(f"Error in extract_audio_from_video: {e}")
+            raise
     
     async def transcribe_audio(self, audio_path: str) -> dict:
         import openai
