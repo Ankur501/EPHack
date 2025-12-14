@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '../components/ui/button';
-import { ArrowLeft, Lightbulb, Video, ExternalLink, Timer, Calendar } from 'lucide-react';
+import { ArrowLeft, Lightbulb, Video, Timer, Calendar, Play } from 'lucide-react';
 import axios from 'axios';
 import { toast } from 'sonner';
 
