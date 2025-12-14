@@ -1,56 +1,31 @@
-/* Corporate Luxury Theme - Deep Midnight Blue + Metallic Gold */
+/* Professional Corporate Theme */
 
 :root {
-  --color-background: #F8FAFC;
-  --color-foreground: #0F172A;
+  --color-background: #FFFFFF;
+  --color-foreground: #1E293B;
   --color-primary: #0F172A;
-  --color-accent: #D4AF37;
-  --color-secondary: #F1F5F9;
+  --color-accent: #3B82F6;
+  --color-secondary: #F8FAFC;
   --color-muted: #64748B;
   --color-border: #E2E8F0;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 body {
-  background-color: var(--color-background) !important;
-  color: var(--color-foreground) !important;
+  background-color: #FFFFFF !important;
+  color: #1E293B !important;
 }
 
-.bg-background {
-  background-color: var(--color-background) !important;
-}
-
-.bg-primary {
-  background-color: var(--color-primary) !important;
-}
-
-.bg-accent {
-  background-color: var(--color-accent) !important;
-}
-
-.bg-secondary {
-  background-color: var(--color-secondary) !important;
-}
-
-.text-primary {
-  color: var(--color-primary) !important;
-}
-
-.text-accent {
-  color: var(--color-accent) !important;
-}
-
-.text-foreground {
-  color: var(--color-foreground) !important;
-}
-
-.text-muted-foreground {
-  color: var(--color-muted) !important;
-}
-
-.border-accent {
-  border-color: var(--color-accent) !important;
-}
-
-.border-border {
-  border-color: var(--color-border) !important;
-}
+.bg-background { background-color: #FFFFFF !important; }
+.bg-primary { background-color: #0F172A !important; }
+.bg-accent { background-color: #3B82F6 !important; }
+.bg-secondary { background-color: #F8FAFC !important; }
+.text-primary { color: #0F172A !important; }
+.text-accent { color: #3B82F6 !important; }
+.text-foreground { color: #1E293B !important; }
+.text-muted-foreground { color: #64748B !important; }
+.border-accent { border-color: #3B82F6 !important; }
+.border-border { border-color: #E2E8F0 !important; }
