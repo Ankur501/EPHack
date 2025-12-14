@@ -358,6 +358,7 @@ async def get_ted_talks(
             "duration": "21 min",
             "relevance": "Presence, Body Language, Confidence",
             "url": "https://www.ted.com/talks/amy_cuddy_your_body_language_may_shape_who_you_are",
+            "embed_url": "https://embed.ted.com/talks/amy_cuddy_your_body_language_may_shape_who_you_are",
             "description": "Learn how power posing and body language influence confidence and presence"
         },
         {
@@ -367,6 +368,7 @@ async def get_ted_talks(
             "duration": "18 min",
             "relevance": "Vision Articulation, Leadership, Communication",
             "url": "https://www.ted.com/talks/simon_sinek_how_great_leaders_inspire_action",
+            "embed_url": "https://embed.ted.com/talks/simon_sinek_how_great_leaders_inspire_action",
             "description": "Discover the power of starting with 'why' in leadership communication"
         },
         {
@@ -376,6 +378,7 @@ async def get_ted_talks(
             "duration": "20 min",
             "relevance": "Authenticity, Emotional Intelligence, Connection",
             "url": "https://www.ted.com/talks/brene_brown_the_power_of_vulnerability",
+            "embed_url": "https://embed.ted.com/talks/brene_brown_the_power_of_vulnerability",
             "description": "Understand how vulnerability strengthens authentic leadership"
         },
         {
@@ -385,6 +388,7 @@ async def get_ted_talks(
             "duration": "10 min",
             "relevance": "Communication, Vocal Presence, Clarity",
             "url": "https://www.ted.com/talks/julian_treasure_how_to_speak_so_that_people_want_to_listen",
+            "embed_url": "https://embed.ted.com/talks/julian_treasure_how_to_speak_so_that_people_want_to_listen",
             "description": "Master vocal techniques for more effective speaking"
         },
         {
@@ -394,6 +398,7 @@ async def get_ted_talks(
             "duration": "13 min",
             "relevance": "Confidence, Self-belief, Performance",
             "url": "https://www.ted.com/talks/ivan_joseph_the_skill_of_self_confidence",
+            "embed_url": "https://embed.ted.com/talks/ivan_joseph_the_skill_of_self_confidence",
             "description": "Build self-confidence through practice and self-talk"
         }
     ]
