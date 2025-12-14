@@ -149,6 +149,24 @@ SIMULATOR_SCENARIOS_POOL = [
             "prompt": "Deliver constructive feedback while retaining this valuable employee. Balance honesty with encouragement.",
             "focus": ["Coaching", "Honest Communication", "Retention Strategy"]
         },
+        {
+            "id": 4,
+            "title": "Team Morale Crisis",
+            "difficulty": "Medium",
+            "duration": "2-3 min",
+            "situation": "Your team's productivity has dropped 30% after a failed project. Team members are demoralized and questioning leadership.",
+            "prompt": "Address the team to rebuild morale, acknowledge the failure, and reestablish momentum and trust.",
+            "focus": ["Motivational Leadership", "Vulnerability", "Resilience"]
+        },
+        {
+            "id": 5,
+            "title": "C-Suite Promotion Pitch",
+            "difficulty": "High",
+            "duration": "2-3 min",
+            "situation": "You're presenting to the CEO for a promotion to the C-suite. They want to know why you're ready for this level of responsibility.",
+            "prompt": "Articulate your leadership journey, strategic vision, and what unique value you'll bring to executive leadership.",
+            "focus": ["Self-Promotion", "Strategic Vision", "Executive Readiness"]
+        },
     ],
     # Pool 3 - Strategic Communication
     [
