@@ -168,7 +168,13 @@ const KnowYourEP = () => {
               Record or upload a 3-minute video and get your Executive Presence report in 2-3 minutes
             </p>
             
-            <Card className="p-8 mb-6 bg-accent/5 border-accent/20">
+            <div className="card-3d" style={{
+              padding: '32px',
+              marginBottom: '24px',
+              backgroundColor: 'rgba(212, 175, 55, 0.05)',
+              border: '2px solid rgba(212, 175, 55, 0.3)',
+              borderRadius: '12px'
+            }}>
               <h3 className="font-display text-xl font-semibold mb-4">Recording Instructions</h3>
               <div className="space-y-2 text-sm">
                 <p><strong>Duration:</strong> 2-4 minutes (recommend ~3 minutes)</p>
