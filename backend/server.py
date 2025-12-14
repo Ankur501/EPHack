@@ -22,6 +22,12 @@ from utils.auth import hash_password, verify_password, create_session_token, get
 from utils.gridfs_helper import save_video_to_gridfs, get_video_from_gridfs
 from services.video_processor import VideoProcessorService
 from routes.profile import create_profile_router
+from services.timed_content import (
+    get_current_simulator_scenarios, 
+    get_current_training_modules, 
+    get_current_daily_tip,
+    TimedContentService
+)
 
 from routes.coaching import create_coaching_router
 from routes.sharing import create_sharing_router
