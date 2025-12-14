@@ -274,8 +274,10 @@ async def list_reports(
 
 coaching_router = create_coaching_router(db)
 sharing_router = create_sharing_router(db)
+retention_router, retention_service = create_retention_router(db)
 api_router.include_router(coaching_router)
 api_router.include_router(sharing_router)
+api_router.include_router(retention_router)
 
 profile_router = create_profile_router(db)
 api_router.include_router(profile_router)
