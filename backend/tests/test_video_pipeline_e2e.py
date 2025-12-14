@@ -297,14 +297,22 @@ class VideoPipelineE2ETester:
                 gravitas = data.get('gravitas_score', 0)
                 communication = data.get('communication_score', 0)
                 presence = data.get('presence_score', 0)
-                storytelling = data.get('storytelling_score', 0)
+                storytelling = data.get('storytelling_score')  # Can be None
                 
-                # Check score formula: overall = gravitas×0.25 + communication×0.35 + presence×0.25 + storytelling×0.15
-                expected_overall = (gravitas * 0.25) + (communication * 0.35) + (presence * 0.25) + (storytelling * 0.15)
+                # Check score formula - handle None storytelling score
+                if storytelling is None:
+                    # Adjusted weights when no storytelling: gravitas×0.30 + communication×0.40 + presence×0.30
+                    expected_overall = (gravitas * 0.30) + (communication * 0.40) + (presence * 0.30)
+                    scores_to_validate = [overall, gravitas, communication, presence]
+                else:
+                    # Normal weights: gravitas×0.25 + communication×0.35 + presence×0.25 + storytelling×0.15
+                    expected_overall = (gravitas * 0.25) + (communication * 0.35) + (presence * 0.25) + (storytelling * 0.15)
+                    scores_to_validate = [overall, gravitas, communication, presence, storytelling]
+                
                 score_diff = abs(overall - expected_overall)
                 
                 # Validate score ranges (0-100)
-                scores_valid = all(0 <= score <= 100 for score in [overall, gravitas, communication, presence, storytelling])
+                scores_valid = all(0 <= score <= 100 for score in scores_to_validate)
                 
                 if score_diff <= 1.0 and scores_valid:  # Allow 1 point tolerance for rounding
                     self.log_result(
