@@ -12,6 +12,7 @@ const Report = () => {
   const navigate = useNavigate();
   const [report, setReport] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [generatingPDF, setGeneratingPDF] = useState(false);
   const [expandedSections, setExpandedSections] = useState({
     communication: true,
     presence: false,
@@ -33,6 +34,21 @@ const Report = () => {
     };
     fetchReport();
   }, [reportId, navigate]);
+  
+  const handleDownloadPDF = async () => {
+    if (!report) return;
+    
+    setGeneratingPDF(true);
+    try {
+      const fileName = generateEPReportPDF(report);
+      toast.success(`Report downloaded: ${fileName}`);
+    } catch (error) {
+      console.error('PDF generation error:', error);
+      toast.error('Failed to generate PDF');
+    } finally {
+      setGeneratingPDF(false);
+    }
+  };
   
   const toggleSection = (section) => {
     setExpandedSections(prev => ({...prev, [section]: !prev[section]}));
