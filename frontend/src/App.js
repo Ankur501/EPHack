@@ -35,6 +35,7 @@ function AppRouter() {
       <Route path="/learning" element={<ProtectedRoute><LearningBytes /></ProtectedRoute>} />
       <Route path="/training" element={<ProtectedRoute><Training /></ProtectedRoute>} />
       <Route path="/coaching" element={<ProtectedRoute><ExecutiveCoaching /></ProtectedRoute>} />
+      <Route path="/shared/:shareId" element={<SharedReport />} />
       
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>
