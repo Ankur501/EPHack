@@ -120,51 +120,8 @@ const Dashboard = () => {
                 </Button>
               </div>
             </div>
-            
-            <div style={{
-              display: 'flex',
-              gap: '12px',
-              marginTop: '20px',
-              paddingTop: '20px',
-              borderTop: '1px solid #E2E8F0',
-              overflowX: 'auto'
-            }}>
-              {tabs.map((tab) => (
-                <button
-                  key={tab.path}
-                  onClick={() => navigate(tab.path)}
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '8px',
-                    padding: '10px 20px',
-                    fontSize: '14px',
-                    fontWeight: 500,
-                    color: '#64748B',
-                    backgroundColor: 'transparent',
-                    border: '1px solid transparent',
-                    borderRadius: '8px',
-                    cursor: 'pointer',
-                    transition: 'all 0.2s',
-                    whiteSpace: 'nowrap'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = 'rgba(212, 175, 55, 0.1)';
-                    e.currentTarget.style.color = '#D4AF37';
-                    e.currentTarget.style.borderColor = '#D4AF37';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.backgroundColor = 'transparent';
-                    e.currentTarget.style.color = '#64748B';
-                    e.currentTarget.style.borderColor = 'transparent';
-                  }}
-                  data-testid={`tab-${tab.name.toLowerCase().replace(/\s+/g, '-')}`}
-                >
-                  <tab.icon style={{width: '16px', height: '16px'}} />
-                  {tab.name}
-                </button>
-              ))}
-            </div>
+
+            {/* Dashboard cards below are the single navigation surface */}
           </div>
         </nav>
         
