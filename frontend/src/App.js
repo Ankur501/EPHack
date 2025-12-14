@@ -14,6 +14,7 @@ import ExecutiveCoaching from './pages/ExecutiveCoaching';
 import SharedReport from './pages/SharedReport';
 import AuthCallback from './pages/AuthCallback';
 import Methodology from './pages/Methodology';
+import Pricing from './pages/Pricing';
 import { ProtectedRoute } from './components/ProtectedRoute';
 
 function AppRouter() {
@@ -29,6 +30,7 @@ function AppRouter() {
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
       
+      <Route path="/pricing" element={<ProtectedRoute><Pricing /></ProtectedRoute>} />
       <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
       <Route path="/know-your-ep" element={<ProtectedRoute><KnowYourEP /></ProtectedRoute>} />
       <Route path="/report/:reportId" element={<ProtectedRoute><Report /></ProtectedRoute>} />
