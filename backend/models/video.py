@@ -21,6 +21,7 @@ class VideJob(BaseModel):
     status: JobStatus
     progress: float = 0.0
     current_step: str = ""
+    report_id: Optional[str] = None
     error: Optional[str] = None
     created_at: datetime
     updated_at: datetime
