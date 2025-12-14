@@ -163,6 +163,20 @@
 ##       - working: true
 ##         agent: "testing"
 ##         comment: "✅ VERIFIED: POST /api/coaching/requests (200) creates coaching request with proper request_id. Share link endpoints ready but skipped testing as no existing reports found (as requested in review). GET /api/shared/reports/{share_id} endpoint available for when reports exist."
+##   - task: "Video Retention API with configurable auto-delete"
+##     implemented: true
+##     working: true
+##     file: "/app/backend/services/video_retention.py, /app/backend/server.py"
+##     stuck_count: 0
+##     priority: "high"
+##     needs_retesting: false
+##     status_history:
+##       - working: true
+##         agent: "main"
+##         comment: "Implemented video retention service with GET /api/retention/settings, PUT /api/retention/settings/default, and video upload integration."
+##       - working: true
+##         agent: "testing"
+##         comment: "✅ VERIFIED: All retention API endpoints working correctly. GET /api/retention/settings (200) returns proper structure with default_retention, videos array, and available_policies ['7_days', '30_days', '90_days', '1_year', 'permanent']. PUT /api/retention/settings/default (200) successfully sets valid retention periods and correctly rejects invalid periods with 400 error. Video upload integration confirmed - retention_policy and scheduled_deletion properly set in metadata based on user settings."
 ##
 ## frontend:
 ##   - task: "Dashboard cards are the only navigation (remove top tabs)"
