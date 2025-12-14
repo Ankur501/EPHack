@@ -8,9 +8,9 @@ const Landing = () => {
   
   return (
     <div className="min-h-screen bg-background">
-      <nav className="fixed top-0 w-full z-50 bg-card/80 backdrop-blur-xl border-b border-border">
-        <div className="container mx-auto px-6 py-4 flex justify-between items-center">
-          <div className="font-display text-2xl font-bold text-primary">EP Quotient</div>
+      <nav className="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-xl border-b border-border shadow-sm">
+        <div className="container mx-auto px-6 py-5 flex justify-between items-center">
+          <div className="font-display text-3xl font-bold text-primary">EP Quotient</div>
           <div className="flex gap-4">
             <Button variant="ghost" onClick={() => navigate('/login')} data-testid="login-link">
               Sign In
