@@ -66,7 +66,11 @@ Provide JSON response:
             return self._default_gravitas(error=str(e))
     
     async def analyze_storytelling(self, transcript: str, user_profile: Dict[str, Any] = None) -> Dict[str, Any]:
-        prompt = f"""Analyze this transcript for STORYTELLING quality:
+        profile_context = ""
+        if user_profile:
+            profile_context = f"\n\n**Speaker Profile:** {user_profile.get('role', 'Executive')} ({user_profile.get('seniority_level', 'Senior')} level). Evaluate storytelling effectiveness appropriate for this leadership level.\n"
+        
+        prompt = f"""Analyze this transcript for STORYTELLING quality:{profile_context}
 
 **Transcript:**
 {transcript}
