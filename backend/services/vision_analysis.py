@@ -6,12 +6,17 @@ from typing import List, Dict, Any
 import asyncio
 import openai
 from dotenv import load_dotenv
+from pathlib import Path
 
-load_dotenv()
+ROOT_DIR = Path(__file__).parent.parent
+load_dotenv(ROOT_DIR / '.env')
 
 class VisionAnalysisService:
     def __init__(self):
-        self.client = openai.OpenAI(api_key=os.getenv("EMERGENT_LLM_KEY"))
+        api_key = os.getenv("EMERGENT_LLM_KEY")
+        if not api_key:
+            raise ValueError("EMERGENT_LLM_KEY not found in environment variables")
+        self.client = openai.OpenAI(api_key=api_key)
     
     def extract_frames(self, video_path: str, fps: int = 2) -> List[str]:
         cap = cv2.VideoCapture(video_path)
